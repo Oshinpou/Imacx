@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Imacx Marketplace</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <script defer src="admin-script.js"></script>
+
+<style>
+
+  /* Admin Panel Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin: 20px 0;
+}
+
+.crud-section {
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.crud-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.crud-section form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.crud-section button {
+    padding: 10px;
+    background-color: gold;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#product-list {
+    margin-top: 20px;
+}
+
+.admin-product {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-product img {
+    margin-right: 10px;
+}
+
+.admin-product button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+  /* Ripple Effect on Touch */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+    margin-left: -100px;
+    background: rgba(255, 215, 0, 0.6); /* Gold-like color for luxurious feel */
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0);
+    animation: ripple-effect 0.6s ease-out;
+}
+
+@keyframes ripple-effect {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+
+    <!-- CRUD Operations for Products -->
+    <section class="crud-section">
+        <h2>Manage Products</h2>
+        <form id="product-form">
+            <label for="product-name">Product Name:</label>
+            <input type="text" id="product-name" required>
+            
+            <label for="product-category">Category:</label>
+            <input type="text" id="product-category" required>
+
+            <label for="product-image">Product Image URL:</label>
+            <input type="url" id="product-image" required>
+
+            <label for="product-video">Product Video URL (optional):</label>
+            <input type="url" id="product-video">
+
+            <button type="submit">Add/Update Product</button>
+        </form>
+
+        <div id="product-list">
+            <h3>Existing Products</h3>
+            <!-- Dynamically populated product list -->
+        </div>
+    </section>
+
+    <script>
+// Initialize product data
+let products = [];
+
+// Handle form submission to add or update products
+document.getElementById('product-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const productName = document.getElementById('product-name').value;
+    const productCategory = document.getElementById('product-category').value;
+    const productImage = document.getElementById('product-image').value;
+    const productVideo = document.getElementById('product-video').value;
+
+    // If it's an update, find the product and update its details
+    const existingProduct = products.find(p => p.name === productName);
+    if (existingProduct) {
+        existingProduct.category = productCategory;
+        existingProduct.image = productImage;
+        existingProduct.video = productVideo;
+        alert(`Updated product: ${productName}`);
+    } else {
+        // If it's a new product, create a new product object and push it into the products array
+        const newProduct = {
+            name: productName,
+            category: productCategory,
+            image: productImage,
+            video: productVideo,
+        };
+        products.push(newProduct);
+        alert(`Added new product: ${productName}`);
+    }
+
+    // Clear form fields after submission
+    document.getElementById('product-form').reset();
+    displayProducts();
+});
+
+// Function to display products dynamically in the admin panel
+function displayProducts() {
+    const productList = document.getElementById('product-list');
+    productList.innerHTML = ''; // Clear the list before rendering
+
+    if (products.length === 0) {
+        productList.innerHTML = '<p>No products added yet.</p>';
+        return;
+    }
+
+    products.forEach((product, index) => {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'admin-product';
+        productDiv.innerHTML = `
+            <h3>${product.name}</h3>
+            <p>Category: ${product.category}</p>
+            <img src="${product.image}" alt="${product.name}" width="100">
+            <p><a href="${product.video}" target="_blank">View Product Video</a></p>
+            <button onclick="editProduct(${index})">Edit</button>
+            <button onclick="deleteProduct(${index})">Delete</button>
+        `;
+        productList.appendChild(productDiv);
+    });
+}
+
+// Edit product by prefilling form fields
+function editProduct(index) {
+    const product = products[index];
+    document.getElementById('product-name').value = product.name;
+    document.getElementById('product-category').value = product.category;
+    document.getElementById('product-image').value = product.image;
+    document.getElementById('product-video').value = product.video;
+}
+
+// Delete product from the list
+function deleteProduct(index) {
+    const product = products[index];
+    if (confirm(`Are you sure you want to delete ${product.name}?`)) {
+        products.splice(index, 1);
+        displayProducts();
+    }
+}
+
+// Function to dynamically fetch and display featured products (to be shown on homepage)
+function loadFeaturedProducts() {
+    const featuredProductsContainer = document.getElementById('featured-products');
+    featuredProductsContainer.innerHTML = ''; // Clear previous content
+
+    products.slice(0, 50).forEach((product) => {
+        const productItem = document.createElement('div');
+        productItem.className = 'featured-product';
+        productItem.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" width="100">
+            <h3>${product.name}</h3>
+            <p>Category: ${product.category}</p>
+            ${product.video ? `<a href="${product.video}" target="_blank">Watch Product Video</a>` : ''}
+        `;
+        featuredProductsContainer.appendChild(productItem);
+    });
+}
+
+// Call this function to initially display any added products in the admin panel
+displayProducts();
+      
+    </script>
+</body>
+</html>
