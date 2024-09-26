@@ -734,6 +734,86 @@ function checkout() {
 
 // Add the rest of your JavaScript functionality here
 // E.g., loading categories, ad slider, etc.
+    
+    // Sample products for demonstration (replace with actual product data)
+const products = [
+    { id: 1, name: "Product 1", image: "product1.jpg", link: "product1.html" },
+    { id: 2, name: "Product 2", image: "product2.jpg", link: "product2.html" },
+    { id: 3, name: "Product 3", image: "product3.jpg", link: "product3.html" },
+    // Add more products as needed
+];
+
+// Function to load products into the category section
+function loadProducts() {
+    const categoryCards = document.getElementById("category-cards");
+    categoryCards.innerHTML = ""; // Clear existing content
+
+    products.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <button onclick="exploreProduct('${product.link}')">Explore Product</button>
+        `;
+        categoryCards.appendChild(card);
+    });
+}
+
+// Function to handle product search
+function searchProducts() {
+    const searchTerm = document.querySelector("input[type='text']").value.toLowerCase();
+    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
+
+    const categoryCards = document.getElementById("category-cards");
+    categoryCards.innerHTML = ""; // Clear existing content
+
+    if (filteredProducts.length === 0) {
+        categoryCards.innerHTML = "<p>No products found.</p>";
+        return;
+    }
+
+    filteredProducts.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <button onclick="exploreProduct('${product.link}')">Explore Product</button>
+        `;
+        categoryCards.appendChild(card);
+    });
+}
+
+// Function to redirect to checkout page
+function checkout() {
+    window.location.href = "checkout.html"; // Change to your checkout page
+}
+
+// Function to explore product page
+function exploreProduct(link) {
+    window.location.href = link; // Redirect to the product page
+}
+
+// Toggle the burger menu visibility
+function toggleMenu() {
+    const menu = document.getElementById('burger-menu');
+    menu.classList.toggle('nav-visible');
+    menu.classList.toggle('nav-hidden');
+}
+
+// Close the burger menu
+function closeMenu() {
+    const menu = document.getElementById('burger-menu');
+    menu.classList.remove('nav-visible');
+    menu.classList.add('nav-hidden');
+}
+
+// Initialize product loading on page load
+window.onload = function() {
+    loadProducts();
+    document.querySelector("input[type='text']").addEventListener("input", searchProducts);
+};
     </script>
 </body>
 </html>
