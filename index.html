@@ -5,986 +5,306 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMACX Marketplace</title>
     <link rel="stylesheet" href="styles.css">
-
 <style>
 
     body {
     font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
 }
 
 header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    background: #333;
-    color: white;
-    padding: 10px 20px;
+    background-color: black;
+    padding: 20px;
+    position: relative;
 }
 
-.logo img {
-    height: 50px; /* Adjust logo size */
+.logo-container {
+    display: flex;
+    align-items: center;
 }
 
-.logo h1 {
-    font-family: 'Cursive', sans-serif;
+.logo {
+    height: 80px;
+    margin-right: 20px;
+}
+
+.gold-text {
     color: gold;
-    margin: 0 10px;
 }
 
-.logo h2 {
-    font-family: 'Cursive', sans-serif;
-    color: gold;
+.cursive {
+    font-family: 'Brush Script MT', cursive;
+}
+
+.small {
     font-size: 0.8em;
 }
 
-.search-cart {
+.search-cart-container {
     display: flex;
     align-items: center;
+    margin-top: 10px;
 }
 
-input[type="text"] {
-    padding: 5px;
-    margin-right: 10px;
+.search-bar {
+    padding: 10px;
+    border: 1px solid gold;
+    border-radius: 5px;
+    margin-right: 20px;
 }
 
-button {
+.cart {
+    font-size: 24px;
     cursor: pointer;
-    background-color: #f4f4f4;
-    border: none;
-    padding: 5px 10px;
+    color: gold;
+    margin-right: 20px;
 }
 
-.menu {
-    display: none; /* Hidden by default */
+.burger-menu {
+    font-size: 24px;
+    cursor: pointer;
+    color: gold;
+}
+
+.burger-menu-list {
     position: absolute;
-    background-color: #fff;
-    top: 60px;
-    right: 0;
-    border: 1px solid #ccc;
+    top: 80px;
+    left: 0;
+    background-color: black;
     width: 200px;
-    z-index: 1;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.menu.show {
-    display: block; /* Show on click */
-}
-
-.menu ul {
-    list-style: none;
+.burger-menu-list ul {
+    list-style-type: none;
     padding: 0;
 }
 
-.menu li {
+.burger-menu-list li {
     padding: 10px;
+    color: white;
+    cursor: pointer;
 }
 
-.menu li a {
-    text-decoration: none;
-    color: #333;
+.burger-menu-list li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.burger-menu-list .close {
+    font-size: 30px;
+    color: gold;
+    cursor: pointer;
 }
 
 .ad-slider {
+    position: relative;
     width: 100%;
-    height: 300px; /* Adjust height as needed */
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
     margin: 20px 0;
-    transition: background-image 1s ease-in-out; /* Smooth transition */
-}
-
-.categories, .featured-products {
-    padding: 20px;
-}
-
-.category-cards, .featured-products-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.category-card, .featured-product {
-    background: white;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.explore-button {
-    display: inline-block;
-    margin-top: 10px;
-    background: gold;
-    color: black;
-    padding: 5px 10px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-    /* Basic styles for body, header, and main content */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.luxury-title {
-    font-family: 'Cursive', sans-serif;
-    color: gold;
-    font-size: 2em;
-    margin: 0 10px;
-}
-
-.shop-title {
-    font-family: 'Cursive', sans-serif;
-    color: gold;
-    font-size: 1.2em;
-}
-
-.search-cart {
-    display: flex;
-    align-items: center;
-}
-
-.search-cart input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#cart-button {
-    background: none;
-    border: none;
-    font-size: 1.5em;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-.burger-menu {
-    cursor: pointer;
-    font-size: 1.5em;
-    margin-left: 20px;
-}
-
-/* Burger Menu Styles */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 10;
-}
-
-nav ul {
-    list-style: none;
-    padding: 20px;
-}
-
-nav ul li {
-    padding: 15px;
-    border-bottom: 1px solid #ccc;
-    cursor: pointer;
-}
-
-nav ul li:hover {
-    background-color: #f0f0f0;
-}
-
-/* Visibility classes */
-.nav-visible {
-    transform: translateX(0);
-}
-
-.nav-hidden {
-    transform: translateX(-100%);
-}
-
-.main-content {
-    padding: 20px;
-    margin-top: 80px; /* Adjust based on header height */
-}
-
-    /* Global Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #121212; /* Dark background */
-    color: #f5e1a5; /* Soft gold text */
-}
-
-/* Header Styles */
-header {
-    background: #000; /* Black header */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px;
-    position: relative;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-/* Logo and Titles */
-.logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.luxury-title {
-    font-family: 'Cursive', sans-serif;
-    color: #ffd700; /* Bright gold */
-    font-size: 3em;
-    margin: 0;
-}
-
-.shop-title {
-    font-family: 'Cursive', sans-serif;
-    color: #ffd700; /* Bright gold */
-    font-size: 1.5em;
-    margin: 10px 0;
-}
-
-/* Search and Cart */
-.search-cart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.search-cart input {
-    padding: 10px;
-    width: 80%;
-    max-width: 400px;
-    border: 1px solid #ffd700; /* Gold border */
-    border-radius: 5px;
-    background-color: #1a1a1a; /* Dark input background */
-    color: #f5e1a5; /* Gold text in input */
-    font-size: 1em;
-}
-
-#cart-button {
-    background: none;
-    border: none;
-    font-size: 1.8em;
-    color: #ffd700; /* Gold cart icon */
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-/* Burger Menu Styles */
-.burger-menu {
-    cursor: pointer;
-    font-size: 2em;
-    color: #ffd700; /* Gold burger icon */
-    margin-top: 10px;
-}
-
-/* Burger Menu Styles */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background: rgba(30, 30, 30, 0.95); /* Dark translucent background */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 10;
-}
-
-nav ul {
-    list-style: none;
-    padding: 20px;
-}
-
-nav ul li {
-    padding: 15px;
-    border-bottom: 1px solid #ffd700; /* Gold border */
-    cursor: pointer;
-    color: #f5e1a5; /* Gold text */
-}
-
-nav ul li:hover {
-    background-color: rgba(255, 215, 0, 0.1); /* Soft gold hover effect */
-}
-
-/* Visibility classes */
-.nav-visible {
-    transform: translateX(0);
-}
-
-.nav-hidden {
-    transform: translateX(-100%);
-}
-
-/* Main Content */
-.main-content {
-    padding: 20px;
-    margin-top: 80px; /* Adjust based on header height */
-    text-align: center; /* Center content */
-}
-
-/* Ad Slider and Category Cards */
-#ad-slider {
-    width: 100%;
-    height: 300px; /* Example height */
-    background: #1a1a1a; /* Dark background for ads */
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffd700; /* Gold text for ads */
-    font-size: 1.5em;
-}
-
-.category-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center the cards */
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .luxury-title {
-        font-size: 2.5em;
-    }
-
-    .shop-title {
-        font-size: 1.2em;
-    }
-
-    .search-cart input {
-        width: 90%;
-    }
-}
-    /* Global Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #121212; /* Dark background */
-    color: #f5e1a5; /* Soft gold text */
-}
-
-/* Header Styles */
-header {
-    background: #000; /* Black header */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px;
-    position: relative;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-/* Logo and Titles */
-.logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.luxury-title {
-    font-family: 'Cursive', sans-serif;
-    color: #ffd700; /* Bright gold */
-    font-size: 3em;
-    margin: 0;
-}
-
-.shop-title {
-    font-family: 'Cursive', sans-serif;
-    color: #ffd700; /* Bright gold */
-    font-size: 1.5em;
-    margin: 10px 0;
-}
-
-/* Search and Cart */
-.search-cart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.search-cart input {
-    padding: 10px;
-    width: 80%;
-    max-width: 400px;
-    border: 1px solid #ffd700; /* Gold border */
-    border-radius: 5px;
-    background-color: #1a1a1a; /* Dark input background */
-    color: #f5e1a5; /* Gold text in input */
-    font-size: 1em;
-}
-
-#cart-button {
-    background: none;
-    border: none;
-    font-size: 1.8em;
-    color: #ffd700; /* Gold cart icon */
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-/* Burger Menu Styles */
-.burger-menu {
-    cursor: pointer;
-    font-size: 2em;
-    color: #ffd700; /* Gold burger icon */
-    margin-top: 10px;
-}
-
-/* Burger Menu Styles */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background: rgba(30, 30, 30, 0.95); /* Dark translucent background */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 10;
-}
-
-nav ul {
-    list-style: none;
-    padding: 20px;
-}
-
-nav ul li {
-    padding: 15px;
-    border-bottom: 1px solid #ffd700; /* Gold border */
-    cursor: pointer;
-    color: #f5e1a5; /* Gold text */
-}
-
-nav ul li:hover {
-    background-color: rgba(255, 215, 0, 0.1); /* Soft gold hover effect */
-}
-
-/* Visibility classes */
-.nav-visible {
-    transform: translateX(0);
-}
-
-.nav-hidden {
-    transform: translateX(-100%);
-}
-
-/* Main Content */
-.main-content {
-    padding: 20px;
-    margin-top: 80px; /* Adjust based on header height */
-    text-align: center; /* Center content */
-}
-
-/* Ad Slider and Category Cards */
-#ad-slider {
-    width: 100%;
-    height: 300px; /* Example height */
-    background: #1a1a1a; /* Dark background for ads */
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffd700; /* Gold text for ads */
-    font-size: 1.5em;
-}
-
-.category-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center the cards */
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .luxury-title {
-        font-size: 2.5em;
-    }
-
-    .shop-title {
-        font-size: 1.2em;
-    }
-
-    .search-cart input {
-        width: 90%;
-    }
-    }
-
-    /* Advertisement Slider Styles */
-#ad-slider {
-    width: 100%;
-    height: 300px; /* Example height */
-    background: #1a1a1a; /* Dark background for ads */
-    overflow: hidden; /* Hide overflow */
-    position: relative; /* Position relative for absolute positioning of slides */
 }
 
 .slide {
-    display: none; /* Hide all slides initially */
-    position: absolute; /* Stack slides on top of each other */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    color: #ffd700; /* Gold text for ads */
-    font-size: 1.5em;
+    display: none;
+    text-align: center;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+}
+
+.category-section {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.section-title {
+    text-align: center;
+    color: gold;
+    margin-bottom: 20px;
+}
+
+.category-cards {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
-/* Show the first slide initially */
-.slide:first-child {
-    display: flex;
-}
-
-/* Product Card Styles */
 .product-card {
-    background-color: #1a1a1a; /* Dark background for cards */
-    border: 2px solid #ffd700; /* Golden border */
-    border-radius: 10px; /* Rounded corners */
-    padding: 15px;
+    border: 1px solid gold;
+    border-radius: 5px;
+    padding: 10px;
     margin: 10px;
     text-align: center;
-    transition: transform 0.2s; /* Animation for hover effect */
+    background-color: #fff;
+    width: 200px;
 }
 
 .product-card img {
-    width: 100%; /* Responsive image */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 10px; /* Rounded image */
-}
-
-.product-card h3 {
-    color: #ffd700; /* Gold text */
+    width: 100%;
+    height: 150px;
 }
 
 .product-card button {
-    background-color: #ffd700; /* Gold button */
+    padding: 10px;
     border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    color: #000; /* Black text */
+    background-color: gold;
+    color: white;
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s; /* Animation for hover effect */
+    margin-top: 10px;
 }
 
-.product-card button:hover {
-    background-color: #e6b800; /* Darker gold on hover */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 </style>
 </head>
 <body>
-    <!-- Header with Logo and Search Bar -->
+
     <header>
-        <div class="logo">
-            <img src="logo.png" alt="IMACX Logo">
-            <h1>IMACX</h1>
-            <h2>Shop Like Fellish</h2>
+        <div class="logo-container">
+            <img src="logo.png" alt="IMACX Logo" class="logo">
+            <h1 class="gold-text cursive">IMACX</h1>
+            <h2 class="gold-text cursive small">Shop like Fellish</h2>
         </div>
-        <div class="search-cart">
-            <input type="text" placeholder="Search...">
-            <button id="cart-btn" onclick="alert('Proceeding to checkout...')">🛒</button>
-            
-        <div class="burger-menu" onclick="toggleMenu()">
-            ☰
+
+        <div class="search-cart-container">
+            <input type="text" placeholder="Search..." class="search-bar">
+            <span class="cart" onclick="checkout()">🛒</span>
+            <div class="burger-menu" onclick="toggleMenu()">☰</div>
         </div>
+    </header>
+
+    <nav id="burger-menu" class="burger-menu-list">
+        <ul>
+            <li onclick="window.location.href='user-account.html'">Users account</li>
+            <li onclick="window.location.href='switch-account.html'">Switch account</li>
+            <li onclick="window.location.href='signout.html'">Sign out</li>
+            <li onclick="window.location.href='customer-service.html'">Customer service</li>
+            <li onclick="window.location.href='sellers-account.html'">Sellers account</li>
+        </ul>
+        <ul>
+            <li onclick="window.location.href='marketplace.html'">Marketplace</li>
+            <li onclick="window.location.href='coupon-codes.html'">Play and win coupon codes</li>
+            <li onclick="window.location.href='cart.html'">Cart page</li>
+            <li onclick="window.location.href='your-orders.html'">Your orders page</li>
+            <li onclick="window.location.href='your-products.html'">Your products page</li>
+            <li onclick="window.location.href='faq.html'">FAQ bot page</li>
+            <li onclick="window.location.href='account-recovery.html'">Account recovery setup</li>
+        </ul>
+        <span class="close" onclick="toggleMenu()">×</span>
+    </nav>
+
+    <div id="ad-slider" class="ad-slider">
+        <div class="slide"><img src="ad1.jpg" alt="Ad 1"></div>
+        <div class="slide"><img src="ad2.jpg" alt="Ad 2"></div>
+        <div class="slide"><img src="ad3.jpg" alt="Ad 3"></div>
+        <div class="slide"><img src="ad4.jpg" alt="Ad 4"></div>
+        <div class="slide"><img src="ad5.jpg" alt="Ad 5"></div>
+        <div class="slide"><img src="ad6.jpg" alt="Ad 6"></div>
+        <div class="slide"><img src="ad7.jpg" alt="Ad 7"></div>
+        <div class="slide"><img src="ad8.jpg" alt="Ad 8"></div>
+        <div class="slide"><img src="ad9.jpg" alt="Ad 9"></div>
+        <div class="slide"><img src="ad10.jpg" alt="Ad 10"></div>
     </div>
-</header>
 
-<!-- Burger Menu -->
-<nav id="burger-menu" class="nav-hidden">
-    <ul>
-        <li onclick="closeMenu()">Users Account</li>
-        <li onclick="closeMenu()">Switch Account</li>
-        <li onclick="closeMenu()">Sign Out</li>
-        <li onclick="closeMenu()">Customer Service</li>
-        <li onclick="closeMenu()">Sellers Account</li>
-        <li onclick="closeMenu()">Marketplace Categories</li>
-        <li onclick="closeMenu()">Play and Win Coupon Codes</li>
-        <li onclick="closeMenu()">Cart Page</li>
-        <li onclick="closeMenu()">Your Orders Page</li>
-        <li onclick="closeMenu()">Your Products Page</li>
-        <li onclick="closeMenu()">FAQ Bot Page</li>
-        <li onclick="closeMenu()">Account Recovery Setup</li>
-    </ul>
-</nav>
-
-<div class="main-content">
-    <!-- Advertisement Slider -->
-<div id="ad-slider">
-    <div class="slide">Ad Slide 1</div>
-    <div class="slide">Ad Slide 2</div>
-    <div class="slide">Ad Slide 3</div>
-    <div class="slide">Ad Slide 4</div>
-    <div class="slide">Ad Slide 5</div>
-    <div class="slide">Ad Slide 6</div>
-    <div class="slide">Ad Slide 7</div>
-    <div class="slide">Ad Slide 8</div>
-    <div class="slide">Ad Slide 9</div>
-    <div class="slide">Ad Slide 10</div>
-</div>
-
-    <div id="category-cards" class="category-cards"></div>
-</div>
-
-    <!-- Shop by Category Section -->
-    <section id="categories" class="categories">
-        <h2>Shop by Category</h2>
-        <div class="category-cards" id="category-cards">
-            <!-- Category cards will be inserted here dynamically -->
-        </div>
+    <section class="category-section">
+        <h2 class="section-title">Shop by Category</h2>
+        <div id="category-cards" class="category-cards"></div>
     </section>
 
-    <!-- Featured Products Section -->
-    <section id="featured-products" class="featured-products">
-        <h2>Featured Products</h2>
-        <div id="featured-products-container"></div>
-    </section>
+    <footer>
+        <p>© 2024 IMACX Marketplace. All rights reserved.</p>
+    </footer>
 
     <script>
-        let products = [];
+        const products = [
+    { id: 1, name: "Luxury Handbag", image: "product1.jpg", link: "product1.html" },
+    { id: 2, name: "Stylish Watch", image: "product2.jpg", link: "product2.html" },
+    { id: 3, name: "Designer Shoes", image: "product3.jpg", link: "product3.html" },
+    { id: 4, name: "Elegant Dress", image: "product4.jpg", link: "product4.html" },
+    { id: 5, name: "Classic Wallet", image: "product5.jpg", link: "product5.html" },
+    { id: 6, name: "Diamond Necklace", image: "product6.jpg", link: "product6.html" },
+    { id: 7, name: "Classic Sunglasses", image: "product7.jpg", link: "product7.html" },
+    { id: 8, name: "Elegant Bracelet", image: "product8.jpg", link: "product8.html" },
+    { id: 9, name: "Luxury Perfume", image: "product9.jpg", link: "product9.html" },
+    { id: 10, name: "Silk Tie", image: "product10.jpg", link: "product10.html" },
+    { id: 11, name: "Cashmere Sweater", image: "product11.jpg", link: "product11.html" },
+    { id: 12, name: "Gourmet Chocolates", image: "product12.jpg", link: "product12.html" },
+];
 
-// Load products from localStorage when the page loads
-window.onload = function () {
-    loadProductsFromLocalStorage();
-    loadFeaturedProducts();
-    startAdSlider();
-};
+function loadFeaturedProducts() {
+    const categoryCards = document.getElementById('category-cards');
+    categoryCards.innerHTML = ''; // Clear existing cards
 
-// Burger menu toggle functionality
-const burgerMenu = document.getElementById('burger-menu');
-const menuContent = document.getElementById('menu-content');
+    products.forEach(product => {
+        const card = document.createElement('div');
+        card.classList.add('product-card');
 
-burgerMenu.addEventListener('click', () => {
-    menuContent.classList.toggle('show');
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <button onclick="window.location.href='${product.link}'">Explore Product</button>
+        `;
+        categoryCards.appendChild(card);
+    });
+}
+
+// Slider Functionality
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.style.display = (i === index) ? 'block' : 'none';
+    });
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}
+
+setInterval(nextSlide, 10000); // Change slide every 10 seconds
+showSlide(currentSlide);
+
+// Toggle Burger Menu
+function toggleMenu() {
+    const menu = document.getElementById('burger-menu');
+    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+}
+
+// Checkout Function
+function checkout() {
+    window.location.href = 'checkout.html';
+}
+
+// Search Functionality
+document.querySelector('.search-bar').addEventListener('keyup', function (event) {
+    const keyword = event.target.value.toLowerCase();
+    const cards = document.querySelectorAll('.product-card');
+    cards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = title.includes(keyword) ? 'block' : 'none';
+    });
 });
 
-// Load products from localStorage
-function loadProductsFromLocalStorage() {
-    const savedProducts = localStorage.getItem('products');
-    if (savedProducts) {
-        products = JSON.parse(savedProducts);
-    } else {
-        // Initialize with default products if none exist
-        products = [];
-        saveProductsToLocalStorage();  // Save default products in localStorage
-    }
-}
-
-// Save products to localStorage
-function saveProductsToLocalStorage() {
-    localStorage.setItem('products', JSON.stringify(products));
-}
-
-// Dynamically display featured products on the homepage
-function loadFeaturedProducts() {
-    const featuredProductsContainer = document.getElementById('featured-products-container');
-    featuredProductsContainer.innerHTML = ''; // Clear previous content
-
-    if (products.length === 0) {
-        featuredProductsContainer.innerHTML = '<p>No featured products available.</p>';
-        return;
-    }
-
-    // Limit the number of displayed featured products to 50
-    products.slice(0, 50).forEach((product) => {
-        const productItem = document.createElement('div');
-        productItem.className = 'featured-product';
-        productItem.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" width="100">
-            <h3>${product.name}</h3>
-            <p>Category: ${product.category}</p>
-            <a href="${product.link}" class="explore-button">Explore Product</a>
-        `;
-        featuredProductsContainer.appendChild(productItem);
-    });
-}
-
-// Start advertisement slider
-function startAdSlider() {
-    const adContainer = document.getElementById('ad-slider');
-    const ads = [
-        'ad1.jpg',
-        'ad2.jpg',
-        'ad3.jpg',
-        'ad4.jpg',
-        'ad5.jpg',
-        'ad6.jpg',
-        'ad7.jpg',
-        'ad8.jpg',
-        'ad9.jpg',
-        'ad10.jpg'
-    ];
-
-    let currentAd = 0;
-
-    function showNextAd() {
-        // Change background image for the ad slider
-        adContainer.style.backgroundImage = `url('${ads[currentAd]}')`;
-        currentAd = (currentAd + 1) % ads.length; // Cycle through ads
-    }
-
-    // Start the ad slider
-    setInterval(showNextAd, 10000); // Change every 10 seconds
-}
-
-// Dynamically create category cards
-function loadCategories() {
-    const categories = [
-        { name: "Electronics", link: "electronics.html" },
-        { name: "Fashion", link: "fashion.html" },
-        { name: "Home", link: "home.html" },
-        { name: "Beauty", link: "beauty.html" },
-        { name: "Sports", link: "sports.html" },
-        { name: "Toys", link: "toys.html" },
-        { name: "Books", link: "books.html" },
-        { name: "Automotive", link: "automotive.html" },
-        { name: "Groceries", link: "groceries.html" },
-        { name: "Health", link: "health.html" },
-        { name: "Jewelry", link: "jewelry.html" },
-        { name: "Furniture", link: "furniture.html" }
-    ];
-
-    const categoryCards = document.getElementById('category-cards');
-    categories.forEach(category => {
-        const card = document.createElement('div');
-        card.className = 'category-card';
-        card.innerHTML = `
-            <h3>${category.name}</h3>
-            <a href="${category.link}" class="explore-button">Explore</a>
-        `;
-        categoryCards.appendChild(card);
-    });
-}
-
-// Initial function calls
-loadCategories();
-
-        // Toggle the burger menu visibility
-function toggleMenu() {
-    const menu = document.getElementById('burger-menu');
-    menu.classList.toggle('nav-visible');
-    menu.classList.toggle('nav-hidden');
-}
-
-// Close the burger menu
-function closeMenu() {
-    const menu = document.getElementById('burger-menu');
-    menu.classList.remove('nav-visible');
-    menu.classList.add('nav-hidden');
-}
-
-// Checkout function (replace with actual implementation)
-function checkout() {
-    alert("Redirecting to checkout...");
-}
-
-// Add the rest of your JavaScript functionality here
-// E.g., loading categories, ad slider, etc.
-    
-    // Sample products for demonstration (replace with actual product data)
-const products = [
-    { id: 1, name: "Product 1", image: "product1.jpg", link: "product1.html" },
-    { id: 2, name: "Product 2", image: "product2.jpg", link: "product2.html" },
-    { id: 3, name: "Product 3", image: "product3.jpg", link: "product3.html" },
-    // Add more products as needed
-];
-
-// Function to load products into the category section
-function loadProducts() {
-    const categoryCards = document.getElementById("category-cards");
-    categoryCards.innerHTML = ""; // Clear existing content
-
-    products.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <button onclick="exploreProduct('${product.link}')">Explore Product</button>
-        `;
-        categoryCards.appendChild(card);
-    });
-}
-
-// Function to handle product search
-function searchProducts() {
-    const searchTerm = document.querySelector("input[type='text']").value.toLowerCase();
-    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
-
-    const categoryCards = document.getElementById("category-cards");
-    categoryCards.innerHTML = ""; // Clear existing content
-
-    if (filteredProducts.length === 0) {
-        categoryCards.innerHTML = "<p>No products found.</p>";
-        return;
-    }
-
-    filteredProducts.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <button onclick="exploreProduct('${product.link}')">Explore Product</button>
-        `;
-        categoryCards.appendChild(card);
-    });
-}
-
-// Function to redirect to checkout page
-function checkout() {
-    window.location.href = "checkout.html"; // Change to your checkout page
-}
-
-// Function to explore product page
-function exploreProduct(link) {
-    window.location.href = link; // Redirect to the product page
-}
-
-// Toggle the burger menu visibility
-function toggleMenu() {
-    const menu = document.getElementById('burger-menu');
-    menu.classList.toggle('nav-visible');
-    menu.classList.toggle('nav-hidden');
-}
-
-// Close the burger menu
-function closeMenu() {
-    const menu = document.getElementById('burger-menu');
-    menu.classList.remove('nav-visible');
-    menu.classList.add('nav-hidden');
-}
-
-// Initialize product loading on page load
-window.onload = function() {
-    loadProducts();
-    document.querySelector("input[type='text']").addEventListener("input", searchProducts);
-};
-
-        // Sample products for demonstration (replace with actual product data)
-const products = [
-    { id: 1, name: "Golden Ring", image: "product1.jpg", link: "product1.html" },
-    { id: 2, name: "Luxury Watch", image: "product2.jpg", link: "product2.html" },
-    { id: 3, name: "Designer Handbag", image: "product3.jpg", link: "product3.html" },
-    // Add more products as needed
-];
-
-// Function to load products into the category section
-function loadProducts() {
-    const categoryCards = document.getElementById("category-cards");
-    categoryCards.innerHTML = ""; // Clear existing content
-
-    products.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <button onclick="exploreProduct('${product.link}')">Explore Product</button>
-        `;
-        categoryCards.appendChild(card);
-    });
-}
-
-// Function to handle product search
-function searchProducts() {
-    const searchTerm = document.querySelector("input[type='text']").value.toLowerCase();
-    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
-
-    const categoryCards = document.getElementById("category-cards");
-    categoryCards.innerHTML = ""; // Clear existing content
-
-    if (filteredProducts.length === 0) {
-        categoryCards.innerHTML = "<p>No products found.</p>";
-        return;
-    }
-
-    filteredProducts.forEach(product => {
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <button onclick="exploreProduct('${product.link}')">Explore Product</button>
-        `;
-        categoryCards.appendChild(card);
-    });
-
-    // Scroll to the featured products section
-    document.getElementById('featured-products').scrollIntoView({ behavior: 'smooth' });
-}
-
-// Function to redirect to checkout page
-function checkout() {
-    window.location.href = "checkout.html"; // Change to your checkout page
-}
-
-// Function to explore product page
-function exploreProduct(link) {
-    window.location.href = link; // Redirect to the product page
-}
-
-// Toggle the burger menu visibility
-function toggleMenu() {
-    const menu = document.getElementById('burger-menu');
-    menu.classList.toggle('nav-visible');
-    menu.classList.toggle('nav-hidden');
-}
-
-// Close the burger menu
-function closeMenu() {
-    const menu = document.getElementById('burger-menu');
-    menu.classList.remove('nav-visible');
-    menu.classList.add('nav-hidden');
-}
-
-// Initialize product loading on page load
-window.onload = function() {
-    loadProducts();
-    document.querySelector("input[type='text']").addEventListener("input", searchProducts);
-    startAdSlider();
-};
-
-// Advertisement Slider Functionality
-let currentSlide = 0;
-
-function startAdSlider() {
-    const slides = document.querySelectorAll('#ad-slider .slide');
-    setInterval(() => {
-        slides[currentSlide].style.display = 'none'; // Hide current slide
-        currentSlide = (currentSlide + 1) % slides.length; // Move to next slide
-        slides[currentSlide].style.display = 'block'; // Show next slide
-    }, 10000); // Change slide every 10 seconds
-}
+// Load featured products when the page is loaded
+window.onload = loadFeaturedProducts;
     </script>
 </body>
 </html>
