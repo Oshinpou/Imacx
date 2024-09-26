@@ -122,6 +122,108 @@ button {
     text-decoration: none;
     border-radius: 5px;
 }
+
+    /* Basic styles for body, header, and main content */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.luxury-title {
+    font-family: 'Cursive', sans-serif;
+    color: gold;
+    font-size: 2em;
+    margin: 0 10px;
+}
+
+.shop-title {
+    font-family: 'Cursive', sans-serif;
+    color: gold;
+    font-size: 1.2em;
+}
+
+.search-cart {
+    display: flex;
+    align-items: center;
+}
+
+.search-cart input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#cart-button {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.burger-menu {
+    cursor: pointer;
+    font-size: 1.5em;
+    margin-left: 20px;
+}
+
+/* Burger Menu Styles */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 10;
+}
+
+nav ul {
+    list-style: none;
+    padding: 20px;
+}
+
+nav ul li {
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+}
+
+nav ul li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Visibility classes */
+.nav-visible {
+    transform: translateX(0);
+}
+
+.nav-hidden {
+    transform: translateX(-100%);
+}
+
+.main-content {
+    padding: 20px;
+    margin-top: 80px; /* Adjust based on header height */
+}
 </style>
 </head>
 <body>
@@ -135,23 +237,35 @@ button {
         <div class="search-cart">
             <input type="text" placeholder="Search...">
             <button id="cart-btn" onclick="alert('Proceeding to checkout...')">🛒</button>
-            <div id="burger-menu">☰</div>
+            
+        <div class="burger-menu" onclick="toggleMenu()">
+            ☰
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Burger Menu -->
-    <nav id="menu-content" class="menu">
-        <ul>
-            <li><a href="#">User's Account</a></li>
-            <li><a href="#">Switch Account</a></li>
-            <li><a href="#">Sign Out</a></li>
-            <li><a href="#">Customer Service</a></li>
-            <li><a href="#">Seller's Account</a></li>
-        </ul>
-    </nav>
+<!-- Burger Menu -->
+<nav id="burger-menu" class="nav-hidden">
+    <ul>
+        <li onclick="closeMenu()">Users Account</li>
+        <li onclick="closeMenu()">Switch Account</li>
+        <li onclick="closeMenu()">Sign Out</li>
+        <li onclick="closeMenu()">Customer Service</li>
+        <li onclick="closeMenu()">Sellers Account</li>
+        <li onclick="closeMenu()">Marketplace Categories</li>
+        <li onclick="closeMenu()">Play and Win Coupon Codes</li>
+        <li onclick="closeMenu()">Cart Page</li>
+        <li onclick="closeMenu()">Your Orders Page</li>
+        <li onclick="closeMenu()">Your Products Page</li>
+        <li onclick="closeMenu()">FAQ Bot Page</li>
+        <li onclick="closeMenu()">Account Recovery Setup</li>
+    </ul>
+</nav>
 
-    <!-- Advertisement Slider -->
+<div class="main-content">
     <div id="ad-slider" class="ad-slider"></div>
+    <div id="category-cards" class="category-cards"></div>
+</div>
 
     <!-- Shop by Category Section -->
     <section id="categories" class="categories">
@@ -285,6 +399,28 @@ function loadCategories() {
 
 // Initial function calls
 loadCategories();
+
+        // Toggle the burger menu visibility
+function toggleMenu() {
+    const menu = document.getElementById('burger-menu');
+    menu.classList.toggle('nav-visible');
+    menu.classList.toggle('nav-hidden');
+}
+
+// Close the burger menu
+function closeMenu() {
+    const menu = document.getElementById('burger-menu');
+    menu.classList.remove('nav-visible');
+    menu.classList.add('nav-hidden');
+}
+
+// Checkout function (replace with actual implementation)
+function checkout() {
+    alert("Redirecting to checkout...");
+}
+
+// Add the rest of your JavaScript functionality here
+// E.g., loading categories, ad slider, etc.
     </script>
 </body>
 </html>
