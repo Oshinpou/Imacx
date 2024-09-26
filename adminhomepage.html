@@ -238,6 +238,120 @@ function loadFeaturedProducts() {
 // Call this function to initially display any added products in the admin panel
 displayProducts();
       
+   // Save products in local storage
+function saveProductsToLocalStorage() {
+    localStorage.setItem('products', JSON.stringify(products));
+}
+
+// Load products from local storage
+function loadProductsFromLocalStorage() {
+    const savedProducts = localStorage.getItem('products');
+    if (savedProducts) {
+        products = JSON.parse(savedProducts);
+    }
+}
+
+        document.getElementById('product-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const productName = document.getElementById('product-name').value;
+    const productCategory = document.getElementById('product-category').value;
+    const productImage = document.getElementById('product-image').value;
+    const productVideo = document.getElementById('product-video').value;
+
+    const existingProduct = products.find(p => p.name === productName);
+    if (existingProduct) {
+        existingProduct.category = productCategory;
+        existingProduct.image = productImage;
+        existingProduct.video = productVideo;
+        alert(`Updated product: ${productName}`);
+    } else {
+        const newProduct = {
+            name: productName,
+            category: productCategory,
+            image: productImage,
+            video: productVideo,
+        };
+        products.push(newProduct);
+        alert(`Added new product: ${productName}`);
+    }
+
+    // Save to localStorage
+    saveProductsToLocalStorage();
+    displayProducts();
+
+    // Also update featured products on homepage
+    loadFeaturedProducts();
+});
+
+        // Load products from localStorage when the homepage loads
+window.onload = function () {
+    loadProductsFromLocalStorage();
+    loadFeaturedProducts();
+};
+
+function loadFeaturedProducts() {
+    const featuredProductsContainer = document.getElementById('featured-products');
+    featuredProductsContainer.innerHTML = ''; // Clear previous content
+
+    if (products.length === 0) {
+        featuredProductsContainer.innerHTML = '<p>No featured products available.</p>';
+        return;
+    }
+
+    // Load up to 50 featured products
+    products.slice(0, 50).forEach((product) => {
+        const productItem = document.createElement('div');
+        productItem.className = 'featured-product';
+        productItem.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" width="100">
+            <h3>${product.name}</h3>
+            <p>Category: ${product.category}</p>
+            ${product.video ? `<a href="${product.video}" target="_blank">Watch Product Video</a>` : ''}
+        `;
+        featuredProductsContainer.appendChild(productItem);
+    });
+}
+
+        document.getElementById('product-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const productName = document.getElementById('product-name').value;
+    const productCategory = document.getElementById('product-category').value;
+    const productImage = document.getElementById('product-image').value;
+    const productVideo = document.getElementById('product-video').value;
+
+    const newProduct = {
+        name: productName,
+        category: productCategory,
+        image: productImage,
+        video: productVideo,
+    };
+
+    products.push(newProduct);
+    
+    // Save to localStorage
+    saveProductsToLocalStorage();
+
+    // Display updated product list
+    displayProducts();
+});
+
+function saveProductsToLocalStorage() {
+    localStorage.setItem('products', JSON.stringify(products));
+}
+
+function loadProductsFromLocalStorage() {
+    const savedProducts = localStorage.getItem('products');
+    if (savedProducts) {
+        products = JSON.parse(savedProducts);
+    }
+}
+
+// Load any previously saved products
+loadProductsFromLocalStorage();
+
+        
     </script>
 </body>
 </html>
