@@ -537,6 +537,68 @@ nav ul li:hover {
         width: 90%;
     }
     }
+
+    /* Advertisement Slider Styles */
+#ad-slider {
+    width: 100%;
+    height: 300px; /* Example height */
+    background: #1a1a1a; /* Dark background for ads */
+    overflow: hidden; /* Hide overflow */
+    position: relative; /* Position relative for absolute positioning of slides */
+}
+
+.slide {
+    display: none; /* Hide all slides initially */
+    position: absolute; /* Stack slides on top of each other */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    color: #ffd700; /* Gold text for ads */
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Show the first slide initially */
+.slide:first-child {
+    display: flex;
+}
+
+/* Product Card Styles */
+.product-card {
+    background-color: #1a1a1a; /* Dark background for cards */
+    border: 2px solid #ffd700; /* Golden border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px;
+    margin: 10px;
+    text-align: center;
+    transition: transform 0.2s; /* Animation for hover effect */
+}
+
+.product-card img {
+    width: 100%; /* Responsive image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Rounded image */
+}
+
+.product-card h3 {
+    color: #ffd700; /* Gold text */
+}
+
+.product-card button {
+    background-color: #ffd700; /* Gold button */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: #000; /* Black text */
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s; /* Animation for hover effect */
+}
+
+.product-card button:hover {
+    background-color: #e6b800; /* Darker gold on hover */
+}
 </style>
 </head>
 <body>
@@ -576,7 +638,20 @@ nav ul li:hover {
 </nav>
 
 <div class="main-content">
-    <div id="ad-slider" class="ad-slider"></div>
+    <!-- Advertisement Slider -->
+<div id="ad-slider">
+    <div class="slide">Ad Slide 1</div>
+    <div class="slide">Ad Slide 2</div>
+    <div class="slide">Ad Slide 3</div>
+    <div class="slide">Ad Slide 4</div>
+    <div class="slide">Ad Slide 5</div>
+    <div class="slide">Ad Slide 6</div>
+    <div class="slide">Ad Slide 7</div>
+    <div class="slide">Ad Slide 8</div>
+    <div class="slide">Ad Slide 9</div>
+    <div class="slide">Ad Slide 10</div>
+</div>
+
     <div id="category-cards" class="category-cards"></div>
 </div>
 
@@ -814,6 +889,102 @@ window.onload = function() {
     loadProducts();
     document.querySelector("input[type='text']").addEventListener("input", searchProducts);
 };
+
+        // Sample products for demonstration (replace with actual product data)
+const products = [
+    { id: 1, name: "Golden Ring", image: "product1.jpg", link: "product1.html" },
+    { id: 2, name: "Luxury Watch", image: "product2.jpg", link: "product2.html" },
+    { id: 3, name: "Designer Handbag", image: "product3.jpg", link: "product3.html" },
+    // Add more products as needed
+];
+
+// Function to load products into the category section
+function loadProducts() {
+    const categoryCards = document.getElementById("category-cards");
+    categoryCards.innerHTML = ""; // Clear existing content
+
+    products.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <button onclick="exploreProduct('${product.link}')">Explore Product</button>
+        `;
+        categoryCards.appendChild(card);
+    });
+}
+
+// Function to handle product search
+function searchProducts() {
+    const searchTerm = document.querySelector("input[type='text']").value.toLowerCase();
+    const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchTerm));
+
+    const categoryCards = document.getElementById("category-cards");
+    categoryCards.innerHTML = ""; // Clear existing content
+
+    if (filteredProducts.length === 0) {
+        categoryCards.innerHTML = "<p>No products found.</p>";
+        return;
+    }
+
+    filteredProducts.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <button onclick="exploreProduct('${product.link}')">Explore Product</button>
+        `;
+        categoryCards.appendChild(card);
+    });
+
+    // Scroll to the featured products section
+    document.getElementById('featured-products').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Function to redirect to checkout page
+function checkout() {
+    window.location.href = "checkout.html"; // Change to your checkout page
+}
+
+// Function to explore product page
+function exploreProduct(link) {
+    window.location.href = link; // Redirect to the product page
+}
+
+// Toggle the burger menu visibility
+function toggleMenu() {
+    const menu = document.getElementById('burger-menu');
+    menu.classList.toggle('nav-visible');
+    menu.classList.toggle('nav-hidden');
+}
+
+// Close the burger menu
+function closeMenu() {
+    const menu = document.getElementById('burger-menu');
+    menu.classList.remove('nav-visible');
+    menu.classList.add('nav-hidden');
+}
+
+// Initialize product loading on page load
+window.onload = function() {
+    loadProducts();
+    document.querySelector("input[type='text']").addEventListener("input", searchProducts);
+    startAdSlider();
+};
+
+// Advertisement Slider Functionality
+let currentSlide = 0;
+
+function startAdSlider() {
+    const slides = document.querySelectorAll('#ad-slider .slide');
+    setInterval(() => {
+        slides[currentSlide].style.display = 'none'; // Hide current slide
+        currentSlide = (currentSlide + 1) % slides.length; // Move to next slide
+        slides[currentSlide].style.display = 'block'; // Show next slide
+    }, 10000); // Change slide every 10 seconds
+}
     </script>
 </body>
 </html>
