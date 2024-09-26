@@ -224,6 +224,319 @@ nav ul li:hover {
     padding: 20px;
     margin-top: 80px; /* Adjust based on header height */
 }
+
+    /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background */
+    color: #f5e1a5; /* Soft gold text */
+}
+
+/* Header Styles */
+header {
+    background: #000; /* Black header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Logo and Titles */
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.luxury-title {
+    font-family: 'Cursive', sans-serif;
+    color: #ffd700; /* Bright gold */
+    font-size: 3em;
+    margin: 0;
+}
+
+.shop-title {
+    font-family: 'Cursive', sans-serif;
+    color: #ffd700; /* Bright gold */
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+/* Search and Cart */
+.search-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.search-cart input {
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    border: 1px solid #ffd700; /* Gold border */
+    border-radius: 5px;
+    background-color: #1a1a1a; /* Dark input background */
+    color: #f5e1a5; /* Gold text in input */
+    font-size: 1em;
+}
+
+#cart-button {
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: #ffd700; /* Gold cart icon */
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Burger Menu Styles */
+.burger-menu {
+    cursor: pointer;
+    font-size: 2em;
+    color: #ffd700; /* Gold burger icon */
+    margin-top: 10px;
+}
+
+/* Burger Menu Styles */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: rgba(30, 30, 30, 0.95); /* Dark translucent background */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 10;
+}
+
+nav ul {
+    list-style: none;
+    padding: 20px;
+}
+
+nav ul li {
+    padding: 15px;
+    border-bottom: 1px solid #ffd700; /* Gold border */
+    cursor: pointer;
+    color: #f5e1a5; /* Gold text */
+}
+
+nav ul li:hover {
+    background-color: rgba(255, 215, 0, 0.1); /* Soft gold hover effect */
+}
+
+/* Visibility classes */
+.nav-visible {
+    transform: translateX(0);
+}
+
+.nav-hidden {
+    transform: translateX(-100%);
+}
+
+/* Main Content */
+.main-content {
+    padding: 20px;
+    margin-top: 80px; /* Adjust based on header height */
+    text-align: center; /* Center content */
+}
+
+/* Ad Slider and Category Cards */
+#ad-slider {
+    width: 100%;
+    height: 300px; /* Example height */
+    background: #1a1a1a; /* Dark background for ads */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffd700; /* Gold text for ads */
+    font-size: 1.5em;
+}
+
+.category-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the cards */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .luxury-title {
+        font-size: 2.5em;
+    }
+
+    .shop-title {
+        font-size: 1.2em;
+    }
+
+    .search-cart input {
+        width: 90%;
+    }
+}
+    /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background */
+    color: #f5e1a5; /* Soft gold text */
+}
+
+/* Header Styles */
+header {
+    background: #000; /* Black header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Logo and Titles */
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.luxury-title {
+    font-family: 'Cursive', sans-serif;
+    color: #ffd700; /* Bright gold */
+    font-size: 3em;
+    margin: 0;
+}
+
+.shop-title {
+    font-family: 'Cursive', sans-serif;
+    color: #ffd700; /* Bright gold */
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+/* Search and Cart */
+.search-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.search-cart input {
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    border: 1px solid #ffd700; /* Gold border */
+    border-radius: 5px;
+    background-color: #1a1a1a; /* Dark input background */
+    color: #f5e1a5; /* Gold text in input */
+    font-size: 1em;
+}
+
+#cart-button {
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: #ffd700; /* Gold cart icon */
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Burger Menu Styles */
+.burger-menu {
+    cursor: pointer;
+    font-size: 2em;
+    color: #ffd700; /* Gold burger icon */
+    margin-top: 10px;
+}
+
+/* Burger Menu Styles */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: rgba(30, 30, 30, 0.95); /* Dark translucent background */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 10;
+}
+
+nav ul {
+    list-style: none;
+    padding: 20px;
+}
+
+nav ul li {
+    padding: 15px;
+    border-bottom: 1px solid #ffd700; /* Gold border */
+    cursor: pointer;
+    color: #f5e1a5; /* Gold text */
+}
+
+nav ul li:hover {
+    background-color: rgba(255, 215, 0, 0.1); /* Soft gold hover effect */
+}
+
+/* Visibility classes */
+.nav-visible {
+    transform: translateX(0);
+}
+
+.nav-hidden {
+    transform: translateX(-100%);
+}
+
+/* Main Content */
+.main-content {
+    padding: 20px;
+    margin-top: 80px; /* Adjust based on header height */
+    text-align: center; /* Center content */
+}
+
+/* Ad Slider and Category Cards */
+#ad-slider {
+    width: 100%;
+    height: 300px; /* Example height */
+    background: #1a1a1a; /* Dark background for ads */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffd700; /* Gold text for ads */
+    font-size: 1.5em;
+}
+
+.category-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the cards */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .luxury-title {
+        font-size: 2.5em;
+    }
+
+    .shop-title {
+        font-size: 1.2em;
+    }
+
+    .search-cart input {
+        width: 90%;
+    }
+    }
 </style>
 </head>
 <body>
