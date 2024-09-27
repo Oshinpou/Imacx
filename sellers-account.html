@@ -3,367 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMACX Seller Account</title>
+    <title>Seller Account</title>
     <link rel="stylesheet" href="styles.css">
 <style>
-    /* General Page Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #1a1a1a; /* Sleek black background */
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
-    padding: 0;
-    color: #ddd; /* Light text color for contrast */
-}
-
-h1, h2, h3, h4 {
-    font-family: 'Brush Script MT', cursive; /* Cursive luxurious font */
-    color: gold; /* Golden text for headings */
-    text-shadow: 2px 2px 5px #000; /* Elegant shadow */
-}
-
-button, input[type="text"], input[type="email"], input[type="password"], select {
-    background-color: gold;
-    color: black;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    font-family: 'Arial', sans-serif;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-button:hover, input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
-    background-color: #ffd700; /* Lighter golden shade on hover */
-}
-
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    background-color: #333;
-    color: white;
-    border: 1px solid gold;
-    border-radius: 5px;
-}
-
-footer {
-    text-align: center;
     padding: 20px;
-    background-color: black;
-    color: white;
 }
 
-/* Seller Account Page */
-.seller-account-container {
-    padding: 40px;
-    text-align: center;
+.seller-account-container, .admin-container, .marketplace-container {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #333;
 }
 
 .seller-account-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #282828; /* Darker black for form background */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-}
-
-.seller-account-form h2 {
-    margin-bottom: 20px;
-    color: gold;
+    display: flex;
+    flex-direction: column;
 }
 
 .seller-account-form label {
-    display: block;
-    color: white;
-    margin-bottom: 10px;
+    margin: 10px 0 5px;
 }
 
-.seller-account-form input, .seller-account-form select, .seller-account-form button {
-    width: 100%;
-}
-
-/* Admin Page */
-.admin-page {
-    padding: 40px;
-}
-
-.admin-page h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: gold;
-}
-
-.admin-page table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #333;
-    margin-bottom: 30px;
-}
-
-.admin-page th, .admin-page td {
-    padding: 15px;
-    border: 1px solid gold;
-    text-align: left;
-    color: white;
-}
-
-.admin-page th {
-    background-color: black;
-    color: gold;
-}
-
-.admin-page button.delete {
-    background-color: red;
-    color: white;
-    font-weight: bold;
+.seller-account-form input,
+.seller-account-form select,
+.seller-account-form textarea {
     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.admin-page button.delete:hover {
-    background-color: darkred;
-}
-
-/* Marketplace Page */
-.marketplace-container {
-    padding: 40px;
-    text-align: center;
-}
-
-.marketplace-container h2 {
-    margin-bottom: 40px;
-    color: gold;
-}
-
-.marketplace-categories {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-}
-
-.marketplace-categories button {
-    margin-right: 20px;
-    padding: 15px;
-    background-color: gold;
-    color: black;
-    border-radius: 5px;
-    font-size: 18px;
-    text-transform: uppercase;
-    transition: background-color 0.3s;
-}
-
-.marketplace-categories button:hover {
-    background-color: #ffd700;
-}
-
-/* Product Cards */
-.product-card {
-    background-color: #1a1a1a;
-    border: 1px solid gold;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
+button {
+    background-color: #007bff;
     color: white;
-    transition: transform 0.3s ease-in-out;
-    margin-bottom: 20px;
-}
-
-.product-card:hover {
-    transform: scale(1.05);
-}
-
-.product-card img {
-    max-width: 100%;
-    height: auto;
-    border-bottom: 1px solid gold;
-    margin-bottom: 15px;
-}
-
-.product-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: gold;
-    font-family: 'Brush Script MT', cursive;
-}
-
-.product-card p {
-    font-size: 18px;
-    color: #ddd;
-    margin-bottom: 15px;
-}
-
-.product-card button {
-    background-color: gold;
-    color: black;
-    padding: 10px 15px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
-    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
 
-.product-card button:hover {
-    background-color: #ffd700;
+button:hover {
+    background-color: #0056b3;
 }
 
-/* Delete Account Section */
-.delete-account {
-    background-color: red;
-    color: white;
-    padding: 20px;
+.product-card {
+    border: 1px solid #ccc;
     border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
     text-align: center;
 }
 
-.delete-account button {
-    background-color: white;
-    color: red;
-    border: 2px solid red;
-    padding: 10px;
-    cursor: pointer;
+.product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
 }
 
-.delete-account button:hover {
-    background-color: darkred;
-    color: white;
+#category-filter {
+    margin-bottom: 20px;
 }
 </style>
 </head>
 <body>
+    <div class="seller-account-container">
+        <h2>Seller Account - Create Product</h2>
+        <form class="seller-account-form" id="product-form">
+            <label for="product-name">Product Name</label>
+            <input type="text" id="product-name" placeholder="Enter Product Name" required>
 
-    <h1>Create IMACX Seller Account</h1>
+            <label for="category">Choose Category</label>
+            <select id="category" required>
+                <option value="skincare">Skincare</option>
+                <option value="makeup">Makeup</option>
+                <option value="fragrance">Fragrance</option>
+                <option value="luxury">Luxury</option>
+            </select>
 
-    <div class="seller-form-container">
-        <form id="seller-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+            <label for="main-image-url">Main Image URL</label>
+            <input type="text" id="main-image-url" placeholder="Enter Main Image URL" required>
 
-            <label for="phone">Phone Number (Country Code):</label>
-            <input type="text" id="phone" name="phone" placeholder="+91..." required>
+            <label for="image1">Additional Image URL 1</label>
+            <input type="text" id="image1" placeholder="Enter Image URL 1" required>
 
-            <label for="email">Email (Gmail):</label>
-            <input type="email" id="email" name="email" required>
+            <label for="price">Price (INR)</label>
+            <input type="number" id="price" placeholder="Enter Product Price" required>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="description">Product Description</label>
+            <textarea id="description" rows="5" placeholder="Enter Product Description" required></textarea>
 
-            <div class="terms-section">
-                <input type="checkbox" id="terms" name="terms" required>
-                <label for="terms">I agree to the <a href="terms.html">Terms and Conditions</a></label>
-            </div>
-
-            <button type="submit">Create Account</button>
+            <button type="submit" id="upload-product-btn">Create Product Card</button>
         </form>
-    </div>
 
-    <div class="login-section">
-        <h2>Already have an account?</h2>
-        <form id="login-form">
-            <label for="login-username">Username:</label>
-            <input type="text" id="login-username" name="login-username" required>
-
-            <label for="login-password">Password:</label>
-            <input type="password" id="login-password" name="login-password" required>
-
-            <button type="submit">Login</button>
-        </form>
-    </div>
-
-    <div id="seller-actions" style="display: none;">
-        <h2>Seller Dashboard</h2>
-        <p>Welcome, <span id="logged-in-seller"></span></p>
-        <button id="logout-btn">Logout</button>
-        <button id="delete-account-btn">Delete Account</button>
+        <h3>Your Products</h3>
+        <div id="product-list"></div>
     </div>
 
     <script>
-        // Check if any user is logged in
-        const loggedInSeller = JSON.parse(localStorage.getItem('loggedInSeller'));
+        let products = []; // Global array to hold all created products
 
-        if (loggedInSeller) {
-            document.getElementById('seller-actions').style.display = 'block';
-            document.getElementById('logged-in-seller').innerText = loggedInSeller.username;
-        }
+document.getElementById('product-form').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent the form from submitting normally
 
-        // Account Creation
-        document.getElementById('seller-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+    // Gather product data
+    let productName = document.getElementById('product-name').value;
+    let category = document.getElementById('category').value;
+    let mainImage = document.getElementById('main-image-url').value;
+    let image1 = document.getElementById('image1').value;
+    let price = document.getElementById('price').value;
+    let description = document.getElementById('description').value;
 
-            let sellers = JSON.parse(localStorage.getItem('sellers')) || [];
+    // Create a product object
+    const product = {
+        name: productName,
+        category: category,
+        mainImage: mainImage,
+        image1: image1,
+        price: price,
+        description: description
+    };
 
-            // Check for duplicate username
-            if (sellers.some(seller => seller.username === username)) {
-                alert("Username already exists. Please choose a different username.");
-                return;
-            }
+    // Add product to the products array
+    products.push(product);
 
-            const sellerData = { username, phone, email, password, isLoggedIn: false };
-            sellers.push(sellerData);
-            localStorage.setItem('sellers', JSON.stringify(sellers));
+    // Create a product card HTML
+    let productCardHTML = `
+        <div class="product-card">
+            <img src="${mainImage}" alt="${productName}" class="product-image">
+            <h3>${productName}</h3>
+            <p>Category: ${category}</p>
+            <p>Price: INR ${price}</p>
+            <p>${description}</p>
+            <button onclick="viewProduct('${productName}', '${mainImage}', '${image1}', '${price}', '${description}')">View Product</button>
+            <button onclick="editProduct('${productName}')">Edit</button>
+            <button onclick="deleteProduct(this)">Delete</button>
+        </div>
+    `;
 
-            alert("Seller account created successfully!");
-        });
+    // Add the product card to the product list
+    document.getElementById('product-list').insertAdjacentHTML('beforeend', productCardHTML);
+    
+    // Reset form fields
+    document.getElementById('product-form').reset();
 
-        // Login functionality
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const username = document.getElementById('login-username').value;
-            const password = document.getElementById('login-password').value;
+    // Update the admin product list
+    updateAdminProductList();
+});
 
-            let sellers = JSON.parse(localStorage.getItem('sellers')) || [];
-            const seller = sellers.find(s => s.username === username && s.password === password);
+// View Product Function
+function viewProduct(name, mainImage, image1, price, description) {
+    alert(`Product: ${name}\nPrice: INR ${price}\nDescription: ${description}\nMain Image: ${mainImage}\nAdditional Image: ${image1}`);
+}
 
-            if (seller) {
-                seller.isLoggedIn = true;
-                localStorage.setItem('sellers', JSON.stringify(sellers));
-                localStorage.setItem('loggedInSeller', JSON.stringify(seller));
-                alert("Logged in successfully!");
-                location.reload();
-            } else {
-                alert("Invalid username or password");
-            }
-        });
+// Edit Product Function (Placeholder)
+function editProduct(productName) {
+    alert(`Editing product: ${productName}`);
+}
 
-        // Logout functionality
-        document.getElementById('logout-btn').addEventListener('click', function() {
-            const loggedInSeller = JSON.parse(localStorage.getItem('loggedInSeller'));
-            let sellers = JSON.parse(localStorage.getItem('sellers'));
+// Delete Product Function
+function deleteProduct(button) {
+    if (confirm("Are you sure you want to delete this product?")) {
+        button.parentElement.remove(); // Remove the product card from the DOM
+    }
+}
 
-            const sellerIndex = sellers.findIndex(s => s.username === loggedInSeller.username);
-            sellers[sellerIndex].isLoggedIn = false;
+// Function to update the admin product list
+function updateAdminProductList() {
+    const adminProductListContainer = document.getElementById('admin-product-list');
+    adminProductListContainer.innerHTML = ''; // Clear existing products
 
-            localStorage.setItem('sellers', JSON.stringify(sellers));
-            localStorage.removeItem('loggedInSeller');
-            alert("Logged out successfully!");
-            location.reload();
-        });
-
-        // Delete Account functionality
-        document.getElementById('delete-account-btn').addEventListener('click', function() {
-            const confirmation = confirm("Are you sure you want to delete your account? This action is irreversible.");
-            if (confirmation) {
-                const loggedInSeller = JSON.parse(localStorage.getItem('loggedInSeller'));
-                let sellers = JSON.parse(localStorage.getItem('sellers'));
-                let products = JSON.parse(localStorage.getItem('products')) || [];
-
-                sellers = sellers.filter(s => s.username !== loggedInSeller.username);
-                products = products.filter(p => p.seller !== loggedInSeller.username);
-
-                localStorage.setItem('sellers', JSON.stringify(sellers));
-                localStorage.setItem('products', JSON.stringify(products));
-                localStorage.removeItem('loggedInSeller');
-
-                alert("Account deleted successfully!");
-                location.reload();
-            }
-        });
+    products.forEach(product => {
+        let adminProductCardHTML = `
+            <div class="product-card">
+                <img src="${product.mainImage}" alt="${product.name}" class="product-image">
+                <h3>${product.name}</h3>
+                <p>Category: ${product.category}</p>
+                <p>Price: INR ${product.price}</p>
+                <p>${product.description}</p>
+            </div>
+        `;
+        adminProductListContainer.insertAdjacentHTML('beforeend', adminProductCardHTML);
+    });
+}
     </script>
 </body>
 </html>
