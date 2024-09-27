@@ -6,7 +6,6 @@
     <title>Seller Account</title>
     <link rel="stylesheet" href="seller-style.css">
     <style>
-        /* seller-style.css */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -80,11 +79,8 @@
             margin-bottom: 10px;
         }
 
-        /* Image slider styles */
         #image-slider {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -93,173 +89,100 @@
             background: rgba(0, 0, 0, 0.8);
             z-index: 999;
             padding: 20px;
-            display: none;
+            justify-content: center;
+            align-items: center;
         }
 
         #image-slider img {
-            max-width: 100%;
-            max-height: 80vh;
-            margin-bottom: 20px;
+            max-width: 80%;
+            max-height: 80%;
         }
 
-        #image-slider button {
-            margin: 5px;
+        #product-info {
+            color: white;
+            margin-top: 20px;
         }
 
-        body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-}
-
-#product-display {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.product-card {
-    width: 250px;
-    background-color: #fff;
-    padding: 15px;
-    margin: 15px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.product-card img {
-    width: 100%;
-    height: auto;
-}
-
-#image-slider {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 999;
-    padding: 20px;
-    justify-content: center;
-    align-items: center;
-}
-
-#image-slider img {
-    max-width: 80%;
-    max-height: 80%;
-}
-
-#product-info {
-    color: white;
-    margin-top: 20px;
-}
-
-button {
-    cursor: pointer;
-    margin: 10px;
-    padding: 10px 15px;
-    background-color: #007bff;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    font-size: 16px;
-}
+        button {
+            cursor: pointer;
+            margin: 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
     <section id="seller-account-section">
         <h1>Seller Account</h1>
-
         <div>
             <button id="toggle-login">Switch to Login</button>
         </div>
-
         <div id="registration-section">
             <h2>Register</h2>
             <form id="seller-form">
                 <label for="username">Username:</label>
                 <input type="text" id="username" required>
-
                 <label for="email">Email:</label>
                 <input type="email" id="email" required>
-
                 <label for="phone">Phone:</label>
                 <input type="tel" id="phone" required>
-
                 <label for="password">Password:</label>
                 <input type="password" id="password" required>
-
                 <button type="submit">Register</button>
             </form>
         </div>
-
         <div id="login-section" class="hidden">
             <h2>Login</h2>
             <form id="login-form">
                 <label for="login-username">Username:</label>
                 <input type="text" id="login-username" required>
-
                 <label for="login-password">Password:</label>
                 <input type="password" id="login-password" required>
-
                 <button type="submit">Login</button>
             </form>
         </div>
-
         <section id="upload-section" class="hidden">
             <h2>Upload Product</h2>
             <form id="product-form">
                 <label for="product-category">Product Category:</label>
                 <input type="text" id="product-category" required>
-
                 <label for="product-name">Product Name:</label>
                 <input type="text" id="product-name" required>
-
                 <label for="product-main-image">Main Image URL:</label>
                 <input type="url" id="product-main-image" required>
-
                 <label for="product-description">Product Description:</label>
                 <textarea id="product-description" required></textarea>
-
                 <label for="product-details">Product Details:</label>
                 <textarea id="product-details" required></textarea>
-
                 <label for="product-price">Price (INR):</label>
                 <input type="number" id="product-price" required>
-
                 <label for="max-quantity">Max Quantity Allowed:</label>
                 <input type="number" id="max-quantity" value="1000" min="0" required>
-
                 <div id="image-urls">
                     <label>Additional Image URLs:</label>
                     <input type="url" class="product-image-url">
                 </div>
-
                 <button type="submit">Upload Product</button>
                 <button type="button" id="add-image">Add More Images</button>
             </form>
         </section>
-
         <section id="product-display-section">
             <h2>Uploaded Products</h2>
             <div id="product-display"></div>
         </section>
-
         <button id="delete-account">Delete Account</button>
     </section>
 
-    <!-- Image Slider for Viewing Product Images -->
-    <div id="product-display"></div>
-
-<div id="image-slider">
-    <img id="slider-image" src="" alt="Product Image">
-    <div id="product-info"></div>
-    <button id="prev-image">Previous</button>
-    <button id="next-image">Next</button>
-    <button id="close-slider">Close</button>
-
+    <div id="image-slider">
+        <img id="slider-image" src="" alt="Product Image">
+        <div id="product-info"></div>
+        <button id="prev-image">Previous</button>
+        <button id="next-image">Next</button>
+        <button id="close-slider">Close</button>
     </div>
 
     <script>
@@ -334,9 +257,10 @@ button {
             const maxQuantity = document.getElementById('max-quantity').value;
 
             // Collect additional image URLs
-            const imageUrls = Array.from(document.querySelectorAll('.product-image-url')).map(input => input.value).filter(url => url);
+            const imageUrls = Array.from(document.querySelectorAll('.product-image-url'))
+                .map(input => input.value)
+                .filter(url => url); // Filter out empty inputs
 
-            // Create product object
             const product = {
                 category,
                 name,
@@ -345,183 +269,110 @@ button {
                 details,
                 price,
                 maxQuantity,
-                images: [mainImage, ...imageUrls],
+                imageUrls
             };
 
-            // Save product to local storage
             products.push(product);
-            localStorage.setItem(loggedInUser + '-products', JSON.stringify(products));
-
-            // Display product on the page
+            localStorage.setItem(`${loggedInUser}-products`, JSON.stringify(products));
             displayProduct(product);
+
             productForm.reset();
+            alert('Product uploaded successfully!');
         });
 
-        // Toggle between registration and login sections
-        toggleLoginButton.addEventListener('click', () => {
-            registrationSection.classList.toggle('hidden');
-            loginSection.classList.toggle('hidden');
-        });
-
-        // Delete account functionality
-        deleteAccountButton.addEventListener('click', () => {
-            if (loggedInUser) {
-                localStorage.removeItem(loggedInUser);
-                localStorage.removeItem(loggedInUser + '-products');
-                alert(`Account ${loggedInUser} deleted.`);
-                loggedInUser = null;
-                location.reload(); // Reload the page to reset the state
-            } else {
-                alert("You must be logged in to delete your account.");
-            }
-        });
-
-        // Display uploaded product card
+        // Function to display a single product on the page
         function displayProduct(product) {
             const productCard = document.createElement('div');
             productCard.classList.add('product-card');
+
             productCard.innerHTML = `
                 <img src="${product.mainImage}" alt="${product.name}">
                 <h3>${product.name}</h3>
+                <p>${product.description}</p>
                 <p>Price: ₹${product.price}</p>
-                <button onclick="viewProductDetails(${products.length - 1})">View Full Information</button>
+                <button class="view-images" data-index="${products.length - 1}">View Images</button>
             `;
+
             productDisplay.appendChild(productCard);
         }
 
-        // Load user products from local storage
+        // Function to load and display user's uploaded products
         function loadUserProducts() {
-            const storedProducts = JSON.parse(localStorage.getItem(loggedInUser + '-products')) || [];
-            products = storedProducts;
+            const savedProducts = JSON.parse(localStorage.getItem(`${loggedInUser}-products`)) || [];
+            products = savedProducts;
+
+            productDisplay.innerHTML = ''; // Clear current display
             products.forEach(displayProduct);
         }
 
-        // View full product details
-        function viewProductDetails(index) {
-            currentProductIndex = index;
-            const product = products[index];
+        // Toggle between login and registration forms
+        toggleLoginButton.addEventListener('click', function () {
+            if (registrationSection.classList.contains('hidden')) {
+                registrationSection.classList.remove('hidden');
+                loginSection.classList.add('hidden');
+                toggleLoginButton.textContent = 'Switch to Login';
+            } else {
+                registrationSection.classList.add('hidden');
+                loginSection.classList.remove('hidden');
+                toggleLoginButton.textContent = 'Switch to Register';
+            }
+        });
 
-            // Set main image and additional images for the slider
-            sliderImage.src = product.mainImage;
-            const additionalImages = product.images.slice(1);
-            const productInfo = `
-                <h3>${product.name}</h3>
-                <p>${product.description}</p>
-                <p>Details: ${product.details}</p>
-                <p>Price: ₹${product.price}</p>
-                <p>Max Quantity Allowed: ${product.maxQuantity}</p>
-            `;
-            document.getElementById('product-info').innerHTML = productInfo;
+        // Add more image URL input fields
+        document.getElementById('add-image').addEventListener('click', function () {
+            const imageInput = document.createElement('input');
+            imageInput.type = 'url';
+            imageInput.classList.add('product-image-url');
+            imageInput.placeholder = 'Additional Image URL';
+            document.getElementById('image-urls').appendChild(imageInput);
+        });
 
-            // Show the image slider
+        // Event listener to open image slider
+        productDisplay.addEventListener('click', function(event) {
+            if (event.target.classList.contains('view-images')) {
+                currentProductIndex = event.target.getAttribute('data-index');
+                openImageSlider();
+            }
+        });
+
+        // Function to open the image slider for the selected product
+        function openImageSlider() {
+            const product = products[currentProductIndex];
+            let currentImageIndex = 0;
+
+            const allImages = [product.mainImage, ...product.imageUrls];
+            sliderImage.src = allImages[currentImageIndex];
+            document.getElementById('product-info').textContent = `${product.name} - ₹${product.price}`;
+
             imageSlider.style.display = 'flex';
 
-            // Set the first additional image as the current image
-            let currentIndex = 0;
-
-            // Function to update image in slider
-            function updateImage() {
-                sliderImage.src = currentIndex < product.images.length ? product.images[currentIndex] : product.mainImage;
-            }
-
-            // Previous image button
-            prevImageButton.onclick = () => {
-                currentIndex = (currentIndex > 0) ? currentIndex - 1 : additionalImages.length - 1;
-                updateImage();
+            // Navigate images
+            prevImageButton.onclick = function () {
+                currentImageIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
+                sliderImage.src = allImages[currentImageIndex];
             };
 
-            // Next image button
-            nextImageButton.onclick = () => {
-                currentIndex = (currentIndex < additionalImages.length - 1) ? currentIndex + 1 : 0;
-                updateImage();
+            nextImageButton.onclick = function () {
+                currentImageIndex = (currentImageIndex + 1) % allImages.length;
+                sliderImage.src = allImages[currentImageIndex];
             };
 
-            // Close slider button
-            closeSliderButton.onclick = () => {
+            closeSliderButton.onclick = function () {
                 imageSlider.style.display = 'none';
             };
         }
 
-        let products = [
-    {
-        name: "Product 1",
-        description: "This is product 1 description.",
-        details: "These are the details of product 1.",
-        price: 1000,
-        images: ["https://via.placeholder.com/300", "https://via.placeholder.com/400", "https://via.placeholder.com/500"]
-    },
-    {
-        name: "Product 2",
-        description: "This is product 2 description.",
-        details: "These are the details of product 2.",
-        price: 1500,
-        images: ["https://via.placeholder.com/600", "https://via.placeholder.com/700", "https://via.placeholder.com/800"]
-    }
-];
-
-let currentProductIndex = 0;
-let currentImageIndex = 0;
-
-const productDisplay = document.getElementById('product-display');
-const imageSlider = document.getElementById('image-slider');
-const sliderImage = document.getElementById('slider-image');
-const productInfo = document.getElementById('product-info');
-const prevImageButton = document.getElementById('prev-image');
-const nextImageButton = document.getElementById('next-image');
-const closeSliderButton = document.getElementById('close-slider');
-
-// Display product cards
-function displayProductCards() {
-    productDisplay.innerHTML = '';
-    products.forEach((product, index) => {
-        const productCard = document.createElement('div');
-        productCard.classList.add('product-card');
-        productCard.innerHTML = `
-            <img src="${product.images[0]}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <p>Price: ₹${product.price}</p>
-            <button onclick="viewProduct(${index})">View Product</button>
-        `;
-        productDisplay.appendChild(productCard);
-    });
-}
-
-// View product details and open image slider
-function viewProduct(index) {
-    currentProductIndex = index;
-    currentImageIndex = 0;
-    const product = products[index];
-    sliderImage.src = product.images[currentImageIndex];
-    productInfo.innerHTML = `
-        <h3>${product.name}</h3>
-        <p>${product.description}</p>
-        <p>Details: ${product.details}</p>
-        <p>Price: ₹${product.price}</p>
-    `;
-    imageSlider.style.display = 'flex';
-}
-
-// Switch to previous image
-prevImageButton.onclick = function () {
-    const product = products[currentProductIndex];
-    currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : product.images.length - 1;
-    sliderImage.src = product.images[currentImageIndex];
-};
-
-// Switch to next image
-nextImageButton.onclick = function () {
-    const product = products[currentProductIndex];
-    currentImageIndex = (currentImageIndex < product.images.length - 1) ? currentImageIndex + 1 : 0;
-    sliderImage.src = product.images[currentImageIndex];
-};
-
-// Close the image slider
-closeSliderButton.onclick = function () {
-    imageSlider.style.display = 'none';
-};
-
-// Display product cards on page load
-displayProductCards();
+        // Delete account and associated products
+        deleteAccountButton.addEventListener('click', function () {
+            if (loggedInUser) {
+                localStorage.removeItem(loggedInUser);
+                localStorage.removeItem(`${loggedInUser}-products`);
+                alert(`Account for ${loggedInUser} deleted.`);
+                window.location.reload(); // Reload the page to reset everything
+            } else {
+                alert('You are not logged in.');
+            }
+        });
     </script>
 </body>
 </html>
