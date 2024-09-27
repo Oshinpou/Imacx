@@ -3,272 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMACX Marketplace</title>
+    <title>Marketplace</title>
     <link rel="stylesheet" href="styles.css">
 <style>
-    /* General Page Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #1a1a1a; /* Sleek black background */
+    body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    color: #ddd; /* Light text color for contrast */
+    background-color: #f4f4f4;
 }
 
-h1, h2, h3, h4 {
-    font-family: 'Brush Script MT', cursive; /* Cursive luxurious font */
-    color: gold; /* Golden text for headings */
-    text-shadow: 2px 2px 5px #000; /* Elegant shadow */
-}
-
-button, input[type="text"], input[type="email"], input[type="password"], select {
-    background-color: gold;
-    color: black;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    font-family: 'Arial', sans-serif;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-button:hover, input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
-    background-color: #ffd700; /* Lighter golden shade on hover */
-}
-
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    background-color: #333;
-    color: white;
-    border: 1px solid gold;
-    border-radius: 5px;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: black;
-    color: white;
-}
-
-/* Seller Account Page */
-.seller-account-container {
-    padding: 40px;
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem;
     text-align: center;
 }
 
-.seller-account-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #282828; /* Darker black for form background */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+#search-bar {
+    padding: 0.5rem;
+    margin-top: 1rem;
 }
 
-.seller-account-form h2 {
-    margin-bottom: 20px;
-    color: gold;
-}
-
-.seller-account-form label {
-    display: block;
-    color: white;
-    margin-bottom: 10px;
-}
-
-.seller-account-form input, .seller-account-form select, .seller-account-form button {
-    width: 100%;
-}
-
-/* Admin Page */
-.admin-page {
-    padding: 40px;
-}
-
-.admin-page h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: gold;
-}
-
-.admin-page table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #333;
-    margin-bottom: 30px;
-}
-
-.admin-page th, .admin-page td {
-    padding: 15px;
-    border: 1px solid gold;
-    text-align: left;
-    color: white;
-}
-
-.admin-page th {
-    background-color: black;
-    color: gold;
-}
-
-.admin-page button.delete {
-    background-color: red;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-}
-
-.admin-page button.delete:hover {
-    background-color: darkred;
-}
-
-/* Marketplace Page */
-.marketplace-container {
-    padding: 40px;
-    text-align: center;
-}
-
-.marketplace-container h2 {
-    margin-bottom: 40px;
-    color: gold;
-}
-
-.marketplace-categories {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-}
-
-.marketplace-categories button {
-    margin-right: 20px;
-    padding: 15px;
-    background-color: gold;
-    color: black;
-    border-radius: 5px;
-    font-size: 18px;
-    text-transform: uppercase;
-    transition: background-color 0.3s;
-}
-
-.marketplace-categories button:hover {
-    background-color: #ffd700;
-}
-
-/* Product Cards */
 .product-card {
-    background-color: #1a1a1a;
-    border: 1px solid gold;
-    border-radius: 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 20px;
     padding: 20px;
     text-align: center;
-    color: white;
-    transition: transform 0.3s ease-in-out;
-    margin-bottom: 20px;
+    display: inline-block;
+    width: 300px;
 }
 
-.product-card:hover {
-    transform: scale(1.05);
-}
-
-.product-card img {
-    max-width: 100%;
+.product-image {
+    width: 100%;
     height: auto;
-    border-bottom: 1px solid gold;
-    margin-bottom: 15px;
 }
 
-.product-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: gold;
-    font-family: 'Brush Script MT', cursive;
-}
-
-.product-card p {
-    font-size: 18px;
-    color: #ddd;
-    margin-bottom: 15px;
-}
-
-.product-card button {
-    background-color: gold;
-    color: black;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.product-card button:hover {
-    background-color: #ffd700;
-}
-
-/* Delete Account Section */
-.delete-account {
-    background-color: red;
+.button {
+    background: #5cb85c;
     color: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.delete-account button {
-    background-color: white;
-    color: red;
-    border: 2px solid red;
+    border: none;
     padding: 10px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
-.delete-account button:hover {
-    background-color: darkred;
-    color: white;
+.button:hover {
+    background: #4cae4c;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.hidden {
+    display: none;
 }
 </style>
 </head>
 <body>
-    <h1>IMACX Marketplace</h1>
-    <div id="marketplace">
-        <input type="text" id="search-bar" placeholder="Search products...">
-        <div id="product-list"></div>
+    <header>
+        <h1>Luxury Marketplace</h1>
+        <div>
+            <input type="text" id="search-bar" placeholder="Search by category...">
+            <button id="search-button">Search</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="product-display"></div>
+    </main>
+
+    <div id="cart-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" id="close-cart">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <h3>Total: INR <span id="total-price">0</span></h3>
+            <button id="checkout-button">Checkout</button>
+        </div>
     </div>
 
     <script>
-        const products = JSON.parse(localStorage.getItem('products')) || [];
+        // Sample products data (this should come from your seller's account management)
+const products = [
+    {
+        category: "Electronics",
+        name: "Luxury Headphones",
+        mainImage: "https://via.placeholder.com/150",
+        imageUrls: [
+            "https://via.placeholder.com/150",
+            "https://via.placeholder.com/151",
+            "https://via.placeholder.com/152"
+        ],
+        description: "High-quality sound with noise cancellation.",
+        details: "Lightweight, comfortable design with long battery life.",
+        price: 5000,
+    },
+    {
+        category: "Furniture",
+        name: "Elegant Sofa",
+        mainImage: "https://via.placeholder.com/150",
+        imageUrls: [
+            "https://via.placeholder.com/150",
+            "https://via.placeholder.com/151",
+            "https://via.placeholder.com/152"
+        ],
+        description: "Comfortable and stylish sofa for your living room.",
+        details: "Available in multiple colors and designs.",
+        price: 25000,
+    }
+];
 
-        function displayProducts(filter = "") {
-            const productList = document.getElementById('product-list');
-            productList.innerHTML = '';
+let cart = [];
 
-            const filteredProducts = products.filter(product =>
-                product.title.toLowerCase().includes(filter.toLowerCase())
-            );
+// Function to display products
+function displayProducts() {
+    const productDisplay = document.getElementById('product-display');
+    productDisplay.innerHTML = ''; // Clear previous display
 
-            filteredProducts.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                productCard.innerHTML = `
-                    <h3>${product.title}</h3>
-                    <p>Category: ${product.category}</p>
-                    <p>Price: ₹${product.price}</p>
-                    <button>Add to Cart</button>
-                `;
-                productList.appendChild(productCard);
-            });
+    products.forEach(product => {
+        const productHTML = `
+            <div class="product-card">
+                <img src="${product.mainImage}" alt="${product.name}" class="product-image">
+                <h3>${product.name}</h3>
+                <p>Price: INR ${product.price}</p>
+                <button onclick="viewProduct('${product.name}')">View Product</button>
+                <button onclick="addToCart('${product.name}')">Add to Cart</button>
+            </div>
+        `;
+        productDisplay.insertAdjacentHTML('beforeend', productHTML);
+    });
+}
+
+// Function to handle viewing product details
+function viewProduct(productName) {
+    const product = products.find(p => p.name === productName);
+    if (product) {
+        alert(`Product: ${product.name}\nDescription: ${product.description}\nDetails: ${product.details}\nPrice: INR ${product.price}`);
+    }
+}
+
+// Function to add products to cart
+function addToCart(productName) {
+    const product = products.find(p => p.name === productName);
+    if (product) {
+        const quantity = prompt(`Enter quantity for ${product.name}:`, 1);
+        if (quantity && !isNaN(quantity)) {
+            cart.push({ ...product, quantity: parseInt(quantity) });
+            alert(`${product.name} added to cart.`);
+        } else {
+            alert("Invalid quantity.");
         }
+    }
+}
 
-        // Search products
-        document.getElementById('search-bar').addEventListener('input', function(event) {
-            displayProducts(event.target.value);
-        });
+// Function to display cart items
+function displayCart() {
+    const cartModal = document.getElementById('cart-modal');
+    const cartItems = document.getElementById('cart-items');
+    const totalPrice = document.getElementById('total-price');
+    cartItems.innerHTML = ''; // Clear previous cart display
+    let total = 0;
 
-        displayProducts();
+    cart.forEach(item => {
+        const itemHTML = `
+            <p>${item.name} - INR ${item.price} x ${item.quantity}</p>
+        `;
+        cartItems.insertAdjacentHTML('beforeend', itemHTML);
+        total += item.price * item.quantity;
+    });
+
+    totalPrice.innerText = total;
+    cartModal.classList.remove('hidden'); // Show the cart modal
+}
+
+// Event listeners for cart
+document.getElementById('close-cart').addEventListener('click', () => {
+    document.getElementById('cart-modal').classList.add('hidden');
+});
+document.getElementById('checkout-button').addEventListener('click', () => {
+    alert('Proceeding to checkout...');
+});
+
+// Initial display of products
+displayProducts();
     </script>
 </body>
 </html>
