@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMACX Marketplace</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>IMACX Marketplace</h1>
+    <div id="marketplace">
+        <input type="text" id="search-bar" placeholder="Search products...">
+        <div id="product-list"></div>
+    </div>
+
+    <script>
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+
+        function displayProducts(filter = "") {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '';
+
+            const filteredProducts = products.filter(product =>
+                product.title.toLowerCase().includes(filter.toLowerCase())
+            );
+
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <h3>${product.title}</h3>
+                    <p>Category: ${product.category}</p>
+                    <p>Price: ₹${product.price}</p>
+                    <button>Add to Cart</button>
+                `;
+                productList.appendChild(productCard);
+            });
+        }
+
+        // Search products
+        document.getElementById('search-bar').addEventListener('input', function(event) {
+            displayProducts(event.target.value);
+        });
+
+        displayProducts();
+    </script>
+</body>
+</html>
