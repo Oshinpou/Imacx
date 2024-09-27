@@ -6,244 +6,249 @@
     <title>IMACX Marketplace</title>
     <link rel="stylesheet" href="styles.css">
 <style>
+    /* Reset CSS */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
     body {
-    font-family: Arial, sans-serif;
-    background-color: #f3f3f3;
-    margin: 0;
-    padding: 0;
-}
+        font-family: Arial, sans-serif;
+        background-color: #f3f3f3;
+        margin: 0;
+        padding: 0;
+    }
 
-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: black;
-    padding: 20px;
-    position: relative;
-}
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: black;
+        padding: 20px;
+    }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-}
+    .logo-container {
+        display: flex;
+        align-items: center;
+    }
 
-.logo {
-    height: 80px;
-    margin-right: 20px;
-}
+    .logo {
+        height: 80px;
+        margin-right: 20px;
+    }
 
-.gold-text {
-    color: gold;
-}
+    .gold-text {
+        color: gold;
+    }
 
-.cursive {
-    font-family: 'Brush Script MT', cursive;
-}
+    .cursive {
+        font-family: 'Brush Script MT', cursive;
+    }
 
-.small {
-    font-size: 0.8em;
-}
+    .small {
+        font-size: 0.8em;
+    }
 
-.search-cart-container {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
+    .search-cart-container {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
 
-.search-bar {
-    padding: 10px;
-    border: 1px solid gold;
-    border-radius: 5px;
-    margin-right: 20px;
-}
+    .search-bar {
+        padding: 10px;
+        border: 1px solid gold;
+        border-radius: 5px;
+        margin-right: 20px;
+    }
 
-.cart {
-    font-size: 24px;
-    cursor: pointer;
-    color: gold;
-    margin-right: 20px;
-}
+    .cart {
+        font-size: 24px;
+        cursor: pointer;
+        color: gold;
+        margin-right: 20px;
+    }
 
-.burger-menu {
-    font-size: 24px;
-    cursor: pointer;
-    color: gold;
-}
+    .burger-menu {
+        font-size: 24px;
+        cursor: pointer;
+        color: gold;
+    }
 
-.burger-menu-list {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    background-color: black;
-    width: 200px;
-    display: none;
-    flex-direction: column;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+    .burger-menu-list {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        background-color: black;
+        width: 200px;
+        display: none;
+        flex-direction: column;
+        padding: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-.burger-menu-list ul {
-    list-style-type: none;
-    padding: 0;
-}
+    .burger-menu-list ul {
+        list-style-type: none;
+        padding: 0;
+    }
 
-.burger-menu-list li {
-    padding: 10px;
-    color: white;
-    cursor: pointer;
-}
+    .burger-menu-list li {
+        padding: 10px;
+        color: white;
+        cursor: pointer;
+    }
 
-.burger-menu-list li:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
+    .burger-menu-list li:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
 
-.burger-menu-list .close {
-    font-size: 30px;
-    color: gold;
-    cursor: pointer;
-}
+    .burger-menu-list .close {
+        font-size: 30px;
+        color: gold;
+        cursor: pointer;
+    }
 
-.ad-slider {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    margin: 20px 0;
-}
+    .ad-slider {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        margin: 20px 0;
+    }
 
-.slide {
-    display: none;
-    text-align: center;
-}
+    .slide {
+        display: none;
+        text-align: center;
+    }
 
-.slide img {
-    width: 100%;
-    height: auto;
-}
+    .slide img {
+        width: 100%;
+        height: auto;
+    }
 
-.category-section {
-    padding: 20px;
-    background-color: #fff;
-}
+    .category-section {
+        padding: 20px;
+        background-color: #fff;
+    }
 
-.section-title {
-    text-align: center;
-    color: gold;
-    margin-bottom: 20px;
-}
+    .section-title {
+        text-align: center;
+        color: gold;
+        margin-bottom: 20px;
+    }
 
-.category-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+    .category-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
-.product-card {
-    border: 1px solid gold;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    text-align: center;
-    background-color: #fff;
-    width: 200px;
-}
+    .product-card {
+        border: 1px solid gold;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px;
+        text-align: center;
+        background-color: #fff;
+        width: 200px;
+    }
 
-.product-card img {
-    width: 100%;
-    height: 150px;
-}
+    .product-card img {
+        width: 100%;
+        height: 150px;
+    }
 
-.product-card button {
-    padding: 10px;
-    border: none;
-    background-color: gold;
-    color: white;
-    cursor: pointer;
-    margin-top: 10px;
-}
+    .product-card button {
+        padding: 10px;
+        border: none;
+        background-color: gold;
+        color: white;
+        cursor: pointer;
+        margin-top: 10px;
+    }
 
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: black;
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
+    footer {
+        text-align: center;
+        padding: 10px;
+        background-color: black;
+        color: white;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
 
     /* Featured Products Section */
-.featured-products-section {
-    background-color: black;
-    color: gold;
-    padding: 50px;
-    text-align: center;
-}
+    .featured-products-section {
+        background-color: black;
+        color: gold;
+        padding: 50px;
+        text-align: center;
+    }
 
-.featured-products-section h2 {
-    font-size: 36px;
-    margin-bottom: 30px;
-    font-family: 'Cursive', sans-serif;
-    text-shadow: 2px 2px 5px #000;
-    color: gold;
-}
+    .featured-products-section h2 {
+        font-size: 36px;
+        margin-bottom: 30px;
+        font-family: 'Cursive', sans-serif;
+        text-shadow: 2px 2px 5px #000;
+        color: gold;
+    }
 
-.featured-products-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    justify-content: center;
-    padding: 20px;
-}
+    .featured-products-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        justify-content: center;
+        padding: 20px;
+    }
 
-.product-card {
-    background-color: #1a1a1a;
-    border: 1px solid gold;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    color: white;
-    transition: transform 0.3s ease-in-out;
-}
+    .product-card {
+        background-color: #1a1a1a;
+        border: 1px solid gold;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        color: white;
+        transition: transform 0.3s ease-in-out;
+    }
 
-.product-card:hover {
-    transform: scale(1.05);
-}
+    .product-card:hover {
+        transform: scale(1.05);
+    }
 
-.product-card img {
-    max-width: 100%;
-    height: auto;
-    border-bottom: 1px solid gold;
-    margin-bottom: 15px;
-}
+    .product-card img {
+        max-width: 100%;
+        height: auto;
+        border-bottom: 1px solid gold;
+        margin-bottom: 15px;
+    }
 
-.product-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: gold;
-    font-family: 'Cursive', sans-serif;
-}
+    .product-card h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: gold;
+        font-family: 'Cursive', sans-serif;
+    }
 
-.product-card p {
-    font-size: 18px;
-    color: #ddd;
-    margin-bottom: 15px;
-}
+    .product-card p {
+        font-size: 18px;
+        color: #ddd;
+        margin-bottom: 15px;
+    }
 
-.product-card button {
-    background-color: gold;
-    color: black;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    .product-card button {
+        background-color: gold;
+        color: black;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-.product-card button:hover {
-    background-color: #ffd700;
-}
+    .product-card button:hover {
+        background-color: #ffd700;
+    }
 </style>
 </head>
 <body>
@@ -299,127 +304,104 @@ footer {
         <h2 class="section-title">Shop by Category</h2>
         <div id="category-cards" class="category-cards"></div>
     </section>
-<div class="featured-products-section">
-    <h2>Featured Products</h2>
-    <div class="featured-products-container">
-        <!-- Product cards will be inserted here by JavaScript -->
-    </div>
-</div>
 
-<!-- Footer Section -->
-<footer>
-    <p>IMACX Marketplace &copy; 2024. All rights reserved.</p>
-</footer>
+    <div class="featured-products-section">
+        <h2>Featured Products</h2>
+        <div class="featured-products-container">
+            <!-- Example Product Card 1 -->
+            <div class="product-card">
+                <img src="product1.jpg" alt="Product 1">
+                <h3>Luxury Sofa</h3>
+                <p>₹50,000</p>
+                <button onclick="window.location.href='product-page1.html'">Explore Product</button>
+            </div>
+
+            <!-- Example Product Card 2 -->
+            <div class="product-card">
+                <img src="product2.jpg" alt="Product 2">
+                <h3>Designer Dining Set</h3>
+                <p>₹1,20,000</p>
+                <button onclick="window.location.href='product-page2.html'">Explore Product</button>
+            </div>
+
+            <!-- Example Product Card 3 -->
+            <div class="product-card">
+                <img src="product3.jpg" alt="Product 3">
+                <h3>Modern Bedroom Suite</h3>
+                <p>₹85,000</p>
+                <button onclick="window.location.href='product-page3.html'">Explore Product</button>
+            </div>
+
+            <!-- Example Product Card 4 -->
+            <div class="product-card">
+                <img src="product4.jpg" alt="Product 4">
+                <h3>Chic Coffee Table</h3>
+                <p>₹15,000</p>
+                <button onclick="window.location.href='product-page4.html'">Explore Product</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>© 2024 IMACX Marketplace. All rights reserved.</p>
+        <p>&copy; 2024 IMACX Marketplace | Designed for elegance and comfort</p>
+        <p>Privacy Policy | Terms & Conditions</p>
     </footer>
 
-    <script>
-        const products = [
-    { id: 1, name: "Luxury Handbag", image: "product1.jpg", link: "product1.html" },
-    { id: 2, name: "Stylish Watch", image: "product2.jpg", link: "product2.html" },
-    { id: 3, name: "Designer Shoes", image: "product3.jpg", link: "product3.html" },
-    { id: 4, name: "Elegant Dress", image: "product4.jpg", link: "product4.html" },
-    { id: 5, name: "Classic Wallet", image: "product5.jpg", link: "product5.html" },
-    { id: 6, name: "Diamond Necklace", image: "product6.jpg", link: "product6.html" },
-    { id: 7, name: "Classic Sunglasses", image: "product7.jpg", link: "product7.html" },
-    { id: 8, name: "Elegant Bracelet", image: "product8.jpg", link: "product8.html" },
-    { id: 9, name: "Luxury Perfume", image: "product9.jpg", link: "product9.html" },
-    { id: 10, name: "Silk Tie", image: "product10.jpg", link: "product10.html" },
-    { id: 11, name: "Cashmere Sweater", image: "product11.jpg", link: "product11.html" },
-    { id: 12, name: "Gourmet Chocolates", image: "product12.jpg", link: "product12.html" },
-];
+<script>
+    // Toggle Burger Menu
+    function toggleMenu() {
+        const menu = document.getElementById('burger-menu');
+        if (menu.style.display === 'block') {
+            menu.style.display = 'none';
+        } else {
+            menu.style.display = 'block';
+        }
+    }
 
-function loadFeaturedProducts() {
-    const categoryCards = document.getElementById('category-cards');
-    categoryCards.innerHTML = ''; // Clear existing cards
+    // Simple slider functionality
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName('slide');
 
-    products.forEach(product => {
+    function showSlides() {
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = 'none';
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1;
+        }
+        slides[slideIndex - 1].style.display = 'block';
+        setTimeout(showSlides, 10000); // Change image every 10 seconds
+    }
+
+    // Initialize slider
+    showSlides();
+
+    // Example function for handling checkout
+    function checkout() {
+        window.location.href = 'checkout.html';
+    }
+
+    // Add categories dynamically
+    const categories = [
+        { name: "Luxury Furniture", image: "luxury-furniture.jpg", link: "category-furniture.html" },
+        { name: "Luxury Foods", image: "luxury-foods.jpg", link: "category-food.html" },
+        { name: "Home Decor", image: "home-decor.jpg", link: "category-decor.html" },
+        { name: "Exclusive Art", image: "exclusive-art.jpg", link: "category-art.html" }
+    ];
+
+    const categoryCardsContainer = document.getElementById('category-cards');
+    categories.forEach(category => {
         const card = document.createElement('div');
         card.classList.add('product-card');
-
         card.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <button onclick="window.location.href='${product.link}'">Explore Product</button>
+            <img src="${category.image}" alt="${category.name}">
+            <h3>${category.name}</h3>
+            <button onclick="window.location.href='${category.link}'">Shop Now</button>
         `;
-        categoryCards.appendChild(card);
+        categoryCardsContainer.appendChild(card);
     });
-}
+</script>
 
-// Slider Functionality
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.style.display = (i === index) ? 'block' : 'none';
-    });
-}
-
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-}
-
-setInterval(nextSlide, 10000); // Change slide every 10 seconds
-showSlide(currentSlide);
-
-// Toggle Burger Menu
-function toggleMenu() {
-    const menu = document.getElementById('burger-menu');
-    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
-}
-
-// Checkout Function
-function checkout() {
-    window.location.href = 'checkout.html';
-}
-
-// Search Functionality
-document.querySelector('.search-bar').addEventListener('keyup', function (event) {
-    const keyword = event.target.value.toLowerCase();
-    const cards = document.querySelectorAll('.product-card');
-    cards.forEach(card => {
-        const title = card.querySelector('h3').textContent.toLowerCase();
-        card.style.display = title.includes(keyword) ? 'block' : 'none';
-    });
-});
-
-// Load featured products when the page is loaded
-window.onload = loadFeaturedProducts;
-    
-    // Array of 50 featured products (you can replace the images, titles, and prices)
-const featuredProducts = [
-    { id: 1, image: 'product1.jpg', title: 'Product 1', price: 120, link: 'product1.html' },
-    { id: 2, image: 'product2.jpg', title: 'Product 2', price: 150, link: 'product2.html' },
-    { id: 3, image: 'product3.jpg', title: 'Product 3', price: 200, link: 'product3.html' },
-    // Add up to 50 products
-    // ...
-    { id: 50, image: 'product50.jpg', title: 'Product 50', price: 250, link: 'product50.html' }
-];
-
-// Function to populate the featured products section
-function loadFeaturedProducts() {
-    const container = document.querySelector('.featured-products-container');
-    
-    featuredProducts.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.classList.add('product-card');
-
-        productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.title}">
-            <h3>${product.title}</h3>
-            <p>Price: $${product.price}</p>
-            <button onclick="window.location.href='${product.link}'">Explore Product</button>
-        `;
-
-        container.appendChild(productCard);
-    });
-}
-
-// Load the featured products when the window is loaded
-window.onload = loadFeaturedProducts;
-    </script>
 </body>
 </html>
