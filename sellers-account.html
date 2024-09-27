@@ -137,11 +137,16 @@ const registrationSection = document.getElementById('registration-section');
 const toggleLoginButton = document.getElementById('toggle-login');
 const deleteAccountButton = document.getElementById('delete-account');
 
-let products = [];
 let loggedInUser = null;
 
-// Load stored accounts from localStorage
+// Load stored accounts and products from localStorage
 let sellerAccounts = JSON.parse(localStorage.getItem('sellerAccounts')) || [];
+
+// Function to load products for the logged-in user
+function loadUserProducts() {
+    const userProducts = JSON.parse(localStorage.getItem(loggedInUser)) || [];
+    return userProducts;
+}
 
 // Event listener for seller account creation
 sellerForm.addEventListener('submit', function(event) {
@@ -178,6 +183,9 @@ loginForm.addEventListener('submit', function(event) {
         // Show upload section after login
         loginSection.classList.add('hidden');
         uploadSection.classList.remove('hidden');
+        
+        // Load user's products
+        products = loadUserProducts();
         displayProducts();
     } else {
         alert("Invalid username or password. Please try again.");
@@ -213,6 +221,11 @@ productForm.addEventListener('submit', function(event) {
         details,
         price
     };
+
+    // Save product to localStorage
+    const userProducts = JSON.parse(localStorage.getItem(loggedInUser)) || [];
+    userProducts.push(newProduct);
+    localStorage.setItem(loggedInUser, JSON.stringify(userProducts));
 
     products.push(newProduct);
     displayProducts();
@@ -257,6 +270,10 @@ deleteAccountButton.addEventListener('click', function() {
         // Find and remove the logged-in user from accounts
         sellerAccounts = sellerAccounts.filter(account => account.username !== loggedInUser);
         localStorage.setItem('sellerAccounts', JSON.stringify(sellerAccounts));
+        
+        // Remove the user's products
+        localStorage.removeItem(loggedInUser);
+
         products = []; // Clear products
         loggedInUser = null; // Clear logged-in user
         alert('Your account has been deleted.');
