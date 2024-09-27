@@ -3,301 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Seller Management</title>
+    <title>Admin Seller Management</title>
     <link rel="stylesheet" href="styles.css">
 <style>
-    /* General Page Styles */
-body {
+    body {
     font-family: 'Arial', sans-serif;
-    background-color: #1a1a1a; /* Sleek black background */
+    background-color: #f4f4f4;
     margin: 0;
-    padding: 0;
-    color: #ddd; /* Light text color for contrast */
-}
-
-h1, h2, h3, h4 {
-    font-family: 'Brush Script MT', cursive; /* Cursive luxurious font */
-    color: gold; /* Golden text for headings */
-    text-shadow: 2px 2px 5px #000; /* Elegant shadow */
-}
-
-button, input[type="text"], input[type="email"], input[type="password"], select {
-    background-color: gold;
-    color: black;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    font-family: 'Arial', sans-serif;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-button:hover, input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
-    background-color: #ffd700; /* Lighter golden shade on hover */
-}
-
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    background-color: #333;
-    color: white;
-    border: 1px solid gold;
-    border-radius: 5px;
-}
-
-footer {
-    text-align: center;
     padding: 20px;
-    background-color: black;
-    color: white;
 }
 
-/* Seller Account Page */
-.seller-account-container {
-    padding: 40px;
-    text-align: center;
-}
-
-.seller-account-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #282828; /* Darker black for form background */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-}
-
-.seller-account-form h2 {
-    margin-bottom: 20px;
-    color: gold;
-}
-
-.seller-account-form label {
-    display: block;
-    color: white;
-    margin-bottom: 10px;
-}
-
-.seller-account-form input, .seller-account-form select, .seller-account-form button {
-    width: 100%;
-}
-
-/* Admin Page */
-.admin-page {
-    padding: 40px;
-}
-
-.admin-page h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: gold;
-}
-
-.admin-page table {
-    width: 100%;
-    border-collapse: collapse;
+header {
     background-color: #333;
-    margin-bottom: 30px;
-}
-
-.admin-page th, .admin-page td {
-    padding: 15px;
-    border: 1px solid gold;
-    text-align: left;
-    color: white;
-}
-
-.admin-page th {
-    background-color: black;
-    color: gold;
-}
-
-.admin-page button.delete {
-    background-color: red;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-}
-
-.admin-page button.delete:hover {
-    background-color: darkred;
-}
-
-/* Marketplace Page */
-.marketplace-container {
-    padding: 40px;
+    color: #fff;
+    padding: 10px 20px;
     text-align: center;
 }
 
-.marketplace-container h2 {
-    margin-bottom: 40px;
-    color: gold;
+h1 {
+    margin: 0;
 }
 
-.marketplace-categories {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 50px;
-}
-
-.marketplace-categories button {
-    margin-right: 20px;
-    padding: 15px;
-    background-color: gold;
-    color: black;
+.seller-card {
+    background: white;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 18px;
-    text-transform: uppercase;
-    transition: background-color 0.3s;
+    padding: 15px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.marketplace-categories button:hover {
-    background-color: #ffd700;
+.product-display {
+    margin-top: 10px;
 }
 
-/* Product Cards */
 .product-card {
-    background-color: #1a1a1a;
-    border: 1px solid gold;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    color: white;
-    transition: transform 0.3s ease-in-out;
-    margin-bottom: 20px;
-}
-
-.product-card:hover {
-    transform: scale(1.05);
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .product-card img {
     max-width: 100%;
-    height: auto;
-    border-bottom: 1px solid gold;
-    margin-bottom: 15px;
+    border-radius: 5px;
 }
 
-.product-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: gold;
-    font-family: 'Brush Script MT', cursive;
+.product-card h5 {
+    margin: 10px 0 5px;
+    font-size: 16px;
 }
 
 .product-card p {
-    font-size: 18px;
-    color: #ddd;
-    margin-bottom: 15px;
+    margin: 5px 0;
 }
 
-.product-card button {
-    background-color: gold;
-    color: black;
-    padding: 10px 15px;
+button {
+    background-color: #007bff;
+    color: white;
     border: none;
+    padding: 10px 15px;
     border-radius: 5px;
-    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.product-card button:hover {
-    background-color: #ffd700;
+button:hover {
+    background-color: #0056b3;
 }
 
-/* Delete Account Section */
-.delete-account {
-    background-color: red;
-    color: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
+button:focus {
+    outline: none;
 }
 
-.delete-account button {
-    background-color: white;
-    color: red;
-    border: 2px solid red;
-    padding: 10px;
-    cursor: pointer;
+.seller-card button {
+    background-color: #dc3545;
 }
 
-.delete-account button:hover {
-    background-color: darkred;
-    color: white;
+.seller-card button:hover {
+    background-color: #c82333;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .product-card {
+        width: 100%;
+    }
 }
 </style>
 </head>
 <body>
-    <h1>Seller Account Management</h1>
+    <header>
+        <h1>Admin Seller Account Management</h1>
+    </header>
 
-    <div class="seller-list">
-        <h2>List of Sellers</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody id="seller-table-body">
-                <!-- Seller rows will be added dynamically -->
-            </tbody>
-        </table>
-    </div>
+    <main>
+        <div id="admin-display"></div>
+    </main>
 
-    <h2>Uploaded Products</h2>
-    <div class="product-list" id="admin-product-list">
-        <!-- Products will be displayed here -->
-    </div>
+    <script src=>const adminDisplay = document.getElementById('admin-display');
 
-    <script>
-        const sellers = JSON.parse(localStorage.getItem('sellers')) || [];
-        const products = JSON.parse(localStorage.getItem('products')) || [];
+// Function to get all sellers
+function getSellers() {
+    return JSON.parse(localStorage.getItem('sellers')) || {};
+}
 
-        // Display sellers in the admin panel
-        function displaySellers() {
-            const sellerTableBody = document.getElementById('seller-table-body');
-            sellerTableBody.innerHTML = '';
+// Function to display all seller accounts and their products
+function displayAdminProducts() {
+    const sellers = getSellers();
+    adminDisplay.innerHTML = ''; // Clear previous display
 
-            sellers.forEach(seller => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${seller.username}</td>
-                    <td>${seller.phone}</td>
-                    <td>${seller.email}</td>
-                    <td>${seller.isLoggedIn ? 'Logged In' : 'Logged Out'}</td>
-                `;
-                sellerTableBody.appendChild(row);
-            });
-        }
+    for (const username in sellers) {
+        const sellerHTML = `
+            <div class="seller-card">
+                <h3>${username}</h3>
+                <p>Phone: ${sellers[username].phone}</p>
+                <p>Email: ${sellers[username].email}</p>
+                <button onclick="deleteSeller('${username}')">Delete Seller</button>
+                <div class="product-display" id="${username}-products">
+                    <h4>Products</h4>
+                </div>
+            </div>
+        `;
+        adminDisplay.insertAdjacentHTML('beforeend', sellerHTML);
 
-        // Display products uploaded by all sellers
-        function displayProducts() {
-            const productList = document.getElementById('admin-product-list');
-            productList.innerHTML = '';
-
-            products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                productCard.innerHTML = `
-                    <h3>${product.title}</h3>
-                    <p>Seller: ${product.seller}</p>
+        const productDisplay = document.getElementById(`${username}-products`);
+        sellers[username].products.forEach(product => {
+            const productHTML = `
+                <div class="product-card">
+                    <img src="${product.mainImage}" alt="${product.name}" class="product-image">
+                    <h5>${product.name}</h5>
                     <p>Category: ${product.category}</p>
-                    <p>Price: ₹${product.price}</p>
-                `;
-                productList.appendChild(productCard);
-            });
-        }
+                    <p>Price: INR ${product.price}</p>
+                    <button onclick="editProduct('${username}', '${product.name}')">Edit</button>
+                    <button onclick="deleteProduct('${username}', '${product.name}')">Delete</button>
+                </div>
+            `;
+            productDisplay.insertAdjacentHTML('beforeend', productHTML);
+        });
+    }
+}
 
-        displaySellers();
-        displayProducts();
-    </script>
+// Function to delete a seller account
+function deleteSeller(username) {
+    if (confirm('Are you sure you want to delete this seller?')) {
+        const sellers = getSellers();
+        delete sellers[username]; // Delete seller account
+        localStorage.setItem('sellers', JSON.stringify(sellers)); // Save updated sellers
+        displayAdminProducts(); // Refresh the display
+    }
+}
+
+// Function to delete a product
+function deleteProduct(username, productName) {
+    const sellers = getSellers();
+    const products = sellers[username].products;
+    const updatedProducts = products.filter(p => p.name !== productName);
+    sellers[username].products = updatedProducts; // Update seller's product list
+    localStorage.setItem('sellers', JSON.stringify(sellers)); // Save updated sellers
+    displayAdminProducts(); // Refresh the display
+}
+
+// Function to edit a product (implementation can vary)
+function editProduct(username, productName) {
+    const sellers = getSellers();
+    const product = sellers[username].products.find(p => p.name === productName);
+    if (product) {
+        // Open a modal or a new page for editing (not implemented here)
+        alert(`Editing Product: ${product.name}`);
+        // Logic for editing would go here
+    }
+}
+
+// Load seller accounts and products on page load
+window.onload = displayAdminProducts;</script>
 </body>
 </html>
