@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMACX Seller Account</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Create IMACX Seller Account</h1>
+
+    <div class="seller-form-container">
+        <form id="seller-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="phone">Phone Number (Country Code):</label>
+            <input type="text" id="phone" name="phone" placeholder="+91..." required>
+
+            <label for="email">Email (Gmail):</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="terms-section">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <a href="terms.html">Terms and Conditions</a></label>
+            </div>
+
+            <button type="submit">Create Account</button>
+        </form>
+    </div>
+
+    <div class="login-section">
+        <h2>Already have an account?</h2>
+        <form id="login-form">
+            <label for="login-username">Username:</label>
+            <input type="text" id="login-username" name="login-username" required>
+
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="login-password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="seller-actions" style="display: none;">
+        <h2>Seller Dashboard</h2>
+        <p>Welcome, <span id="logged-in-seller"></span></p>
+        <button id="logout-btn">Logout</button>
+        <button id="delete-account-btn">Delete Account</button>
+    </div>
+
+    <script>
+        // Check if any user is logged in
+        const loggedInSeller = JSON.parse(localStorage.getItem('loggedInSeller'));
+
+        if (loggedInSeller) {
+            document.getElementById('seller-actions').style.display = 'block';
+            document.getElementById('logged-in-seller').innerText = loggedInSeller.username;
+        }
+
+        // Account Creation
+        document.getElementById('seller-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            let sellers = JSON.parse(localStorage.getItem('sellers')) || [];
+
+            // Check for duplicate username
+            if (sellers.some(seller => seller.username === username)) {
+                alert("Username already exists. Please choose a different username.");
+                return;
+            }
+
+            const sellerData = { username, phone, email, password, isLoggedIn: false };
+            sellers.push(sellerData);
+            localStorage.setItem('sellers', JSON.stringify(sellers));
+
+            alert("Seller account created successfully!");
+        });
+
+        // Login functionality
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            let sellers = JSON.parse(localStorage.getItem('sellers')) || [];
+            const seller = sellers.find(s => s.username === username && s.password === password);
+
+            if (seller) {
+                seller.isLoggedIn = true;
+                localStorage.setItem('sellers', JSON.stringify(sellers));
+                localStorage.setItem('loggedInSeller', JSON.stringify(seller));
+                alert("Logged in successfully!");
+                location.reload();
+            } else {
+                alert("Invalid username or password");
+            }
+        });
+
+        // Logout functionality
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            const loggedInSeller = JSON.parse(localStorage.getItem('loggedInSeller'));
+            let sellers = JSON.parse(localStorage.getItem('sellers'));
+
+            const sellerIndex = sellers.findIndex(s => s.username === loggedInSeller.username);
+            sellers[sellerIndex].isLoggedIn = false;
+
+            localStorage.setItem('sellers', JSON.stringify(sellers));
+            localStorage.removeItem('loggedInSeller');
+            alert("Logged out successfully!");
+            location.reload();
+        });
+
+        // Delete Account functionality
+        document.getElementById('delete-account-btn').addEventListener('click', function() {
+            const confirmation = confirm("Are you sure you want to delete your account? This action is irreversible.");
+            if (confirmation) {
+                const loggedInSeller = JSON.parse(localStorage.getItem('loggedInSeller'));
+                let sellers = JSON.parse(localStorage.getItem('sellers'));
+                let products = JSON.parse(localStorage.getItem('products')) || [];
+
+                sellers = sellers.filter(s => s.username !== loggedInSeller.username);
+                products = products.filter(p => p.seller !== loggedInSeller.username);
+
+                localStorage.setItem('sellers', JSON.stringify(sellers));
+                localStorage.setItem('products', JSON.stringify(products));
+                localStorage.removeItem('loggedInSeller');
+
+                alert("Account deleted successfully!");
+                location.reload();
+            }
+        });
+    </script>
+</body>
+</html>
