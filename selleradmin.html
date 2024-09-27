@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Seller Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Seller Account Management</h1>
+
+    <div class="seller-list">
+        <h2>List of Sellers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="seller-table-body">
+                <!-- Seller rows will be added dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Uploaded Products</h2>
+    <div class="product-list" id="admin-product-list">
+        <!-- Products will be displayed here -->
+    </div>
+
+    <script>
+        const sellers = JSON.parse(localStorage.getItem('sellers')) || [];
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+
+        // Display sellers in the admin panel
+        function displaySellers() {
+            const sellerTableBody = document.getElementById('seller-table-body');
+            sellerTableBody.innerHTML = '';
+
+            sellers.forEach(seller => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${seller.username}</td>
+                    <td>${seller.phone}</td>
+                    <td>${seller.email}</td>
+                    <td>${seller.isLoggedIn ? 'Logged In' : 'Logged Out'}</td>
+                `;
+                sellerTableBody.appendChild(row);
+            });
+        }
+
+        // Display products uploaded by all sellers
+        function displayProducts() {
+            const productList = document.getElementById('admin-product-list');
+            productList.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <h3>${product.title}</h3>
+                    <p>Seller: ${product.seller}</p>
+                    <p>Category: ${product.category}</p>
+                    <p>Price: ₹${product.price}</p>
+                `;
+                productList.appendChild(productCard);
+            });
+        }
+
+        displaySellers();
+        displayProducts();
+    </script>
+</body>
+</html>
