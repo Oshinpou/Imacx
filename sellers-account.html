@@ -137,23 +137,11 @@ const registrationSection = document.getElementById('registration-section');
 const toggleLoginButton = document.getElementById('toggle-login');
 const deleteAccountButton = document.getElementById('delete-account');
 
+let products = [];
 let loggedInUser = null;
 
-// Helper function to get all sellers
-function getSellers() {
-    return JSON.parse(localStorage.getItem('sellers')) || {};
-}
-
-// Helper function to get all products for a specific seller
-function getProductsForSeller(username) {
-    const sellers = getSellers();
-    return sellers[username]?.products || [];
-}
-
-// Helper function to save sellers to local storage
-function saveSellers(sellers) {
-    localStorage.setItem('sellers', JSON.stringify(sellers));
-}
+// Load stored accounts from localStorage
+let sellerAccounts = JSON.parse(localStorage.getItem('sellerAccounts')) || [];
 
 // Event listener for seller account creation
 sellerForm.addEventListener('submit', function(event) {
@@ -163,16 +151,12 @@ sellerForm.addEventListener('submit', function(event) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    const sellers = getSellers();
-    
-    if (sellers[username]) {
-        alert('Username already exists. Please choose another.');
-        return;
-    }
+    // Create seller account object
+    const newAccount = { username, phone, email, password };
 
-    // Create new seller
-    sellers[username] = { phone, email, password, products: [] };
-    saveSellers(sellers);
+    // Save new account to localStorage
+    sellerAccounts.push(newAccount);
+    localStorage.setItem('sellerAccounts', JSON.stringify(sellerAccounts));
 
     alert(`Account created for ${username}`);
     sellerForm.reset();
@@ -184,9 +168,10 @@ loginForm.addEventListener('submit', function(event) {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
 
-    const sellers = getSellers();
-    
-    if (sellers[username] && sellers[username].password === password) {
+    // Check if the username and password match any stored account
+    const user = sellerAccounts.find(account => account.username === username && account.password === password);
+
+    if (user) {
         loggedInUser = username; // Set logged-in user
         alert(`Logged in as ${loggedInUser}`);
 
@@ -195,7 +180,7 @@ loginForm.addEventListener('submit', function(event) {
         uploadSection.classList.remove('hidden');
         displayProducts();
     } else {
-        alert('Invalid username or password.');
+        alert("Invalid username or password. Please try again.");
     }
 });
 
@@ -208,27 +193,34 @@ productForm.addEventListener('submit', function(event) {
         return;
     }
     
-    const name = document.getElementById('product-name').value;
     const category = document.getElementById('product-category').value;
+    const name = document.getElementById('product-name').value;
     const mainImage = document.getElementById('product-main-image').value;
     const description = document.getElementById('product-description').value;
     const details = document.getElementById('product-details').value;
     const price = document.getElementById('product-price').value;
+    
+    // Collect additional image URLs
+    const imageUrls = Array.from(document.querySelectorAll('.product-image-url'))
+                           .map(input => input.value).filter(url => url);
 
-    const newProduct = { name, category, mainImage, description, details, price };
+    const newProduct = {
+        category,
+        name,
+        mainImage,
+        imageUrls,
+        description,
+        details,
+        price
+    };
 
-    const sellers = getSellers();
-    sellers[loggedInUser].products.push(newProduct); // Add product to seller's product list
-    saveSellers(sellers); // Save updated sellers to local storage
-
-    alert(`Product "${newProduct.name}" uploaded successfully.`);
-    displayProducts(); // Update the product display
+    products.push(newProduct);
+    displayProducts();
     productForm.reset();
 });
 
 // Function to display uploaded products
 function displayProducts() {
-    const products = getProductsForSeller(loggedInUser);
     productDisplay.innerHTML = ''; // Clear previous display
 
     products.forEach(product => {
@@ -247,7 +239,6 @@ function displayProducts() {
 
 // Function to handle viewing product details
 function viewProduct(productName) {
-    const products = getProductsForSeller(loggedInUser);
     const product = products.find(p => p.name === productName);
     if (product) {
         alert(`Product: ${product.name}\nDescription: ${product.description}\nDetails: ${product.details}\nPrice: INR ${product.price}`);
@@ -263,13 +254,13 @@ toggleLoginButton.addEventListener('click', function() {
 // Event listener for account deletion
 deleteAccountButton.addEventListener('click', function() {
     if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
-        const sellers = getSellers();
-        delete sellers[loggedInUser]; // Delete seller account
-        saveSellers(sellers); // Save updated sellers
-
-        alert('Your account has been deleted.');
+        // Find and remove the logged-in user from accounts
+        sellerAccounts = sellerAccounts.filter(account => account.username !== loggedInUser);
+        localStorage.setItem('sellerAccounts', JSON.stringify(sellerAccounts));
+        products = []; // Clear products
         loggedInUser = null; // Clear logged-in user
-
+        alert('Your account has been deleted.');
+        
         // Reset sections
         uploadSection.classList.add('hidden');
         loginSection.classList.add('hidden');
