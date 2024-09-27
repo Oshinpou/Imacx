@@ -4,22 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seller Account</title>
+    <link rel="stylesheet" href="seller-style.css">
     <style>
+        /* seller-style.css */
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
+
+        h1, h2 {
+            color: #d4af37;
+            text-align: center;
+            font-family: 'Cursive', sans-serif;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input, textarea, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #d4af37;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #b28f30;
+        }
+
         .hidden {
             display: none;
         }
+
+        #product-display {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+
         .product-card {
-            border: 1px solid #ccc;
-            margin: 10px;
-            padding: 10px;
-            width: 200px;
+            width: 250px;
+            background-color: #fff;
+            padding: 15px;
+            margin: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        /* Image slider styles */
         #image-slider {
-            display: none;
+            display: flex;
             flex-direction: column;
             align-items: center;
             position: fixed;
@@ -28,248 +91,292 @@
             right: 0;
             bottom: 0;
             background: rgba(0, 0, 0, 0.8);
-            color: white;
-            z-index: 1000;
+            z-index: 999;
             padding: 20px;
+            display: none;
         }
-        .slider-controls {
-            margin: 10px;
+
+        #image-slider img {
+            max-width: 100%;
+            max-height: 80vh;
+            margin-bottom: 20px;
         }
-        .prev-button, .next-button, .close-slider {
-            cursor: pointer;
-            padding: 10px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
+
+        #image-slider button {
             margin: 5px;
-            border-radius: 5px;
-        }
-        .prev-button:hover, .next-button:hover, .close-slider:hover {
-            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
+    <section id="seller-account-section">
+        <h1>Seller Account</h1>
 
-    <div id="login-section">
-        <h2>Login</h2>
-        <form id="login-form">
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-        <button id="toggle-login-button">Switch to Registration</button>
-    </div>
-
-    <div id="registration-section" class="hidden">
-        <h2>Register</h2>
-        <form id="registration-form">
-            <input type="text" id="new-username" placeholder="Username" required>
-            <input type="password" id="new-password" placeholder="Password" required>
-            <button type="submit">Register</button>
-        </form>
-        <button id="toggle-login-button-2">Switch to Login</button>
-    </div>
-
-    <div id="upload-section" class="hidden">
-        <h2>Upload Product</h2>
-        <form id="product-form">
-            <input type="text" id="product-name" placeholder="Product Name" required>
-            <input type="text" id="product-category" placeholder="Category" required>
-            <input type="text" id="product-main-image" placeholder="Main Image URL" required>
-            <textarea id="product-description" placeholder="Description" required></textarea>
-            <textarea id="product-details" placeholder="Details" required></textarea>
-            <input type="number" id="product-price" placeholder="Price" required>
-            <input type="number" id="max-quantity" placeholder="Max Quantity" required>
-            <input type="text" class="product-image-url" placeholder="Additional Image URL (optional)">
-            <button type="button" id="add-image-url">Add Another Image URL</button>
-            <button type="submit">Upload Product</button>
-        </form>
-        <div id="product-display"></div>
-        <button id="delete-account-button">Delete Account</button>
-    </div>
-
-    <div id="image-slider">
-        <button class="close-slider">Close</button>
-        <img id="slider-image" src="" alt="Product Image" style="max-width: 100%;">
-        <div class="slider-controls">
-            <button class="prev-button">Previous</button>
-            <button class="next-button">Next</button>
+        <div>
+            <button id="toggle-login">Switch to Login</button>
         </div>
+
+        <div id="registration-section">
+            <h2>Register</h2>
+            <form id="seller-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+
+        <div id="login-section" class="hidden">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="login-username">Username:</label>
+                <input type="text" id="login-username" required>
+
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <section id="upload-section" class="hidden">
+            <h2>Upload Product</h2>
+            <form id="product-form">
+                <label for="product-category">Product Category:</label>
+                <input type="text" id="product-category" required>
+
+                <label for="product-name">Product Name:</label>
+                <input type="text" id="product-name" required>
+
+                <label for="product-main-image">Main Image URL:</label>
+                <input type="url" id="product-main-image" required>
+
+                <label for="product-description">Product Description:</label>
+                <textarea id="product-description" required></textarea>
+
+                <label for="product-details">Product Details:</label>
+                <textarea id="product-details" required></textarea>
+
+                <label for="product-price">Price (INR):</label>
+                <input type="number" id="product-price" required>
+
+                <label for="max-quantity">Max Quantity Allowed:</label>
+                <input type="number" id="max-quantity" value="1000" min="0" required>
+
+                <div id="image-urls">
+                    <label>Additional Image URLs:</label>
+                    <input type="url" class="product-image-url">
+                </div>
+
+                <button type="submit">Upload Product</button>
+                <button type="button" id="add-image">Add More Images</button>
+            </form>
+        </section>
+
+        <section id="product-display-section">
+            <h2>Uploaded Products</h2>
+            <div id="product-display"></div>
+        </section>
+
+        <button id="delete-account">Delete Account</button>
+    </section>
+
+    <!-- Image Slider for Viewing Product Images -->
+    <div id="image-slider">
+        <img id="slider-image" src="" alt="Product Image">
+        <button id="prev-image">Previous</button>
+        <button id="next-image">Next</button>
+        <button id="close-slider">Close</button>
         <div id="product-info"></div>
     </div>
 
     <script>
-        let loggedInUser = null;
-        let products = [];
-
+        const sellerForm = document.getElementById('seller-form');
+        const loginForm = document.getElementById('login-form');
+        const productForm = document.getElementById('product-form');
+        const productDisplay = document.getElementById('product-display');
+        const uploadSection = document.getElementById('upload-section');
         const loginSection = document.getElementById('login-section');
         const registrationSection = document.getElementById('registration-section');
-        const uploadSection = document.getElementById('upload-section');
-        const productDisplay = document.getElementById('product-display');
-        const productForm = document.getElementById('product-form');
+        const toggleLoginButton = document.getElementById('toggle-login');
+        const deleteAccountButton = document.getElementById('delete-account');
 
-        // Handle login
-        document.getElementById('login-form').addEventListener('submit', function(event) {
+        let products = [];
+        let loggedInUser = null;
+        let currentProductIndex = 0;
+        const imageSlider = document.getElementById('image-slider');
+        const sliderImage = document.getElementById('slider-image');
+        const prevImageButton = document.getElementById('prev-image');
+        const nextImageButton = document.getElementById('next-image');
+        const closeSliderButton = document.getElementById('close-slider');
+
+        // Event listener for seller account creation
+        sellerForm.addEventListener('submit', function(event) {
             event.preventDefault();
             const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
             const password = document.getElementById('password').value;
 
-            const storedPassword = localStorage.getItem(username);
-            if (storedPassword && storedPassword === password) {
+            // Save seller account to localStorage
+            localStorage.setItem(username, JSON.stringify({ email, phone, password }));
+            alert(`Account created for ${username}`);
+            sellerForm.reset();
+        });
+
+        // Event listener for login
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            const storedUser = JSON.parse(localStorage.getItem(username));
+            if (storedUser && storedUser.password === password) {
                 loggedInUser = username;
-                alert('Login successful!');
+                alert(`Logged in as ${loggedInUser}`);
+
+                // Show upload section after login
                 loginSection.classList.add('hidden');
-                registrationSection.classList.add('hidden');
                 uploadSection.classList.remove('hidden');
-                loadProducts();  // Load previously uploaded products
+                loadUserProducts();
             } else {
                 alert('Invalid username or password');
             }
         });
 
-        // Handle registration
-        document.getElementById('registration-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const username = document.getElementById('new-username').value;
-            const password = document.getElementById('new-password').value;
-
-            if (!localStorage.getItem(username)) {
-                localStorage.setItem(username, password);
-                alert('Registration successful! You can now log in.');
-                registrationSection.classList.add('hidden');
-                loginSection.classList.remove('hidden');
-            } else {
-                alert('Username already exists!');
-            }
-        });
-
-        // Add another image URL input
-        document.getElementById('add-image-url').addEventListener('click', function() {
-            const newInput = document.createElement('input');
-            newInput.type = 'text';
-            newInput.className = 'product-image-url';
-            newInput.placeholder = 'Additional Image URL (optional)';
-            productForm.insertBefore(newInput, this);
-        });
-
-        // Handle product upload
+        // Event listener for uploading product card
         productForm.addEventListener('submit', function(event) {
             event.preventDefault();
-            const productName = document.getElementById('product-name').value;
-            const productCategory = document.getElementById('product-category').value;
-            const productMainImage = document.getElementById('product-main-image').value;
-            const productDescription = document.getElementById('product-description').value;
-            const productDetails = document.getElementById('product-details').value;
-            const productPrice = document.getElementById('product-price').value;
+
+            if (!loggedInUser) {
+                alert("You must be logged in to upload products.");
+                return;
+            }
+
+            const category = document.getElementById('product-category').value;
+            const name = document.getElementById('product-name').value;
+            const mainImage = document.getElementById('product-main-image').value;
+            const description = document.getElementById('product-description').value;
+            const details = document.getElementById('product-details').value;
+            const price = document.getElementById('product-price').value;
             const maxQuantity = document.getElementById('max-quantity').value;
 
             // Collect additional image URLs
-            const additionalImageUrls = Array.from(document.querySelectorAll('.product-image-url'))
-                .map(input => input.value)
-                .filter(url => url);  // Filter out empty URLs
+            const imageUrls = Array.from(document.querySelectorAll('.product-image-url')).map(input => input.value).filter(url => url);
 
-            // Create a product object
+            // Create product object
             const product = {
-                name: productName,
-                category: productCategory,
-                mainImage: productMainImage,
-                description: productDescription,
-                details: productDetails,
-                price: productPrice,
-                maxQuantity: maxQuantity,
-                additionalImages: additionalImageUrls
+                category,
+                name,
+                mainImage,
+                description,
+                details,
+                price,
+                maxQuantity,
+                images: [mainImage, ...imageUrls],
             };
 
-            // Add product to the products array and save to local storage
+            // Save product to local storage
             products.push(product);
-            localStorage.setItem('products', JSON.stringify(products));
+            localStorage.setItem(loggedInUser + '-products', JSON.stringify(products));
 
-            // Reset form
+            // Display product on the page
+            displayProduct(product);
             productForm.reset();
-            loadProducts();  // Reload products to display
         });
 
-        // Load products from local storage
-        function loadProducts() {
-            products = JSON.parse(localStorage.getItem('products')) || [];
-            productDisplay.innerHTML = ''; // Clear the display area
-
-            // Display each product
-            products.forEach((product, index) => {
-                const productCard = document.createElement('div');
-                productCard.classList.add('product-card');
-                productCard.innerHTML = `
-                    <img src="${product.mainImage}" alt="${product.name}" style="max-width:100%;">
-                    <h3>${product.name}</h3>
-                    <p>Price: ₹${product.price}</p>
-                    <button onclick="viewProductDetails(${index})">View Full Information</button>
-                `;
-                productDisplay.appendChild(productCard);
-            });
-        }
-
-        // View product details
-        function viewProductDetails(index) {
-            const product = products[index];
-            const sliderContent = document.getElementById('slider-content');
-            const sliderImage = document.getElementById('slider-image');
-            const productInfo = document.getElementById('product-info');
-
-            // Prepare the image slider
-            const allImages = [product.mainImage, ...product.additionalImages];
-            sliderImage.src = allImages[0]; // Show the first image initially
-            productInfo.innerHTML = `
-                <h3>${product.name}</h3>
-                <p>${product.description}</p>
-                <p><strong>Details:</strong> ${product.details}</p>
-                <p><strong>Price:</strong> ₹${product.price}</p>
-                <p><strong>Max Quantity Allowed:</strong> ${product.maxQuantity}</p>
-            `;
-
-            let currentImageIndex = 0;
-
-            // Display the slider
-            document.getElementById('image-slider').style.display = 'flex';
-
-            // Previous image button functionality
-            document.querySelector('.prev-button').onclick = function() {
-                currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : allImages.length - 1;
-                sliderImage.src = allImages[currentImageIndex];
-            };
-
-            // Next image button functionality
-            document.querySelector('.next-button').onclick = function() {
-                currentImageIndex = (currentImageIndex < allImages.length - 1) ? currentImageIndex + 1 : 0;
-                sliderImage.src = allImages[currentImageIndex];
-            };
-
-            // Close slider functionality
-            document.querySelector('.close-slider').onclick = function() {
-                document.getElementById('image-slider').style.display = 'none';
-            };
-        }
+        // Toggle between registration and login sections
+        toggleLoginButton.addEventListener('click', () => {
+            registrationSection.classList.toggle('hidden');
+            loginSection.classList.toggle('hidden');
+        });
 
         // Delete account functionality
-        document.getElementById('delete-account-button').addEventListener('click', function() {
-            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        deleteAccountButton.addEventListener('click', () => {
+            if (loggedInUser) {
                 localStorage.removeItem(loggedInUser);
-                alert('Account deleted successfully.');
-                location.reload(); // Refresh the page to reset everything
+                localStorage.removeItem(loggedInUser + '-products');
+                alert(`Account ${loggedInUser} deleted.`);
+                loggedInUser = null;
+                location.reload(); // Reload the page to reset the state
+            } else {
+                alert("You must be logged in to delete your account.");
             }
         });
 
-        // Toggle between login and registration
-        document.getElementById('toggle-login-button').addEventListener('click', function() {
-            loginSection.classList.add('hidden');
-            registrationSection.classList.remove('hidden');
-        });
+        // Display uploaded product card
+        function displayProduct(product) {
+            const productCard = document.createElement('div');
+            productCard.classList.add('product-card');
+            productCard.innerHTML = `
+                <img src="${product.mainImage}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>Price: ₹${product.price}</p>
+                <button onclick="viewProductDetails(${products.length - 1})">View Full Information</button>
+            `;
+            productDisplay.appendChild(productCard);
+        }
 
-        document.getElementById('toggle-login-button-2').addEventListener('click', function() {
-            registrationSection.classList.add('hidden');
-            loginSection.classList.remove('hidden');
-        });
+        // Load user products from local storage
+        function loadUserProducts() {
+            const storedProducts = JSON.parse(localStorage.getItem(loggedInUser + '-products')) || [];
+            products = storedProducts;
+            products.forEach(displayProduct);
+        }
 
+        // View full product details
+        function viewProductDetails(index) {
+            currentProductIndex = index;
+            const product = products[index];
+
+            // Set main image and additional images for the slider
+            sliderImage.src = product.mainImage;
+            const additionalImages = product.images.slice(1);
+            const productInfo = `
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+                <p>Details: ${product.details}</p>
+                <p>Price: ₹${product.price}</p>
+                <p>Max Quantity Allowed: ${product.maxQuantity}</p>
+            `;
+            document.getElementById('product-info').innerHTML = productInfo;
+
+            // Show the image slider
+            imageSlider.style.display = 'flex';
+
+            // Set the first additional image as the current image
+            let currentIndex = 0;
+
+            // Function to update image in slider
+            function updateImage() {
+                sliderImage.src = currentIndex < product.images.length ? product.images[currentIndex] : product.mainImage;
+            }
+
+            // Previous image button
+            prevImageButton.onclick = () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : additionalImages.length - 1;
+                updateImage();
+            };
+
+            // Next image button
+            nextImageButton.onclick = () => {
+                currentIndex = (currentIndex < additionalImages.length - 1) ? currentIndex + 1 : 0;
+                updateImage();
+            };
+
+            // Close slider button
+            closeSliderButton.onclick = () => {
+                imageSlider.style.display = 'none';
+            };
+        }
     </script>
 </body>
 </html>
