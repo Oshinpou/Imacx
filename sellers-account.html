@@ -105,6 +105,67 @@
         #image-slider button {
             margin: 5px;
         }
+
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+#product-display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product-card {
+    width: 250px;
+    background-color: #fff;
+    padding: 15px;
+    margin: 15px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+}
+
+#image-slider {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+#image-slider img {
+    max-width: 80%;
+    max-height: 80%;
+}
+
+#product-info {
+    color: white;
+    margin-top: 20px;
+}
+
+button {
+    cursor: pointer;
+    margin: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+}
     </style>
 </head>
 <body>
@@ -190,12 +251,15 @@
     </section>
 
     <!-- Image Slider for Viewing Product Images -->
-    <div id="image-slider">
-        <img id="slider-image" src="" alt="Product Image">
-        <button id="prev-image">Previous</button>
-        <button id="next-image">Next</button>
-        <button id="close-slider">Close</button>
-        <div id="product-info"></div>
+    <div id="product-display"></div>
+
+<div id="image-slider">
+    <img id="slider-image" src="" alt="Product Image">
+    <div id="product-info"></div>
+    <button id="prev-image">Previous</button>
+    <button id="next-image">Next</button>
+    <button id="close-slider">Close</button>
+
     </div>
 
     <script>
@@ -377,6 +441,87 @@
                 imageSlider.style.display = 'none';
             };
         }
+
+        let products = [
+    {
+        name: "Product 1",
+        description: "This is product 1 description.",
+        details: "These are the details of product 1.",
+        price: 1000,
+        images: ["https://via.placeholder.com/300", "https://via.placeholder.com/400", "https://via.placeholder.com/500"]
+    },
+    {
+        name: "Product 2",
+        description: "This is product 2 description.",
+        details: "These are the details of product 2.",
+        price: 1500,
+        images: ["https://via.placeholder.com/600", "https://via.placeholder.com/700", "https://via.placeholder.com/800"]
+    }
+];
+
+let currentProductIndex = 0;
+let currentImageIndex = 0;
+
+const productDisplay = document.getElementById('product-display');
+const imageSlider = document.getElementById('image-slider');
+const sliderImage = document.getElementById('slider-image');
+const productInfo = document.getElementById('product-info');
+const prevImageButton = document.getElementById('prev-image');
+const nextImageButton = document.getElementById('next-image');
+const closeSliderButton = document.getElementById('close-slider');
+
+// Display product cards
+function displayProductCards() {
+    productDisplay.innerHTML = '';
+    products.forEach((product, index) => {
+        const productCard = document.createElement('div');
+        productCard.classList.add('product-card');
+        productCard.innerHTML = `
+            <img src="${product.images[0]}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>Price: ₹${product.price}</p>
+            <button onclick="viewProduct(${index})">View Product</button>
+        `;
+        productDisplay.appendChild(productCard);
+    });
+}
+
+// View product details and open image slider
+function viewProduct(index) {
+    currentProductIndex = index;
+    currentImageIndex = 0;
+    const product = products[index];
+    sliderImage.src = product.images[currentImageIndex];
+    productInfo.innerHTML = `
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <p>Details: ${product.details}</p>
+        <p>Price: ₹${product.price}</p>
+    `;
+    imageSlider.style.display = 'flex';
+}
+
+// Switch to previous image
+prevImageButton.onclick = function () {
+    const product = products[currentProductIndex];
+    currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : product.images.length - 1;
+    sliderImage.src = product.images[currentImageIndex];
+};
+
+// Switch to next image
+nextImageButton.onclick = function () {
+    const product = products[currentProductIndex];
+    currentImageIndex = (currentImageIndex < product.images.length - 1) ? currentImageIndex + 1 : 0;
+    sliderImage.src = product.images[currentImageIndex];
+};
+
+// Close the image slider
+closeSliderButton.onclick = function () {
+    imageSlider.style.display = 'none';
+};
+
+// Display product cards on page load
+displayProductCards();
     </script>
 </body>
 </html>
