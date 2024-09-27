@@ -261,7 +261,10 @@
         </div>
 
         <div class="search-cart-container">
-            <input type="text" placeholder="Search..." class="search-bar">
+            <div class="search-container">
+    <input type="text" placeholder="Search..." class="search-bar" id="searchInput">
+    <button class="search-button" onclick="performSearch()">🔍</button>
+            </div>
             <span class="cart" onclick="checkout()">🛒</span>
             <div class="burger-menu" onclick="toggleMenu()">☰</div>
         </div>
@@ -398,7 +401,38 @@
         categoryCardsContainer.appendChild(card);
     });
 
+// Predefined list of keywords (could be product names, categories, etc.)
+const keywords = [
+    "Luxury Sofa",
+    "Designer Dining Set",
+    "Modern Bedroom Suite",
+    "Chic Coffee Table",
+    "Exclusive Art",
+    "Luxury Foods",
+    "Home Decor",
+    "Fashion Accessories",
+    "Tech Gadgets",
+    "Smart Home Devices"
+];
 
+function performSearch() {
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    if (query) {
+        // Filter keywords based on user input
+        const filteredKeywords = keywords.filter(keyword => 
+            keyword.toLowerCase().includes(query)
+        );
+
+        if (filteredKeywords.length > 0) {
+            // Redirect to a results page with the matched keywords
+            window.location.href = `search-results.html?q=${encodeURIComponent(query)}&matches=${encodeURIComponent(JSON.stringify(filteredKeywords))}`;
+        } else {
+            alert('No results found for your search term.');
+        }
+    } else {
+        alert('Please enter a search term.');
+    }
+}
 </script>
 
 </body>
