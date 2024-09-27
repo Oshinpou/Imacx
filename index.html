@@ -397,6 +397,60 @@
         `;
         categoryCardsContainer.appendChild(card);
     });
+
+    // Create input field
+const searchInput = document.createElement('input');
+searchInput.placeholder = 'Search...';
+searchInput.className = 'search-bar';
+searchInput.id = 'search-input';
+
+// Create unordered list
+const itemList = document.createElement('ul');
+itemList.id = 'item-list';
+
+// Array of keywords
+const keywords = [
+    'Symmetry Fixing Serum',
+    'Moisturizer Elixir',
+    'Muscle Toning Serum',
+    'Mulberry Silk Skin Serum',
+    'Skin Repair Full Kit',
+    'Elite Night Renewal Cream',
+    'Radiance Serum',
+    'Supreme Anti-Aging Face Mask',
+    'Luxe Firming Essence',
+    'Ultra-Lux Hydra Serum'
+];
+
+// Populate the list with keywords
+keywords.forEach(keyword => {
+    const li = document.createElement('li');
+    li.textContent = keyword;
+    li.style.display = 'none'; // Initially hide items
+    itemList.appendChild(li);
+});
+
+// Append input field and list to the body
+document.body.appendChild(searchInput);
+document.body.appendChild(itemList);
+
+// Show all keywords initially
+const items = itemList.querySelectorAll('li');
+items.forEach(item => {
+    item.style.display = ''; // Show all items
+});
+
+// Search functionality
+searchInput.addEventListener('keyup', function() {
+    const filter = this.value.toLowerCase();
+    items.forEach(item => {
+        if (item.textContent.toLowerCase().includes(filter)) {
+            item.style.display = ''; // Show matching item
+        } else {
+            item.style.display = 'none'; // Hide non-matching item
+        }
+    });
+});
 </script>
 
 </body>
