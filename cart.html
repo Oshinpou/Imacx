@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="cart-style.css"> <!-- Add your CSS file -->
+<style>
+  /* cart-style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1 {
+    color: #b08d57;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+#cart-products {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    background-color: #b08d57;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #6f4e37;
+}
+
+#cart-total {
+    text-align: center;
+    margin: 20px;
+}
+
+#cart-total h3 {
+    font-size: 1.5rem;
+}
+</style>
+</head>
+<body>
+    <h1>Your Cart</h1>
+
+    <div id="cart-products"></div>
+
+    <div id="cart-total">
+        <h3>Total: ₹<span id="cart-total-amount">0</span></h3>
+        <button onclick="checkout()">Proceed to Checkout</button>
+    </div>
+
+    <script>
+      // cart.js
+
+const cartProductsDisplay = document.getElementById('cart-products');
+const cartTotalAmount = document.getElementById('cart-total-amount');
+
+// Retrieve cart from session storage
+let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+
+// Function to display the cart products
+function displayCartProducts() {
+    cartProductsDisplay.innerHTML = '';
+    let totalAmount = 0;
+    
+    if (cart.length === 0) {
+        cartProductsDisplay.innerHTML = '<p>Your cart is empty!</p>';
+    } else {
+        cart.forEach((product, index) => {
+            const productHTML = `
+                <div class="product-card">
+                    <h3>${product.name}</h3>
+                    <p>Price: ₹${product.price}</p>
+                    <p>Quantity: ${product.quantity}</p>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                </div>
+            `;
+            cartProductsDisplay.insertAdjacentHTML('beforeend', productHTML);
+            totalAmount += product.price * product.quantity;
+        });
+    }
+    
+    cartTotalAmount.innerText = totalAmount;
+}
+
+// Function to remove a product from the cart
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+    displayCartProducts();
+}
+
+// Function to handle checkout
+function checkout() {
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+    } else {
+        alert('Proceeding to checkout!');
+        // Here you would add logic for handling payment and order processing
+        sessionStorage.removeItem('cart');
+        displayCartProducts(); // Clear the cart after checkout
+    }
+}
+
+// Initialize the page by displaying cart products
+displayCartProducts();
+    </script> <!-- Add your JS file -->
+</body>
+</html>
