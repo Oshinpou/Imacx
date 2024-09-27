@@ -3,186 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Seller Management</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Admin Seller Account Management</title>
+    <link rel="stylesheet" href="admin-style.css"> <!-- Add your CSS file -->
 <style>
-    body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-}
-
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    text-align: center;
+    /* admin-style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
 h1 {
-    margin: 0;
+    color: #b08d57;
+    text-align: center;
+    font-size: 2.5rem;
 }
 
-.seller-card {
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 15px;
-    margin: 20px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+h2 {
+    color: #6f4e37;
 }
 
-.product-display {
-    margin-top: 10px;
+#seller-accounts-display,
+#seller-products-display {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 800px;
 }
 
+.seller-card,
 .product-card {
-    display: inline-block;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 10px;
-    padding: 10px;
-    width: 200px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.product-card img {
-    max-width: 100%;
-    border-radius: 5px;
-}
-
-.product-card h5 {
-    margin: 10px 0 5px;
-    font-size: 16px;
-}
-
-.product-card p {
-    margin: 5px 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 button {
-    background-color: #007bff;
-    color: white;
+    background-color: #b08d57;
+    color: #fff;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
-}
-
-button:focus {
-    outline: none;
-}
-
-.seller-card button {
-    background-color: #dc3545;
-}
-
-.seller-card button:hover {
-    background-color: #c82333;
-}
-
-.hidden {
-    display: none;
-}
-
-@media (max-width: 600px) {
-    .product-card {
-        width: 100%;
-    }
+    background-color: #6f4e37;
 }
 </style>
 </head>
 <body>
-    <header>
-        <h1>Admin Seller Account Management</h1>
-    </header>
+    <h1>Seller Account Management</h1>
 
-    <main>
-        <div id="admin-display"></div>
-    </main>
+    <h2>Seller Accounts</h2>
+    <div id="seller-accounts-display"></div>
 
-    <script src=>const adminDisplay = document.getElementById('admin-display');
+    <h2>Products</h2>
+    <div id="seller-products-display"></div>
 
-// Function to get all sellers
-function getSellers() {
-    return JSON.parse(localStorage.getItem('sellers')) || {};
-}
+    <script>
+        // admin.js
 
-// Function to display all seller accounts and their products
-function displayAdminProducts() {
-    const sellers = getSellers();
-    adminDisplay.innerHTML = ''; // Clear previous display
+const sellerAccountsDisplay = document.getElementById('seller-accounts-display');
+const sellerProductsDisplay = document.getElementById('seller-products-display');
 
-    for (const username in sellers) {
+// Dummy Data for Testing
+let sellers = [
+    { username: 'seller1', email: 'seller1@example.com', phone: '9876543210', password: 'pass123' },
+    { username: 'seller2', email: 'seller2@example.com', phone: '9876543211', password: 'pass124' }
+];
+
+let products = [
+    { id: 1, seller: 'seller1', name: 'Product 1', category: 'Category 1', price: 1500, description: 'Desc 1', details: 'Details 1', mainImage: 'image-url-1.jpg', quantity: 5, maxQuantity: 100 },
+    { id: 2, seller: 'seller2', name: 'Product 2', category: 'Category 2', price: 2000, description: 'Desc 2', details: 'Details 2', mainImage: 'image-url-2.jpg', quantity: 2, maxQuantity: 50 }
+];
+
+// Display Sellers in Admin Page
+function displaySellers() {
+    sellerAccountsDisplay.innerHTML = '';
+    sellers.forEach((seller, index) => {
         const sellerHTML = `
             <div class="seller-card">
-                <h3>${username}</h3>
-                <p>Phone: ${sellers[username].phone}</p>
-                <p>Email: ${sellers[username].email}</p>
-                <button onclick="deleteSeller('${username}')">Delete Seller</button>
-                <div class="product-display" id="${username}-products">
-                    <h4>Products</h4>
-                </div>
+                <h3>${seller.username}</h3>
+                <p>Email: ${seller.email}</p>
+                <p>Phone: ${seller.phone}</p>
+                <button onclick="deleteSeller(${index})">Delete Seller</button>
             </div>
         `;
-        adminDisplay.insertAdjacentHTML('beforeend', sellerHTML);
-
-        const productDisplay = document.getElementById(`${username}-products`);
-        sellers[username].products.forEach(product => {
-            const productHTML = `
-                <div class="product-card">
-                    <img src="${product.mainImage}" alt="${product.name}" class="product-image">
-                    <h5>${product.name}</h5>
-                    <p>Category: ${product.category}</p>
-                    <p>Price: INR ${product.price}</p>
-                    <button onclick="editProduct('${username}', '${product.name}')">Edit</button>
-                    <button onclick="deleteProduct('${username}', '${product.name}')">Delete</button>
-                </div>
-            `;
-            productDisplay.insertAdjacentHTML('beforeend', productHTML);
-        });
-    }
+        sellerAccountsDisplay.insertAdjacentHTML('beforeend', sellerHTML);
+    });
 }
 
-// Function to delete a seller account
-function deleteSeller(username) {
-    if (confirm('Are you sure you want to delete this seller?')) {
-        const sellers = getSellers();
-        delete sellers[username]; // Delete seller account
-        localStorage.setItem('sellers', JSON.stringify(sellers)); // Save updated sellers
-        displayAdminProducts(); // Refresh the display
-    }
+// Display Products in Admin Page
+function displayProducts() {
+    sellerProductsDisplay.innerHTML = '';
+    products.forEach((product, index) => {
+        const productHTML = `
+            <div class="product-card">
+                <h3>${product.name}</h3>
+                <p>Seller: ${product.seller}</p>
+                <p>Category: ${product.category}</p>
+                <p>Price: ₹${product.price}</p>
+                <p>Quantity: ${product.quantity}</p>
+                <button onclick="deleteProduct(${index})">Delete Product</button>
+                <button onclick="uploadToMarketplace(${index})">Upload to Marketplace</button>
+            </div>
+        `;
+        sellerProductsDisplay.insertAdjacentHTML('beforeend', productHTML);
+    });
 }
 
-// Function to delete a product
-function deleteProduct(username, productName) {
-    const sellers = getSellers();
-    const products = sellers[username].products;
-    const updatedProducts = products.filter(p => p.name !== productName);
-    sellers[username].products = updatedProducts; // Update seller's product list
-    localStorage.setItem('sellers', JSON.stringify(sellers)); // Save updated sellers
-    displayAdminProducts(); // Refresh the display
+// Delete Seller Function
+function deleteSeller(index) {
+    sellers.splice(index, 1);
+    displaySellers();
 }
 
-// Function to edit a product (implementation can vary)
-function editProduct(username, productName) {
-    const sellers = getSellers();
-    const product = sellers[username].products.find(p => p.name === productName);
-    if (product) {
-        // Open a modal or a new page for editing (not implemented here)
-        alert(`Editing Product: ${product.name}`);
-        // Logic for editing would go here
-    }
+// Delete Product Function
+function deleteProduct(index) {
+    products.splice(index, 1);
+    displayProducts();
 }
 
-// Load seller accounts and products on page load
-window.onload = displayAdminProducts;</script>
+// Upload Product to Marketplace Function
+function uploadToMarketplace(index) {
+    const product = products[index];
+    // Here you would upload the product to the marketplace, save it in storage, or send to backend.
+    alert(`Uploaded ${product.name} to Marketplace!`);
+}
+
+// Initialize the page
+displaySellers();
+displayProducts();
+    </script> <!-- Add your JS file -->
 </body>
 </html>
