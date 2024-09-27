@@ -17,122 +17,164 @@
 .seller-account-container {
     background: #fff;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-bottom: 20px;
+    max-width: 800px;
+    margin: auto;
 }
 
 h2, h3 {
-    color: #b8860b; /* Golden color */
-    font-family: 'Cursive', sans-serif;
-}
-
-.seller-account-form, .upload-product-form {
-    display: flex;
-    flex-direction: column;
+    color: #d4af37; /* Gold color */
+    font-family: 'Cursive', sans-serif; /* Cursive font for luxury feel */
 }
 
 label {
-    margin: 10px 0 5px;
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
 }
 
-input, select, textarea {
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
     padding: 10px;
+    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
 button {
-    background-color: #b8860b; /* Golden color */
-    color: white;
-    padding: 10px;
+    background-color: #d4af37; /* Gold color for buttons */
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
+    padding: 10px;
     cursor: pointer;
-    margin-top: 10px;
+    font-weight: bold;
 }
 
 button:hover {
-    background-color: #c6a800; /* Slightly darker golden color */
+    background-color: #b5942c; /* Darker gold on hover */
 }
 
 .product-card {
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .product-image {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     border-radius: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+#product-display {
+    margin-top: 20px;
 }
 </style>
 </head>
 <body>
     <div class="seller-account-container">
-        <h2>Create Seller Account</h2>
-        <form class="seller-account-form" id="seller-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" required>
-            
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" required>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" required>
-            
-            <label for="password">Password:</label>
-            <input type="password" id="password" required>
-            
-            <button type="submit">Create Account</button>
-        </form>
+        <h2>Seller Account</h2>
+        
+        <!-- Login Form -->
+        <div id="login-section" class="hidden">
+            <h3>Login to Your Account</h3>
+            <form id="login-form">
+                <label for="login-username">Username:</label>
+                <input type="text" id="login-username" required>
+                
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" required>
+                
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        
+        <!-- Registration Form -->
+        <div id="registration-section">
+            <h3>Create Seller Account</h3>
+            <form id="seller-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+                
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                
+                <button type="submit">Create Account</button>
+            </form>
+        </div>
+        
+        <button id="toggle-login">Already have an account? Login</button>
+        
+        <!-- Upload Product Card -->
+        <div id="upload-section" class="hidden">
+            <h3>Upload Product Card</h3>
+            <form id="product-form">
+                <label for="product-category">Category:</label>
+                <select id="product-category" required>
+                    <option value="">Choose a category</option>
+                    <option value="skincare">Skincare</option>
+                    <option value="makeup">Makeup</option>
+                    <option value="haircare">Haircare</option>
+                    <!-- Add more categories as needed -->
+                </select>
 
-        <h3>Upload Product Card</h3>
-        <form class="upload-product-form" id="product-form">
-            <label for="product-category">Category:</label>
-            <select id="product-category" required>
-                <option value="">Choose a category</option>
-                <option value="skincare">Skincare</option>
-                <option value="makeup">Makeup</option>
-                <option value="haircare">Haircare</option>
-                <!-- Add more categories as needed -->
-            </select>
+                <label for="product-name">Product Name:</label>
+                <input type="text" id="product-name" required>
+                
+                <label for="product-main-image">Main Image URL:</label>
+                <input type="url" id="product-main-image" required>
 
-            <label for="product-name">Product Name:</label>
-            <input type="text" id="product-name" required>
-            
-            <label for="product-main-image">Main Image URL:</label>
-            <input type="url" id="product-main-image" required>
+                <label for="product-images">Additional Images (10 max, URLs):</label>
+                <input type="url" class="product-image-url" placeholder="Image URL">
+                <input type="url" class="product-image-url" placeholder="Image URL">
+                <input type="url" class="product-image-url" placeholder="Image URL">
+                <input type="url" class="product-image-url" placeholder="Image URL">
+                <input type="url" class="product-image-url" placeholder="Image URL">
+                <input type="url" class="product-image-url" placeholder="Image URL">
+                <input type="url" class="product-image-url" placeholder="Image URL">
+                <input type="url" class="product-image-url" placeholder="Image URL">
+                <input type="url" class="product-image-url" placeholder="Image URL">
+                <input type="url" class="product-image-url" placeholder="Image URL">
+                
+                <label for="product-description">Description:</label>
+                <textarea id="product-description" required></textarea>
 
-            <label for="product-images">Additional Images (10 max, URLs):</label>
-            <input type="url" class="product-image-url" placeholder="Image URL">
-            <input type="url" class="product-image-url" placeholder="Image URL">
-            <input type="url" class="product-image-url" placeholder="Image URL">
-            <input type="url" class="product-image-url" placeholder="Image URL">
-            <input type="url" class="product-image-url" placeholder="Image URL">
-            <input type="url" class="product-image-url" placeholder="Image URL">
-            <input type="url" class="product-image-url" placeholder="Image URL">
-            <input type="url" class="product-image-url" placeholder="Image URL">
-            <input type="url" class="product-image-url" placeholder="Image URL">
-            <input type="url" class="product-image-url" placeholder="Image URL">
-            
-            <label for="product-description">Description:</label>
-            <textarea id="product-description" required></textarea>
+                <label for="product-details">Details:</label>
+                <textarea id="product-details" required></textarea>
 
-            <label for="product-details">Details:</label>
-            <textarea id="product-details" required></textarea>
-
-            <label for="product-price">Price (INR):</label>
-            <input type="number" id="product-price" required>
-            
-            <button type="submit">Upload Product</button>
-        </form>
+                <label for="product-price">Price (INR):</label>
+                <input type="number" id="product-price" required>
+                
+                <button type="submit">Upload Product</button>
+            </form>
+        </div>
 
         <h3>Your Products</h3>
         <div id="product-display"></div>
+
+        <button id="delete-account">Delete Account</button>
     </div>
 </body>
 </html>
