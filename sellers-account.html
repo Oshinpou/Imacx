@@ -127,7 +127,7 @@ button:hover {
     </section>
 
     <script>
-        const sellerForm = document.getElementById('seller-form');
+         const sellerForm = document.getElementById('seller-form');
 const loginForm = document.getElementById('login-form');
 const productForm = document.getElementById('product-form');
 const productDisplay = document.getElementById('product-display');
@@ -213,13 +213,15 @@ productForm.addEventListener('submit', function(event) {
                            .map(input => input.value).filter(url => url);
 
     const newProduct = {
+        id: Date.now(), // Unique ID for the product
         category,
         name,
         mainImage,
         imageUrls,
         description,
         details,
-        price
+        price,
+        quantity: 0 // Start with 0 quantity
     };
 
     // Save product to localStorage
@@ -238,12 +240,16 @@ function displayProducts() {
 
     products.forEach(product => {
         const productHTML = `
-            <div class="product-card">
+            <div class="product-card" id="product-${product.id}">
                 <img src="${product.mainImage}" alt="${product.name}" class="product-image">
                 <h3>${product.name}</h3>
                 <p>Category: ${product.category}</p>
                 <p>Price: INR ${product.price}</p>
+                <p>Quantity: <button onclick="decreaseQuantity(${product.id})">-</button> 
+                <span id="quantity-${product.id}">${product.quantity}</span> 
+                <button onclick="increaseQuantity(${product.id})">+</button></p>
                 <button onclick="viewProduct('${product.name}')">View Product</button>
+                <button onclick="deleteProduct(${product.id})">Delete</button>
             </div>
         `;
         productDisplay.insertAdjacentHTML('beforeend', productHTML);
@@ -256,6 +262,38 @@ function viewProduct(productName) {
     if (product) {
         alert(`Product: ${product.name}\nDescription: ${product.description}\nDetails: ${product.details}\nPrice: INR ${product.price}`);
     }
+}
+
+// Function to increase product quantity
+function increaseQuantity(productId) {
+    const product = products.find(p => p.id === productId);
+    if (product) {
+        product.quantity++;
+        document.getElementById(`quantity-${productId}`).innerText = product.quantity;
+        saveProducts(); // Save the updated quantity to localStorage
+    }
+}
+
+// Function to decrease product quantity
+function decreaseQuantity(productId) {
+    const product = products.find(p => p.id === productId);
+    if (product && product.quantity > 0) {
+        product.quantity--;
+        document.getElementById(`quantity-${productId}`).innerText = product.quantity;
+        saveProducts(); // Save the updated quantity to localStorage
+    }
+}
+
+// Function to delete a product
+function deleteProduct(productId) {
+    products = products.filter(p => p.id !== productId);
+    document.getElementById(`product-${productId}`).remove();
+    saveProducts(); // Save the updated product list to localStorage
+}
+
+// Save products to localStorage
+function saveProducts() {
+    localStorage.setItem(loggedInUser, JSON.stringify(products));
 }
 
 // Toggle between login and registration
