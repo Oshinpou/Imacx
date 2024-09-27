@@ -5,94 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seller Account</title>
     <link rel="stylesheet" href="seller-style.css">
-<style>
-    /* seller-style.css */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
+    <style>
+        /* seller-style.css */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
 
-h1, h2 {
-    color: #d4af37;
-    text-align: center;
-    font-family: 'Cursive', sans-serif;
-}
+        h1, h2 {
+            color: #d4af37;
+            text-align: center;
+            font-family: 'Cursive', sans-serif;
+        }
 
-form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
 
-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
 
-input, textarea, button {
-    margin-bottom: 15px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
+        input, textarea, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
 
-button {
-    background-color: #d4af37;
-    color: #fff;
-    cursor: pointer;
-}
+        button {
+            background-color: #d4af37;
+            color: #fff;
+            cursor: pointer;
+        }
 
-button:hover {
-    background-color: #b28f30;
-}
+        button:hover {
+            background-color: #b28f30;
+        }
 
-.hidden {
-    display: none;
-}
+        .hidden {
+            display: none;
+        }
 
-#product-display {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 20px;
-}
+        #product-display {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
 
-.product-card {
-    width: 250px;
-    background-color: #fff;
-    padding: 15px;
-    margin: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
+        .product-card {
+            width: 250px;
+            background-color: #fff;
+            padding: 15px;
+            margin: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
 
-.product-card img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-}
+        .product-card img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
 
-.product-card button {
-    background-color: #d4af37;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    margin: 5px;
-    cursor: pointer;
-}
+        .product-card button {
+            background-color: #d4af37;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
 
-.product-card button:hover {
-    background-color: #b28f30;
-}
-</style>
+        .product-card button:hover {
+            background-color: #b28f30;
+        }
+
+        .usage-details {
+            display: none;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <!-- Seller Registration/Login Section -->
@@ -165,8 +173,20 @@ button:hover {
 
                 <div id="image-urls">
                     <label>Additional Image URLs:</label>
+                    <input type="url" class="product-image-url" required>
+                    <input type="url" class="product-image-url">
+                    <input type="url" class="product-image-url">
+                    <input type="url" class="product-image-url">
+                    <input type="url" class="product-image-url">
+                    <input type="url" class="product-image-url">
+                    <input type="url" class="product-image-url">
+                    <input type="url" class="product-image-url">
+                    <input type="url" class="product-image-url">
                     <input type="url" class="product-image-url">
                 </div>
+
+                <label for="usage-details">Usage Details:</label>
+                <textarea id="usage-details" required></textarea>
 
                 <button type="submit">Upload Product</button>
             </form>
@@ -185,184 +205,183 @@ button:hover {
     <script>
         // seller-script.js
 
-const sellerForm = document.getElementById('seller-form');
-const loginForm = document.getElementById('login-form');
-const productForm = document.getElementById('product-form');
-const productDisplay = document.getElementById('product-display');
-const uploadSection = document.getElementById('upload-section');
-const loginSection = document.getElementById('login-section');
-const registrationSection = document.getElementById('registration-section');
-const toggleLoginButton = document.getElementById('toggle-login');
-const deleteAccountButton = document.getElementById('delete-account');
+        const sellerForm = document.getElementById('seller-form');
+        const loginForm = document.getElementById('login-form');
+        const productForm = document.getElementById('product-form');
+        const productDisplay = document.getElementById('product-display');
+        const uploadSection = document.getElementById('upload-section');
+        const loginSection = document.getElementById('login-section');
+        const registrationSection = document.getElementById('registration-section');
+        const toggleLoginButton = document.getElementById('toggle-login');
+        const deleteAccountButton = document.getElementById('delete-account');
 
-let products = [];
-let loggedInUser = null;
+        let products = [];
+        let loggedInUser = null;
 
-// Event listener for seller account creation
-sellerForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const password = document.getElementById('password').value;
+        // Event listener for seller account creation
+        sellerForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
 
-    // Save seller account to localStorage
-    localStorage.setItem(username, JSON.stringify({ email, phone, password }));
-    alert(`Account created for ${username}`);
-    sellerForm.reset();
-});
+            // Save seller account to localStorage
+            localStorage.setItem(username, JSON.stringify({ email, phone, password }));
+            alert(`Account created for ${username}`);
+            sellerForm.reset();
+        });
 
-// Event listener for login
-loginForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const username = document.getElementById('login-username').value;
-    const password = document.getElementById('login-password').value;
+        // Event listener for login
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
 
-    const storedUser = JSON.parse(localStorage.getItem(username));
-    if (storedUser && storedUser.password === password) {
-        loggedInUser = username;
-        alert(`Logged in as ${loggedInUser}`);
+            const storedUser = JSON.parse(localStorage.getItem(username));
+            if (storedUser && storedUser.password === password) {
+                loggedInUser = username;
+                alert(`Logged in as ${loggedInUser}`);
 
-        // Show upload section after login
-        loginSection.classList.add('hidden');
-        uploadSection.classList.remove('hidden');
-        loadUserProducts();
-    } else {
-        alert('Invalid username or password');
-    }
-});
+                // Show upload section after login
+                loginSection.classList.add('hidden');
+                uploadSection.classList.remove('hidden');
+                loadUserProducts();
+            } else {
+                alert('Invalid username or password');
+            }
+        });
 
-// Event listener for uploading product card
-productForm.addEventListener('submit', function(event) {
-    event.preventDefault();
+        // Event listener for uploading product card
+        productForm.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    if (!loggedInUser) {
-        alert("You must be logged in to upload products.");
-        return;
-    }
+            if (!loggedInUser) {
+                alert("You must be logged in to upload products.");
+                return;
+            }
 
-    const category = document.getElementById('product-category').value;
-    const name = document.getElementById('product-name').value;
-    const mainImage = document.getElementById('product-main-image').value;
-    const description = document.getElementById('product-description').value;
-    const details = document.getElementById('product-details').value;
-    const price = document.getElementById('product-price').value;
-    const maxQuantity = document.getElementById('max-quantity').value;
+            const category = document.getElementById('product-category').value;
+            const name = document.getElementById('product-name').value;
+            const mainImage = document.getElementById('product-main-image').value;
+            const description = document.getElementById('product-description').value;
+            const details = document.getElementById('product-details').value;
+            const price = document.getElementById('product-price').value;
+            const maxQuantity = document.getElementById('max-quantity').value;
+            const imageUrls = Array.from(document.querySelectorAll('.product-image-url')).map(input => input.value);
+            const usageDetails = document.getElementById('usage-details').value;
 
-    const imageUrls = Array.from(document.querySelectorAll('.product-image-url'))
-        .map(input => input.value).filter(url => url);
+            // Create a product object
+            const product = {
+                category,
+                name,
+                mainImage,
+                description,
+                details,
+                price,
+                maxQuantity,
+                imageUrls,
+                usageDetails
+            };
 
-    const newProduct = {
-        id: Date.now(),
-        category,
-        name,
-        mainImage,
-        imageUrls,
-        description,
-        details,
-        price,
-        quantity: 0,
-        maxQuantity: parseInt(maxQuantity, 10)
-    };
+            // Save product to local storage
+            products.push(product);
+            localStorage.setItem(loggedInUser + '_products', JSON.stringify(products));
+            productForm.reset();
+            displayProducts();
+        });
 
-    // Save product to localStorage
-    const userProducts = JSON.parse(localStorage.getItem(loggedInUser + "-products")) || [];
-    userProducts.push(newProduct);
-    localStorage.setItem(loggedInUser + "-products", JSON.stringify(userProducts));
+        // Load user products from local storage
+        function loadUserProducts() {
+            const storedProducts = localStorage.getItem(loggedInUser + '_products');
+            if (storedProducts) {
+                products = JSON.parse(storedProducts);
+                displayProducts();
+            }
+        }
 
-    products.push(newProduct);
-    displayProducts();
-    productForm.reset();
-});
+        // Display all uploaded products
+        function displayProducts() {
+            productDisplay.innerHTML = '';
+            products.forEach((product, index) => {
+                const productCard = document.createElement('div');
+                productCard.classList.add('product-card');
 
-// Function to display uploaded products
-function displayProducts() {
-    productDisplay.innerHTML = '';
+                // Main image
+                const mainImageElement = document.createElement('img');
+                mainImageElement.src = product.mainImage;
+                productCard.appendChild(mainImageElement);
 
-    products.forEach(product => {
-        const productHTML = `
-            <div class="product-card" id="product-${product.id}">
-                <img src="${product.mainImage}" alt="${product.name}">
-                <h3>${product.name}</h3>
-                <p>Category: ${product.category}</p>
-                <p>Price: ₹${product.price}</p>
-                <p>Description: ${product.description}</p>
-                <p>Details: ${product.details}</p>
-                <div class="quantity-control">
-                    <button onclick="decreaseQuantity(${product.id})">-</button>
-                    <input type="number" id="quantity-${product.id}" value="${product.quantity}" min="0" max="${product.maxQuantity}" readonly>
-                    <button onclick="increaseQuantity(${product.id})">+</button>
-                </div>
-                <button onclick="deleteProduct(${product.id})">Delete</button>
-            </div>
-        `;
-        productDisplay.innerHTML += productHTML;
-    });
-}
+                // Product name
+                const productNameElement = document.createElement('h3');
+                productNameElement.textContent = product.name;
+                productCard.appendChild(productNameElement);
 
-// Function to load user products after login
-function loadUserProducts() {
-    products = JSON.parse(localStorage.getItem(loggedInUser + "-products")) || [];
-    displayProducts();
-}
+                // Price
+                const productPriceElement = document.createElement('p');
+                productPriceElement.textContent = `Price: ₹${product.price}`;
+                productCard.appendChild(productPriceElement);
 
-// Function to delete a product
-function deleteProduct(productId) {
-    products = products.filter(product => product.id !== productId);
-    localStorage.setItem(loggedInUser + "-products", JSON.stringify(products));
-    document.getElementById(`product-${productId}`).remove();
-}
+                // Usage details button
+                const usageButton = document.createElement('button');
+                usageButton.textContent = 'View Usage Details';
+                usageButton.addEventListener('click', () => {
+                    const usageDiv = document.createElement('div');
+                    usageDiv.classList.add('usage-details');
+                    usageDiv.textContent = product.usageDetails;
 
-// Function to increase product quantity
-function increaseQuantity(productId) {
-    const product = products.find(product => product.id === productId);
-    if (product.quantity < product.maxQuantity) {
-        product.quantity++;
-        document.getElementById(`quantity-${product.id}`).value = product.quantity;
-        saveProductChanges();
-    }
-}
+                    // Toggle usage details visibility
+                    if (usageDiv.style.display === 'block') {
+                        usageDiv.style.display = 'none';
+                    } else {
+                        usageDiv.style.display = 'block';
+                    }
 
-// Function to decrease product quantity
-function decreaseQuantity(productId) {
-    const product = products.find(product => product.id === productId);
-    if (product.quantity > 0) {
-        product.quantity--;
-        document.getElementById(`quantity-${product.id}`).value = product.quantity;
-        saveProductChanges();
-    }
-}
+                    productCard.appendChild(usageDiv);
+                });
+                productCard.appendChild(usageButton);
 
-// Function to save product changes (quantity adjustments)
-function saveProductChanges() {
-    localStorage.setItem(loggedInUser + "-products", JSON.stringify(products));
-}
+                // Additional images display
+                product.imageUrls.forEach(url => {
+                    if (url) {
+                        const additionalImage = document.createElement('img');
+                        additionalImage.src = url;
+                        additionalImage.style.width = '100%'; // Make sure additional images fit
+                        productCard.appendChild(additionalImage);
+                    }
+                });
 
-// Toggle between login and registration
-toggleLoginButton.addEventListener('click', function() {
-    if (loginSection.classList.contains('hidden')) {
-        loginSection.classList.remove('hidden');
-        registrationSection.classList.add('hidden');
-        toggleLoginButton.textContent = 'Switch to Register';
-    } else {
-        loginSection.classList.add('hidden');
-        registrationSection.classList.remove('hidden');
-        toggleLoginButton.textContent = 'Switch to Login';
-    }
-});
+                // Append product card to display
+                productDisplay.appendChild(productCard);
+            });
+        }
 
-// Delete seller account
-deleteAccountButton.addEventListener('click', function() {
-    if (loggedInUser) {
-        localStorage.removeItem(loggedInUser);
-        localStorage.removeItem(loggedInUser + "-products");
-        alert(`Account ${loggedInUser} deleted.`);
-        loggedInUser = null;
-        productDisplay.innerHTML = '';
-        uploadSection.classList.add('hidden');
-        registrationSection.classList.remove('hidden');
-    }
-});
+        // Toggle between registration and login
+        toggleLoginButton.addEventListener('click', () => {
+            if (loginSection.classList.contains('hidden')) {
+                loginSection.classList.remove('hidden');
+                registrationSection.classList.add('hidden');
+                toggleLoginButton.textContent = 'Switch to Register';
+            } else {
+                loginSection.classList.add('hidden');
+                registrationSection.classList.remove('hidden');
+                toggleLoginButton.textContent = 'Switch to Login';
+            }
+        });
+
+        // Delete account functionality
+        deleteAccountButton.addEventListener('click', () => {
+            if (loggedInUser) {
+                localStorage.removeItem(loggedInUser);
+                localStorage.removeItem(loggedInUser + '_products');
+                loggedInUser = null;
+                products = [];
+                alert("Account and products deleted.");
+                location.reload(); // Reload the page to reset the interface
+            } else {
+                alert("You must be logged in to delete your account.");
+            }
+        });
     </script>
 </body>
-                </html>
+</html>
