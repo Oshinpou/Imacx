@@ -4,210 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marketplace</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="marketplace-style.css"> <!-- Add your CSS file -->
 <style>
-           body {
+    /* marketplace-style.css */
+body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
-header {
-    background: #333;
-    color: #fff;
-    padding: 1rem;
+h1 {
+    color: #b08d57;
     text-align: center;
+    font-size: 2.5rem;
 }
 
-#search-bar {
-    padding: 0.5rem;
-    margin-top: 1rem;
+#marketplace-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px;
 }
 
 .product-card {
-    background: white;
+    background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 20px;
     padding: 20px;
-    text-align: center;
-    display: inline-block;
     width: 300px;
+    text-align: center;
 }
 
-.product-image {
-    width: 100%;
-    height: auto;
-}
-
-.button {
-    background: #5cb85c;
-    color: white;
+button {
+    background-color: #b08d57;
+    color: #fff;
     border: none;
-    padding: 10px;
+    padding: 10px 20px;
     cursor: pointer;
-    border-radius: 5px;
 }
 
-.button:hover {
-    background: #4cae4c;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-.hidden {
-    display: none;
+button:hover {
+    background-color: #6f4e37;
 }
 </style>
 </head>
 <body>
-    <header>
-        <h1>Luxury Marketplace</h1>
-        <input type="text" id="search-bar" placeholder="Search by category...">
-        <button id="search-button">Search</button>
-    </header>
+    <h1>Marketplace</h1>
 
-    <section id="product-list">
-        <h2>Available Products</h2>
-        <div id="products-display"></div>
-    </section>
-
-    <section id="cart-section">
-        <h2>Your Cart</h2>
-        <div id="cart-display"></div>
-        <button id="checkout-button">Checkout</button>
-    </section>
+    <div id="marketplace-products"></div>
 
     <script>
-        const productsDisplay = document.getElementById('products-display');
-const cartDisplay = document.getElementById('cart-display');
-const searchButton = document.getElementById('search-button');
-const searchBar = document.getElementById('search-bar');
-const checkoutButton = document.getElementById('checkout-button');
+        // marketplace.js
 
-let cart = [];
+const marketplaceProductsDisplay = document.getElementById('marketplace-products');
 
-// Helper function to get all sellers
-function getSellers() {
-    return JSON.parse(localStorage.getItem('sellers')) || {};
-}
+// Dummy Data for Marketplace Products
+let marketplaceProducts = [
+    { id: 1, name: 'Product 1', category: 'Category 1', price: 1500, description: 'Desc 1', details: 'Details 1', mainImage: 'image-url-1.jpg', quantity: 1 },
+    { id: 2, name: 'Product 2', category: 'Category 2', price: 2000, description: 'Desc 2', details: 'Details 2', mainImage: 'image-url-2.jpg', quantity: 1 }
+];
 
-// Function to display products in the marketplace
-function displayProducts(filterCategory = '') {
-    productsDisplay.innerHTML = ''; // Clear previous display
-    const sellers = getSellers();
-
-    Object.values(sellers).forEach(seller => {
-        seller.products.forEach(product => {
-            if (filterCategory && product.category.toLowerCase() !== filterCategory.toLowerCase()) {
-                return; // Skip products that do not match the filter
-            }
-            const productHTML = `
-                <div class="product-card">
-                    <img src="${product.mainImage}" alt="${product.name}" class="product-image">
-                    <h3>${product.name}</h3>
-                    <p>Category: ${product.category}</p>
-                    <p>Price: INR ${product.price}</p>
-                    <button onclick="viewProduct('${product.name}', '${product.category}')">View Product</button>
-                    <button onclick="addToCart('${product.name}')">Add to Cart</button>
-                </div>
-            `;
-            productsDisplay.insertAdjacentHTML('beforeend', productHTML);
-        });
-    });
-}
-
-// Function to handle viewing product details
-function viewProduct(productName, category) {
-    const sellers = getSellers();
-    const product = Object.values(sellers)
-        .flatMap(seller => seller.products)
-        .find(p => p.name === productName && p.category === category);
-
-    if (product) {
-        alert(`Product: ${product.name}\nDescription: ${product.description}\nDetails: ${product.details}\nPrice: INR ${product.price}`);
-    }
-}
-
-// Function to add a product to the cart
-function addToCart(productName) {
-    const sellers = getSellers();
-    const product = Object.values(sellers)
-        .flatMap(seller => seller.products)
-        .find(p => p.name === productName);
-
-    if (product) {
-        cart.push(product);
-        alert(`${product.name} has been added to your cart.`);
-        displayCart();
-    }
-}
-
-// Function to display items in the cart
-function displayCart() {
-    cartDisplay.innerHTML = ''; // Clear previous cart display
-
-    if (cart.length === 0) {
-        cartDisplay.innerHTML = '<p>Your cart is empty.</p>';
-        return;
-    }
-
-    cart.forEach((item, index) => {
-        const cartHTML = `
-            <div class="cart-item">
-                <h3>${item.name}</h3>
-                <p>Price: INR ${item.price}</p>
-                <button onclick="removeFromCart(${index})">Remove</button>
+// Display Products in Marketplace
+function displayMarketplaceProducts() {
+    marketplaceProductsDisplay.innerHTML = '';
+    marketplaceProducts.forEach((product, index) => {
+        const productHTML = `
+            <div class="product-card">
+                <img src="${product.mainImage}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>Price: ₹${product.price}</p>
+                <p>Quantity: ${product.quantity}</p>
+                <button onclick="addToCart(${index})">Add to Cart</button>
             </div>
         `;
-        cartDisplay.insertAdjacentHTML('beforeend', cartHTML);
+        marketplaceProductsDisplay.insertAdjacentHTML('beforeend', productHTML);
     });
 }
 
-// Function to remove an item from the cart
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    displayCart();
+// Add Product to Cart
+function addToCart(index) {
+    const product = marketplaceProducts[index];
+    // Save to local storage or session storage (for simplicity, let's use session storage)
+    let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+    cart.push(product);
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${product.name} added to cart!`);
 }
 
-// Event listener for search functionality
-searchButton.addEventListener('click', function() {
-    const filterCategory = searchBar.value.trim();
-    displayProducts(filterCategory); // Re-display products based on search
-});
-
-// Event listener for checkout functionality
-checkoutButton.addEventListener('click', function() {
-    if (cart.length === 0) {
-        alert('Your cart is empty.');
-    } else {
-        alert('Proceeding to checkout...');
-        // Here you could implement checkout logic
-    }
-});
-
-// Initial display of products
-displayProducts();
-    </script>
+// Initialize the page
+displayMarketplaceProducts();
+    </script> <!-- Add your JS file -->
 </body>
 </html>
