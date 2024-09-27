@@ -5,6 +5,232 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMACX Marketplace</title>
     <link rel="stylesheet" href="styles.css">
+<style>
+    /* General Page Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a; /* Sleek black background */
+    margin: 0;
+    padding: 0;
+    color: #ddd; /* Light text color for contrast */
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Brush Script MT', cursive; /* Cursive luxurious font */
+    color: gold; /* Golden text for headings */
+    text-shadow: 2px 2px 5px #000; /* Elegant shadow */
+}
+
+button, input[type="text"], input[type="email"], input[type="password"], select {
+    background-color: gold;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+button:hover, input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, select:focus {
+    background-color: #ffd700; /* Lighter golden shade on hover */
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #333;
+    color: white;
+    border: 1px solid gold;
+    border-radius: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: black;
+    color: white;
+}
+
+/* Seller Account Page */
+.seller-account-container {
+    padding: 40px;
+    text-align: center;
+}
+
+.seller-account-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #282828; /* Darker black for form background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.seller-account-form h2 {
+    margin-bottom: 20px;
+    color: gold;
+}
+
+.seller-account-form label {
+    display: block;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.seller-account-form input, .seller-account-form select, .seller-account-form button {
+    width: 100%;
+}
+
+/* Admin Page */
+.admin-page {
+    padding: 40px;
+}
+
+.admin-page h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: gold;
+}
+
+.admin-page table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #333;
+    margin-bottom: 30px;
+}
+
+.admin-page th, .admin-page td {
+    padding: 15px;
+    border: 1px solid gold;
+    text-align: left;
+    color: white;
+}
+
+.admin-page th {
+    background-color: black;
+    color: gold;
+}
+
+.admin-page button.delete {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.admin-page button.delete:hover {
+    background-color: darkred;
+}
+
+/* Marketplace Page */
+.marketplace-container {
+    padding: 40px;
+    text-align: center;
+}
+
+.marketplace-container h2 {
+    margin-bottom: 40px;
+    color: gold;
+}
+
+.marketplace-categories {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.marketplace-categories button {
+    margin-right: 20px;
+    padding: 15px;
+    background-color: gold;
+    color: black;
+    border-radius: 5px;
+    font-size: 18px;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.marketplace-categories button:hover {
+    background-color: #ffd700;
+}
+
+/* Product Cards */
+.product-card {
+    background-color: #1a1a1a;
+    border: 1px solid gold;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid gold;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: gold;
+    font-family: 'Brush Script MT', cursive;
+}
+
+.product-card p {
+    font-size: 18px;
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+.product-card button {
+    background-color: gold;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-card button:hover {
+    background-color: #ffd700;
+}
+
+/* Delete Account Section */
+.delete-account {
+    background-color: red;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.delete-account button {
+    background-color: white;
+    color: red;
+    border: 2px solid red;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.delete-account button:hover {
+    background-color: darkred;
+    color: white;
+}
+</style>
 </head>
 <body>
     <h1>IMACX Marketplace</h1>
