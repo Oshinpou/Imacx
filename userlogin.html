@@ -78,19 +78,16 @@ button:hover {
             <h2>Order History</h2>
             <div id="orders"></div>
         </div>
-
+   
         <div id="loggedInStatus" style="display:none;">
-            <p>Status: Logged In</p>
-            <p>Session ID: <span id="sessionId"></span></p>
-        </div>
-    </div>
-
-   <div id="loggedInStatus" style="display:none;">
     <p>Status: Logged In</p>
     <p>Session ID: <span id="sessionId"></span></p>
     <button onclick="logout()">Logout</button>
     <button onclick="deleteAccount()">Delete Account</button>
 </div>
+    
+    </div>
+
     <script>
         let users = []; // Storing user data
 let orders = []; // Storing orders
