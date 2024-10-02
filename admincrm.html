@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin CRM - Imacx</title>
+</head>
+<body>
+    <h1>Admin CRM</h1>
+    <div id="adminOrders"></div>
+    <script>
+      // Show all orders for admin
+function showAllOrders() {
+    const adminOrdersDiv = document.getElementById('adminOrders');
+    adminOrdersDiv.innerHTML = orders.map(order => `
+        <p>Order ${order.id} - Status: ${order.status} 
+        <button onclick="updateOrderStatus(${order.id}, 'Shipped')">Mark as Shipped</button>
+        <button onclick="cancelOrder(${order.id})">Cancel Order</button></p>
+    `).join('');
+}
+
+showAllOrders();
+    </script>
+</body>
+</html>
