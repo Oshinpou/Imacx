@@ -83,96 +83,105 @@
     </div>
 
     <script>
-        let users = []; // Storing user data
-        let orders = []; // Storing orders
-        let jwtToken = null;
+    <script>
+    let users = []; // Storing user data
+    let orders = []; // Storing orders
+    let jwtToken = null;
 
-        // Register a new user
-        function register() {
-            const username = document.getElementById('username').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const accountId = document.getElementById('accountId').value;
-            const password = document.getElementById('password').value;
+    // Register a new user
+    function register() {
+        const username = document.getElementById('username').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const accountId = document.getElementById('accountId').value;
+        const password = document.getElementById('password').value;
 
-            // Check for existing account
-            const existingUser = users.find(u => u.accountId === accountId || u.email === email || u.phone === phone);
-            if (existingUser) {
-                alert('Account already registered with this email, phone number, or account ID.');
-                return;
-            }
-
-            users.push({ username, phone, email, accountId, password });
-            alert('Account Registered!');
-            document.getElementById('registerForm').style.display = 'none';
-            document.getElementById('loginForm').style.display = 'block'; // Show login form after registration
+        // Check for existing account
+        const existingUser = users.find(u => u.accountId === accountId || u.email === email || u.phone === phone);
+        if (existingUser) {
+            alert('Account already registered with this email, phone number, or account ID.');
+            return;
         }
 
-        // Login with account ID and password
-        function login() {
-            const loginAccountId = document.getElementById('loginAccountId').value;
-            const loginPassword = document.getElementById('loginPassword').value;
+        users.push({ username, phone, email, accountId, password });
+        alert('Account Registered!');
+        document.getElementById('registerForm').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'block'; // Show login form after registration
+    }
 
-            const user = users.find(u => u.accountId === loginAccountId && u.password === loginPassword);
+    // Login with account ID and password
+    function login() {
+        const loginAccountId = document.getElementById('loginAccountId').value;
+        const loginPassword = document.getElementById('loginPassword').value;
 
+        const user = users.find(u => u.accountId === loginAccountId && u.password === loginPassword);
+
+        if (user) {
+            jwtToken = generateJWT(user.accountId);
+            localStorage.setItem('jwtToken', jwtToken); // Store the token in local storage
+            displayUserStatus(user.accountId); // Call a separate function to handle user status display
+        } else {
+            alert('Invalid credentials!');
+        }
+    }
+
+    // Generate a mock JWT token
+    function generateJWT(accountId) {
+        return `token-${accountId}-${Date.now()}`;
+    }
+
+    // Show orders based on session ID (mock order data)
+    function showOrders(accountId) {
+        document.getElementById('orderHistory').style.display = 'block';
+        orders.push({ id: 1, accountId, status: 'Pending' });
+        const ordersDiv = document.getElementById('orders');
+        ordersDiv.innerHTML = orders.filter(order => order.accountId === accountId)
+                                    .map(order => `<p>Order ${order.id} - Status: ${order.status}</p>`).join('');
+    }
+
+    function displayUserStatus(accountId) {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('loggedInStatus').style.display = 'block';
+        document.getElementById('sessionId').innerText = jwtToken;
+        showOrders(accountId);
+    }
+
+    function logout() {
+        jwtToken = null; // Clear the token
+        localStorage.removeItem('jwtToken'); // Remove the token from local storage
+        document.getElementById('loggedInStatus').style.display = 'none';
+        document.getElementById('orderHistory').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('registerForm').style.display = 'none'; // Show registration form if needed
+        alert('Logged out successfully.');
+    }
+
+    function deleteAccount() {
+        const accountId = document.getElementById('loginAccountId').value;
+        users = users.filter(u => u.accountId !== accountId);
+        alert('Account deleted successfully.');
+        logout(); // Logout after deletion
+    }
+
+    // Initialize UI state
+    window.onload = function() {
+        jwtToken = localStorage.getItem('jwtToken'); // Retrieve token from local storage
+        if (jwtToken) {
+            const accountId = jwtToken.split('-')[1]; // Get accountId from the token
+            const user = users.find(u => u.accountId === accountId);
             if (user) {
-                jwtToken = generateJWT(user.accountId);
-                document.getElementById('loginForm').style.display = 'none';
-                document.getElementById('loggedInStatus').style.display = 'block';
-                document.getElementById('sessionId').innerText = jwtToken;
-                showOrders(user.accountId);
-            } else {
-                alert('Invalid credentials!');
+                displayUserStatus(user.accountId); // Display user status if found
             }
+        } else {
+            document.getElementById('loginForm').style.display = 'block'; // Show login form if not logged in
         }
+    };
 
-        // Generate a mock JWT token
-        function generateJWT(accountId) {
-            return `token-${accountId}-${Date.now()}`;
-        }
-
-        // Show orders based on session ID (mock order data)
-        function showOrders(accountId) {
-            document.getElementById('orderHistory').style.display = 'block';
-            orders.push({ id: 1, accountId, status: 'Pending' });
-            const ordersDiv = document.getElementById('orders');
-            ordersDiv.innerHTML = orders.filter(order => order.accountId === accountId)
-                                        .map(order => `<p>Order ${order.id} - Status: ${order.status}</p>`).join('');
-        }
-
-        function logout() {
-            jwtToken = null; // Clear the token
-            document.getElementById('loggedInStatus').style.display = 'none';
-            document.getElementById('orderHistory').style.display = 'none';
-            document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('registerForm').style.display = 'none'; // Show registration form if needed
-            alert('Logged out successfully.');
-        }
-
-        function deleteAccount() {
-            const accountId = document.getElementById('loginAccountId').value;
-            users = users.filter(u => u.accountId !== accountId);
-            alert('Account deleted successfully.');
-            logout(); // Logout after deletion
-        }
-
-        // Initialize UI state
-        window.onload = function() {
-            if (isLoggedIn()) {
-                document.getElementById('loggedInStatus').style.display = 'block';
-                document.getElementById('sessionId').innerText = jwtToken;
-                const user = users.find(u => u.accountId === jwtToken.split('-')[1]); // Get user from token
-                if (user) {
-                    showOrders(user.accountId);
-                }
-            } else {
-                document.getElementById('loginForm').style.display = 'block'; // Show login form if not logged in
-            }
-        };
-
-        function isLoggedIn() {
-            return jwtToken !== null;
-        }
+    function isLoggedIn() {
+        return jwtToken !== null;
+    }
+</script>
+        
     </script>
 </body>
 </html>
