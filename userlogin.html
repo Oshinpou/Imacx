@@ -85,26 +85,37 @@ button:hover {
         </div>
     </div>
 
+   <div id="loggedInStatus" style="display:none;">
+    <p>Status: Logged In</p>
+    <p>Session ID: <span id="sessionId"></span></p>
+    <button onclick="logout()">Logout</button>
+    <button onclick="deleteAccount()">Delete Account</button>
+</div>
     <script>
         let users = []; // Storing user data
 let orders = []; // Storing orders
 let jwtToken = null;
 
 // Register a new user
-function register() {
+        function register() {
     const username = document.getElementById('username').value;
     const phone = document.getElementById('phone').value;
     const email = document.getElementById('email').value;
     const accountId = document.getElementById('accountId').value;
     const password = document.getElementById('password').value;
 
-    if (username && phone && email && accountId && password) {
-        users.push({ username, phone, email, accountId, password });
-        alert('Account Registered!');
-    } else {
-        alert('Please fill in all fields!');
+    // Check for existing account
+    const existingUser = users.find(u => u.accountId === accountId || u.email === email || u.phone === phone);
+    if (existingUser) {
+        alert('Account already registered with this email, phone number, or account ID.');
+        return;
     }
+
+    users.push({ username, phone, email, accountId, password });
+    alert('Account Registered!');
 }
+
+    
 
 // Login with account ID and password
 function login() {
@@ -163,6 +174,22 @@ function cancelOrder(orderId) {
         // Redirect to login page or show login form
     }
 };
+
+        function logout() {
+    jwtToken = null; // Clear the token
+    document.getElementById('loggedInStatus').style.display = 'none';
+    document.getElementById('orderHistory').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'block';
+    alert('Logged out successfully.');
+}
+
+        function deleteAccount() {
+    const accountId = document.getElementById('loginAccountId').value;
+
+    users = users.filter(u => u.accountId !== accountId);
+    alert('Account deleted successfully.');
+    logout(); // Logout after deletion
+}
     </script>
 </body>
 </html>
