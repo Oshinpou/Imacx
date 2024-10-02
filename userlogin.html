@@ -58,6 +58,10 @@
             align-items: center;
             margin: 10px 0;
         }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -72,22 +76,24 @@
             <input type="text" id="accountId" placeholder="Account ID" required>
             <input type="password" id="password" placeholder="Password" required>
             <button onclick="register()">Register</button>
+            <p>Already have an account? <a href="#" onclick="toggleForms('login')">Login here</a></p>
         </div>
 
-        <div id="loginForm" style="display:none;">
+        <div id="loginForm" class="hidden">
             <h2>Login</h2>
             <input type="text" id="loginAccountId" placeholder="Account ID" required>
             <input type="password" id="loginPassword" placeholder="Password" required>
             <button onclick="login()">Login</button>
+            <p>Don't have an account? <a href="#" onclick="toggleForms('register')">Register here</a></p>
         </div>
 
-        <div id="orderHistory" style="display:none;">
+        <div id="orderHistory" class="hidden">
             <h2>Order History</h2>
             <div id="orders"></div>
             <button onclick="createOrder()">Add Order</button>
         </div>
    
-        <div id="loggedInStatus" style="display:none;">
+        <div id="loggedInStatus" class="hidden">
             <p>Status: Logged In</p>
             <p>Session ID: <span id="sessionId"></span></p>
             <button onclick="logout()">Logout</button>
@@ -144,7 +150,7 @@
 
         // Show orders based on session ID (mock order data)
         function showOrders(accountId) {
-            document.getElementById('orderHistory').style.display = 'block';
+            document.getElementById('orderHistory').classList.remove('hidden');
             const userOrders = orders.filter(order => order.accountId === accountId);
             const ordersDiv = document.getElementById('orders');
             if (userOrders.length > 0) {
@@ -191,8 +197,8 @@
         }
 
         function displayUserStatus(accountId) {
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('loggedInStatus').style.display = 'block';
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('loggedInStatus').classList.remove('hidden');
             document.getElementById('sessionId').innerText = jwtToken;
             showOrders(accountId);
         }
@@ -200,8 +206,8 @@
         function logout() {
             jwtToken = null; // Clear the token
             localStorage.removeItem('jwtToken'); // Remove the token from local storage
-            document.getElementById('loggedInStatus').style.display = 'none';
-            document.getElementById('orderHistory').style.display = 'none';
+            document.getElementById('loggedInStatus').classList.add('hidden');
+            document.getElementById('orderHistory').classList.add('hidden');
             toggleForms('login'); // Show login form
             alert('Logged out successfully.');
         }
@@ -216,11 +222,11 @@
         // Helper function to toggle forms
         function toggleForms(form) {
             if (form === 'register') {
-                document.getElementById('registerForm').style.display = 'block';
-                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('registerForm').classList.remove('hidden');
+                document.getElementById('loginForm').classList.add('hidden');
             } else {
-                document.getElementById('registerForm').style.display = 'none';
-                document.getElementById('loginForm').style.display = 'block'; // Show login form if needed
+                document.getElementById('registerForm').classList.add('hidden');
+                document.getElementById('loginForm').classList.remove('hidden'); // Show login form
             }
         }
 
@@ -229,12 +235,10 @@
             jwtToken = localStorage.getItem('jwtToken'); // Retrieve token from local storage
             if (jwtToken) {
                 const accountId = jwtToken.split('-')[1]; // Get accountId from the token
-                const user = users.find(u => u.accountId === accountId);
-                if (user) {
-                    displayUserStatus(user.accountId); // Display user status if found
+                const loggedInUser = users.find(u => u.accountId === accountId);
+                if (loggedInUser) {
+                    displayUserStatus(loggedInUser.accountId);
                 }
-            } else {
-                toggleForms('login'); // Show login form if not logged in
             }
         };
     </script>
