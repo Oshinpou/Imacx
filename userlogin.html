@@ -14,6 +14,7 @@
             align-items: center;
             height: 100vh;
         }
+
         .container {
             background-color: white;
             padding: 20px;
@@ -22,12 +23,14 @@
             width: 300px;
             text-align: center;
         }
+
         .logo {
             font-size: 36px;
             color: #d4af37; /* Golden color */
             font-family: 'Cursive';
             margin-bottom: 20px;
         }
+
         input {
             width: 90%;
             padding: 10px;
@@ -35,6 +38,7 @@
             border-radius: 5px;
             border: 1px solid #ddd;
         }
+
         button {
             padding: 10px;
             background-color: #d4af37;
@@ -43,8 +47,16 @@
             width: 100%;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #b89530;
+        }
+
+        .order {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -54,24 +66,25 @@
         
         <div id="registerForm">
             <h2>Register Account</h2>
-            <input type="text" id="username" placeholder="Username">
-            <input type="text" id="phone" placeholder="Phone Number">
-            <input type="email" id="email" placeholder="Email">
-            <input type="text" id="accountId" placeholder="Account ID">
-            <input type="password" id="password" placeholder="Password">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="accountId" placeholder="Account ID" required>
+            <input type="password" id="password" placeholder="Password" required>
             <button onclick="register()">Register</button>
         </div>
 
         <div id="loginForm" style="display:none;">
             <h2>Login</h2>
-            <input type="text" id="loginAccountId" placeholder="Account ID">
-            <input type="password" id="loginPassword" placeholder="Password">
+            <input type="text" id="loginAccountId" placeholder="Account ID" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
             <button onclick="login()">Login</button>
         </div>
 
         <div id="orderHistory" style="display:none;">
             <h2>Order History</h2>
             <div id="orders"></div>
+            <button onclick="createOrder()">Add Order</button>
         </div>
    
         <div id="loggedInStatus" style="display:none;">
@@ -80,108 +93,150 @@
             <button onclick="logout()">Logout</button>
             <button onclick="deleteAccount()">Delete Account</button>
         </div>
+    
     </div>
 
     <script>
-    <script>
-    let users = []; // Storing user data
-    let orders = []; // Storing orders
-    let jwtToken = null;
+        let users = []; // Storing user data
+        let orders = []; // Storing orders
+        let jwtToken = null;
 
-    // Register a new user
-    function register() {
-        const username = document.getElementById('username').value;
-        const phone = document.getElementById('phone').value;
-        const email = document.getElementById('email').value;
-        const accountId = document.getElementById('accountId').value;
-        const password = document.getElementById('password').value;
+        // Register a new user
+        function register() {
+            const username = document.getElementById('username').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const accountId = document.getElementById('accountId').value;
+            const password = document.getElementById('password').value;
 
-        // Check for existing account
-        const existingUser = users.find(u => u.accountId === accountId || u.email === email || u.phone === phone);
-        if (existingUser) {
-            alert('Account already registered with this email, phone number, or account ID.');
-            return;
-        }
-
-        users.push({ username, phone, email, accountId, password });
-        alert('Account Registered!');
-        document.getElementById('registerForm').style.display = 'none';
-        document.getElementById('loginForm').style.display = 'block'; // Show login form after registration
-    }
-
-    // Login with account ID and password
-    function login() {
-        const loginAccountId = document.getElementById('loginAccountId').value;
-        const loginPassword = document.getElementById('loginPassword').value;
-
-        const user = users.find(u => u.accountId === loginAccountId && u.password === loginPassword);
-
-        if (user) {
-            jwtToken = generateJWT(user.accountId);
-            localStorage.setItem('jwtToken', jwtToken); // Store the token in local storage
-            displayUserStatus(user.accountId); // Call a separate function to handle user status display
-        } else {
-            alert('Invalid credentials!');
-        }
-    }
-
-    // Generate a mock JWT token
-    function generateJWT(accountId) {
-        return `token-${accountId}-${Date.now()}`;
-    }
-
-    // Show orders based on session ID (mock order data)
-    function showOrders(accountId) {
-        document.getElementById('orderHistory').style.display = 'block';
-        orders.push({ id: 1, accountId, status: 'Pending' });
-        const ordersDiv = document.getElementById('orders');
-        ordersDiv.innerHTML = orders.filter(order => order.accountId === accountId)
-                                    .map(order => `<p>Order ${order.id} - Status: ${order.status}</p>`).join('');
-    }
-
-    function displayUserStatus(accountId) {
-        document.getElementById('loginForm').style.display = 'none';
-        document.getElementById('loggedInStatus').style.display = 'block';
-        document.getElementById('sessionId').innerText = jwtToken;
-        showOrders(accountId);
-    }
-
-    function logout() {
-        jwtToken = null; // Clear the token
-        localStorage.removeItem('jwtToken'); // Remove the token from local storage
-        document.getElementById('loggedInStatus').style.display = 'none';
-        document.getElementById('orderHistory').style.display = 'none';
-        document.getElementById('loginForm').style.display = 'block';
-        document.getElementById('registerForm').style.display = 'none'; // Show registration form if needed
-        alert('Logged out successfully.');
-    }
-
-    function deleteAccount() {
-        const accountId = document.getElementById('loginAccountId').value;
-        users = users.filter(u => u.accountId !== accountId);
-        alert('Account deleted successfully.');
-        logout(); // Logout after deletion
-    }
-
-    // Initialize UI state
-    window.onload = function() {
-        jwtToken = localStorage.getItem('jwtToken'); // Retrieve token from local storage
-        if (jwtToken) {
-            const accountId = jwtToken.split('-')[1]; // Get accountId from the token
-            const user = users.find(u => u.accountId === accountId);
-            if (user) {
-                displayUserStatus(user.accountId); // Display user status if found
+            // Check for existing account
+            const existingUser = users.find(u => u.accountId === accountId || u.email === email || u.phone === phone);
+            if (existingUser) {
+                alert('Account already registered with this email, phone number, or account ID.');
+                return;
             }
-        } else {
-            document.getElementById('loginForm').style.display = 'block'; // Show login form if not logged in
-        }
-    };
 
-    function isLoggedIn() {
-        return jwtToken !== null;
-    }
-</script>
-        
+            users.push({ username, phone, email, accountId, password });
+            alert('Account Registered!');
+            toggleForms('login'); // Switch to login form
+        }
+
+        // Login with account ID and password
+        function login() {
+            const loginAccountId = document.getElementById('loginAccountId').value;
+            const loginPassword = document.getElementById('loginPassword').value;
+
+            const user = users.find(u => u.accountId === loginAccountId && u.password === loginPassword);
+
+            if (user) {
+                jwtToken = generateJWT(user.accountId);
+                localStorage.setItem('jwtToken', jwtToken); // Store the token in local storage
+                displayUserStatus(user.accountId); // Call a separate function to handle user status display
+            } else {
+                alert('Invalid credentials!');
+            }
+        }
+
+        // Generate a mock JWT token
+        function generateJWT(accountId) {
+            return `token-${accountId}-${Date.now()}`;
+        }
+
+        // Show orders based on session ID (mock order data)
+        function showOrders(accountId) {
+            document.getElementById('orderHistory').style.display = 'block';
+            const userOrders = orders.filter(order => order.accountId === accountId);
+            const ordersDiv = document.getElementById('orders');
+            if (userOrders.length > 0) {
+                ordersDiv.innerHTML = userOrders.map(order => `
+                    <div class="order">
+                        <p>Order ${order.id} - Status: ${order.status}</p>
+                        <div>
+                            <button onclick="updateOrderStatus(${order.id})">Update Status</button>
+                            <button onclick="deleteOrder(${order.id})">Delete Order</button>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                ordersDiv.innerHTML = '<p>No orders found.</p>';
+            }
+        }
+
+        function createOrder() {
+            const accountId = jwtToken.split('-')[1]; // Get accountId from the token
+            const newOrderId = orders.length + 1;
+            orders.push({ id: newOrderId, accountId, status: 'Pending' });
+            alert(`Order ${newOrderId} created.`);
+            showOrders(accountId); // Refresh order display
+        }
+
+        function updateOrderStatus(orderId) {
+            const newStatus = prompt("Enter new status for the order (e.g., Shipped, Delivered):");
+            if (newStatus) {
+                const order = orders.find(o => o.id === orderId);
+                if (order) {
+                    order.status = newStatus;
+                    alert(`Order ${orderId} status updated to "${newStatus}".`);
+                    const accountId = jwtToken.split('-')[1]; // Get accountId from the token
+                    showOrders(accountId); // Refresh order display
+                }
+            }
+        }
+
+        function deleteOrder(orderId) {
+            orders = orders.filter(order => order.id !== orderId);
+            alert(`Order ${orderId} deleted successfully.`);
+            const accountId = jwtToken.split('-')[1]; // Get accountId from the token
+            showOrders(accountId); // Refresh order display
+        }
+
+        function displayUserStatus(accountId) {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('loggedInStatus').style.display = 'block';
+            document.getElementById('sessionId').innerText = jwtToken;
+            showOrders(accountId);
+        }
+
+        function logout() {
+            jwtToken = null; // Clear the token
+            localStorage.removeItem('jwtToken'); // Remove the token from local storage
+            document.getElementById('loggedInStatus').style.display = 'none';
+            document.getElementById('orderHistory').style.display = 'none';
+            toggleForms('login'); // Show login form
+            alert('Logged out successfully.');
+        }
+
+        function deleteAccount() {
+            const accountId = document.getElementById('loginAccountId').value;
+            users = users.filter(u => u.accountId !== accountId);
+            alert('Account deleted successfully.');
+            logout(); // Logout after deletion
+        }
+
+        // Helper function to toggle forms
+        function toggleForms(form) {
+            if (form === 'register') {
+                document.getElementById('registerForm').style.display = 'block';
+                document.getElementById('loginForm').style.display = 'none';
+            } else {
+                document.getElementById('registerForm').style.display = 'none';
+                document.getElementById('loginForm').style.display = 'block'; // Show login form if needed
+            }
+        }
+
+        // Initialize UI state
+        window.onload = function() {
+            jwtToken = localStorage.getItem('jwtToken'); // Retrieve token from local storage
+            if (jwtToken) {
+                const accountId = jwtToken.split('-')[1]; // Get accountId from the token
+                const user = users.find(u => u.accountId === accountId);
+                if (user) {
+                    displayUserStatus(user.accountId); // Display user status if found
+                }
+            } else {
+                toggleForms('login'); // Show login form if not logged in
+            }
+        };
     </script>
 </body>
 </html>
