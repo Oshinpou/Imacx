@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Test</title>
+</head>
+<body>
+    <h1>Session Test</h1>
+    <p>Status: <span id="loginStatus"></span></p>
+    <p>Session ID: <span id="sessionToken"></span></p>
+
+    <script>
+        if (isLoggedIn()) {
+            document.getElementById('loginStatus').innerText = 'Logged In';
+            document.getElementById('sessionToken').innerText = jwtToken;
+        } else {
+            document.getElementById('loginStatus').innerText = 'Logged Out';
+        }
+    </script>
+</body>
+</html>
