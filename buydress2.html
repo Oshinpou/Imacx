@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        .payment-container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .payment-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-family: 'Pacifico', cursive;
+        }
+
+        .payment-details {
+            font-size: 1.5rem;
+            margin: 20px 0;
+        }
+
+        .payment-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .payment-button:hover {
+            opacity: 0.8;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-container">
+        <h1 class="payment-title">Payment Page</h1>
+        <p class="payment-details">Total Amount: <strong>$57</strong></p>
+        
+        <form>
+            <script 
+                src="https://checkout.razorpay.com/v1/payment-button.js" 
+                data-payment_button_id="pl_P4i4a0RoonGmsm" 
+                async>
+            </script>
+        </form>
+
+        <p class="footer">For assistance, contact us at: <a href="mailto:macxyy12@gmail.com">macxyy12@gmail.com</a></p>
+    </div>
+
+</body>
+</html>
