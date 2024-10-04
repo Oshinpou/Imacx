@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to Cart</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .cart-container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .cart-title {
+            font-size: 2.5rem;
+            color: gold;
+            font-family: 'Pacifico', cursive;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-symbol {
+            font-size: 5rem;
+            color: gold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            font-size: 1.8rem;
+            font-family: 'Pacifico', cursive;
+            color: gold;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkout-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .checkout-button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cart-container">
+        <!-- Cart Symbol -->
+        <div class="cart-symbol">🛒</div>
+
+        <!-- Title -->
+        <h1 class="cart-title">Your Cart</h1>
+
+        <!-- Message -->
+        <p class="message">Your products are on the way!</p>
+
+        <!-- Razorpay Checkout Button -->
+        <form>
+            <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_P4i4a0RoonGmsm" async> </script>
+        </form>
+
+        <!-- Footer Contact -->
+        <p class="footer">For more info or help, contact us at: <a href="mailto:macxyy12@gmail.com">macxyy12@gmail.com</a></p>
+    </div>
+
+</body>
+</html>
