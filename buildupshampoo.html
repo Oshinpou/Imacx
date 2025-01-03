@@ -243,7 +243,29 @@
     }
   }
 
+.product-ingredients {
+  position: relative;
+  display: inline-block;
+}
 
+.ingredients-img {
+  width: 100%; /* Adjust as needed */
+  height: auto;
+}
+
+.ribbon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff0000; /* Red color, change as needed */
+  color: white;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  transform: rotate(-45deg);
+  transform-origin: 0 0;
+  z-index: 1;
+}
      
      </style>
 </head>
@@ -381,6 +403,10 @@
 Water (Aqua,Sodium Lauroyl Sarcosinate,Cocamidopropyl Betaine,Cocamide MEA,Glycerin,<br>Panthenol (Pro-Vitamin B5),Salicylic Acid,Citric Acid,<br>Phenoxyethanol,Ethylhexylglycerin,Caprylyl Glycol,Aloe Vera Extract,<br>Charcoal Powder (Activated),Tea Tree Oil,Betaine,Hydrolyzed Silk Protein,Sodium Chloride,<br>Polyquaternium-7,Sodium Benzoate,Dimethicone,Cyclopentasiloxane,<br>Hydroxyethylcellulose,Disodium EDTA,Linalool,Glycol Distearate
 
 </p>
+        <div class="product-ingredients">
+  <img src="path_to_your_image.jpg" alt="Ingredients" class="ingredients-img">
+  <div class="ribbon">Ingredients</div>
+</div>
       </div>
 
       <div class="product-info">
