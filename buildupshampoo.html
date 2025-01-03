@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>imacx Skin & Hair Shampoo</title>
+  <style>
+
+      body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #1c1c1c;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+   
+    header {
+      background: linear-gradient(45deg, #b3b3b3, #e6e6e6);
+      color: #ffd700;
+      text-align: center;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .brand-name {
+      font-size: 3rem;
+      animation: sparkle 3s infinite;
+      text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
+    }
+
+    @keyframes sparkle {
+      0%, 100% {
+        text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 40px #ffd700;
+      }
+      50% {
+        text-shadow: 0 0 20px #ffd700, 0 0 50px #ffd700, 0 0 70px #ffd700;
+      }
+    }
+
+    .offer {
+      color: #ff4081;
+      font-size: 1.2rem;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    /* Slider Section */
+    .product-slider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .slider-btn {
+      background: #ffd700;
+      border: none;
+      color: #1c1c1c;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    .slider-container {
+      overflow: hidden;
+      width: 80%;
+    }
+
+    .image-slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .image-slider img {
+      width: 100%;
+      max-width: 300px;
+      margin-right: 1rem;
+      border-radius: 10px;
+      border: 2px solid #ffd700;
+    }
+
+    /* Product Details */
+    .product-details {
+      text-align: center;
+    }
+
+    .product-name {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .country-selector {
+      margin: 1rem 0;
+    }
+
+    .price-display {
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
+      color: #ffd700;
+    }
+
+    .buy-btn {
+      background: #ff4081;
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .buy-btn:hover {
+      background: #ff1f72;
+    }
+
+    /* Product Rating */
+    .product-rating {
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .stars span {
+      font-size: 1.5rem;
+      color: #ffd700;
+      animation: bounce 1s infinite alternate;
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    .interaction-icons p {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+    }
+
+    .interaction-icons span {
+      margin-right: 0.5rem;
+    }
+
+    /* Features Section */
+    .features {
+      margin-top: 2rem;
+    }
+
+    .features li {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+      list-style: none;
+    }
+
+    .features .feature-icon {
+      margin-right: 0.5rem;
+      animation: glow 2s infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
+      }
+      50% {
+        text-shadow: 0 0 15px #ffd700, 0 0 30px #ffd700;
+      }
+    }
+
+    footer {
+      background: #1c1c1c;
+      color: #ffffff;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+ 
+.contact-help {
+    background: linear-gradient(45deg, #222, #555);
+    color: #ffd700;
+    padding: 1.5rem;
+    text-align: center;
+    margin: 2rem 0;
+    border-radius: 10px;
+    animation: fadeIn 2s ease-in-out;
+    box-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
+  }
+
+  .contact-help p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    animation: sparkle 3s infinite;
+  }
+
+  .contact-help a {
+    color: #ff4081;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .contact-help a:hover {
+    color: #ff80ab;
+  }
+
+  @keyframes sparkle {
+    0%, 100% {
+      text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700, 0 0 20px #ffd700;
+    }
+    50% {
+      text-shadow: 0 0 10px #ff4081, 0 0 30px #ffd700, 0 0 40px #ffd700;
+    }
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
+     
+     </style>
+</head>
+<body>
+  
+   <!-- Stars Rain Div -->
+
+  <div class="stars-rain"></div>
+
+
+  <header>
+     
+     <h1 class="brand-name">imacx</h1>
+    <marquee class="offer">60% OFF on Product | Limited Offer!</marquee>
+  </header>
+
+  <main>
+    <section class="product-slider">
+      <button id="prev" class="slider-btn">◀</button>
+      <div class="slider-container">
+        <div class="image-slider" id="image-slider">
+          <img src="image1.jpg" alt="Product Image 1">
+          <img src="image2.jpg" alt="Product Image 2">
+          <img src="image3.jpg" alt="Product Image 3">
+        </div>
+      </div>
+      <button id="next" class="slider-btn">▶</button>
+    </section>
+
+ 
+    <section class="product-details">
+      <h2 class="product-name">Skin & Hair Constructing Buildup Shampoo</h2>
+
+<h4>free delivery: <small>no delivery charges for all country<br><br><i>size:50grams</i></small></h4>
+      
+      <div class="country-selector">
+        <label for="country">Select Your Country:</label>
+        <select id="country">
+  <option value="inr" data-rate="1" data-link="inr-payment.html">India</option>
+  <option value="usd" data-rate="0.012" data-link="usd-payment.html">United States</option>
+  <option value="jpy" data-rate="1.64" data-link="japan-payment.html">Japan</option>
+  <option value="cny" data-rate="0.085" data-link="china-payment.html">China</option>
+  <option value="eur" data-rate="0.0094" data-link="europe-payment.html">Europe</option>
+  <option value="aud" data-rate="0.019" data-link="australia-payment.html">Australia</option>
+  <option value="zar" data-rate="0.23" data-link="south-africa-payment.html">South Africa</option>
+</select>
+
+<!-- Hidden Payment Form for India -->
+<div id="india-payment-form" style="display: none;">
+ <br><p>price:<del>₹16,250</del>
+ ₹6,500
+</p> <form>
+    <script 
+      src="https://checkout.razorpay.com/v1/payment-button.js" 
+      data-payment_button_id="pl_PdFS2HmLkrchJs" 
+      async>
+    </script>
+  </form>
+</div>
+          
+<!-- Forms for Other Countries (similar to India) -->
+     
+<div id="usa-payment-form" style="display: none;">
+ <br><p>price:<del>$195.00
+</del>
+ $78.00
+</p> <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Pdc673Comd5JTv" async> </script> </form>
+</div>
+      
+      
+      <div id="japan-payment-form" style="display: none;"><br><p>price:<del>¥
+30,500</del>
+ ¥
+12,200
+</p>
+  <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Pddp6sVrl1VDlF" async> </script> </form>
+</div>
+      
+
+      <div id="china-payment-form" style="display: none;">
+ <br><p>price:<del>¥1385.00</del>
+ ¥554.00
+</p> <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqLBK2CBmR5bQ" async> </script> </form>
+</div>
+      
+
+      <div id="europe-payment-form" style="display: none;">
+ <br><p>price:<del>€185.00</del>
+ €74.00
+</p> <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqWGheRefZQBG" async> </script> </form>
+</div>
+      
+
+      <div id="australia-payment-form" style="display: none;">
+ <br><p>price:<del>A$305.00</del>
+ A$122.00
+</p> <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Peqb9gRQF9lWUd" async> </script> </form>
+</div>
+      
+
+      <div id="south-africa-payment-form" style="display: none;">
+<br><p>price:<del>R3,550.00</del>
+ R1,420.00
+</p>  <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqiXdZegcEXyb" async> </script> </form>
+</div>
+      
+
+      <div class="product-rating">
+        <div class="stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
+        <div class="interaction-icons">
+          <p><span class="like-icon">&#x2764;</span> 1.5k Likes</p>
+          <p><span class="thumbs-icon">&#x1F44D;</span> 1400 Thumbs Up</p>
+        </div>
+      </div>
+
+      <div class="product-info">
+        <h3>Benefits</h3>
+        <ul>
+          <li>Repairs damaged hair and skin.</li>
+          <li>Boosts hydration and shine.</li>
+          <li>Prevents hair breakage and skin irritation.</li>
+        </ul>
+      </div>
+
+      <div class="product-info">
+        <h3>Ingredients</h3>
+        <p>Keratin, Biotin, Argan Oil, Aloe Vera, Vitamins B5 & E, etc.</p>
+      </div>
+
+      <div class="product-info">
+        <h3>Description</h3>
+        <p>A luxurious shampoo to revitalize both your hair and skin with premium ingredients.</p>
+      </div>
+
+      <div class="product-info">
+        <h3>Usage</h3>
+        <p>Apply a generous amount to wet hair and skin, lather well, rinse thoroughly.</p>
+      </div>
+
+      <div class="product-info">
+        <h3>Warning</h3>
+        <p>For external use only. Avoid contact with eyes.</p>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="faq">
+        <h3>FAQs</h3>
+        <div class="faq-item">
+          <p class="faq-question">What is the pH level of this shampoo?</p>
+          <p class="faq-answer">The pH is balanced to 5.5, suitable for all skin types.</p>
+        </div>
+        <!-- Add more FAQs here -->
+      </div>
+
+      <!-- Customer Reviews -->
+      <div class="reviews">
+        <h3>Customer Reviews</h3>
+        <!-- 35 Reviews -->
+        <div class="review">
+          <p>⭐️⭐️⭐️⭐️⭐️</p>
+          <p>Amazing product! Highly recommended.</p>
+        </div>
+        <!-- Add more reviews -->
+      </div>
+
+      <!-- Features Section -->
+      <div class="features">
+        <h3>Features</h3>
+        <ul>
+          <li><span class="feature-icon">⚡</span> Fast Delivery</li>
+          <li><span class="feature-icon">😊</span> Happy Customers</li>
+          <li><span class="feature-icon">♻️</span> Eco-Friendly Packaging</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+ <!-- Contact Section -->
+<div class="contact-help">
+  <p>Need Help? Contact Us:</p>
+  <p><strong>📞 Phone:</strong> +918452939172</p>
+  <p><strong>📧 Email 1:</strong> <a href="mailto:macxyy35@gmail.com">macxyy35@gmail.com</a></p>
+  <p><strong>📧 Email 2:</strong> <a href="mailto:macxyy12@gmail.com">macxyy12@gmail.com</a></p>
+  <p><strong>📸 Instagram:</strong> <a href="https://www.instagram.com" target="_blank">Follow us</a></p>
+  <p><strong>Terms& conditions:</strong> <a href="https://www.instagram.com" target="_blank">read terms& conditions applied</a></p>
+  <p><strong>returns & refunds:</strong> <a href="https://www.instagram.com" target="_blank">check returns and refunds</a></p>
+  <p><strong>privacy policy:</strong> <a href="https://www.instagram.com" target="_blank">read privacy policy</a></p>
+  <p><strong>faq:</strong> <a href="https://www.instagram.com" target="_blank">check faq bot page</a></p>
+</div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Terms & Conditions Apply. © 2024 imacx</p>
+  </footer>
+
+
+  <script>
+    // Country Selection Logic
+    
+    const countrySelect = document.getElementById('country');
+    
+    // Payment forms for each country
+    const paymentForms = {
+      inr: document.getElementById('india-payment-form'),
+      usd: document.getElementById('usa-payment-form'),
+      jpy: document.getElementById('japan-payment-form'),
+      cny: document.getElementById('china-payment-form'),
+      eur: document.getElementById('europe-payment-form'),
+      aud: document.getElementById('australia-payment-form'),
+      zar: document.getElementById('south-africa-payment-form')
+    };
+
+    // Event listener for country change
+    countrySelect.addEventListener('change', (e) => {
+      const selectedCountry = e.target.value;
+      const selectedForm = paymentForms[selectedCountry];
+      
+      // Hide all payment forms
+      Object.values(paymentForms).forEach(form => form.style.display = 'none');
+      
+      // Show the selected payment form
+      if (selectedForm) {
+        selectedForm.style.display = 'block';
+      }
+      
+      // Update price and payment link
+      const rate = e.target.selectedOptions[0].dataset.rate;
+      const amountInSelectedCurrency = (6500 * rate).toFixed(2);
+      const priceDisplay = document.querySelector('.price-display');
+      priceDisplay.textContent = `Price: ${amountInSelectedCurrency} ${e.target.options[e.target.selectedIndex].text}`;
+    });
+
+    // Initialize default country to India
+    countrySelect.dispatchEvent(new Event('change'));
+    
+    // Image slider logic
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+    const imageSlider = document.getElementById('image-slider');
+    let index = 0;
+
+    const images = imageSlider.getElementsByTagName('img');
+    const totalImages = images.length;
+
+    function updateSlider() {
+      const offset = -index * (images[0].width + 16); // 16px for margin-right
+      imageSlider.style.transform = `translateX(${offset}px)`;
+    }
+
+    prevButton.addEventListener('click', () => {
+      index = (index === 0) ? totalImages - 1 : index - 1;
+      updateSlider();
+    });
+
+    nextButton.addEventListener('click', () => {
+      index = (index === totalImages - 1) ? 0 : index + 1;
+      updateSlider();
+    });
+  
+  
+  </script>
+</body>
+</html>
