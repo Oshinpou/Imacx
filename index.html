@@ -310,6 +310,32 @@ body {
         opacity: 0;
     }
 }
+
+.imacx-audio-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    background: linear-gradient(to right, #f8f8f8, #ffffff);
+    color: #333;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.imacx-audio-container h1 {
+    font-size: 2.5rem;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.imacx-audio-container p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
 </style>
 </head>
 <body>
@@ -417,6 +443,15 @@ body {
     <footer>
         <p>&copy; 2024 IMACX Marketplace | Designed for elegance and comfort</p>
         <p>Privacy Policy | Terms & Conditions</p>
+   
+    <div class="imacx-audio-container">
+    <h1>Welcome to imacx</h1>
+    <p>Experience the iconic luxury of imacx.</p>
+    <audio id="imacx-background-audio" loop autoplay>
+        <source src="audio-tune.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+</div>
     </footer>
 
 <script>
@@ -527,6 +562,19 @@ function createStar() {
 
 // Create stars at regular intervals
 setInterval(createStar, 100);
+
+// Get the audio element
+const imacxAudio = document.getElementById("imacx-background-audio");
+
+// Set the volume to a lower level (0.2 out of 1)
+imacxAudio.volume = 0.2;
+
+// Ensure the audio starts playing on load
+imacxAudio.addEventListener("canplaythrough", () => {
+    imacxAudio.play().catch((error) => {
+        console.error("Audio playback issue:", error);
+    });
+});
 </script>
 
 </body>
