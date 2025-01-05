@@ -340,6 +340,14 @@ body {
 </head>
 <body>
 <div id="star-container"></div>
+    <div class="imacx-audio-container">
+    <h1>Welcome to imacx</h1>
+    <p>Experience the iconic luxury.</p>
+    <audio id="imacx-background-audio" loop autoplay>
+        <source src="imacxtune.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+</div>
     <header>
         <div class="logo-container">
             <img src="iconicy.jpg" alt="IMACX Logo" class="logo">
@@ -444,14 +452,7 @@ body {
         <p>&copy; 2024 IMACX Marketplace | Designed for elegance and comfort</p>
         <p>Privacy Policy | Terms & Conditions</p>
    
-    <div class="imacx-audio-container">
-    <h1>Welcome to imacx</h1>
-    <p>Experience the iconic luxury.</p>
-    <audio id="imacx-background-audio" loop autoplay>
-        <source src="imacxtune.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
-</div>
+
     </footer>
 
 <script>
@@ -567,7 +568,7 @@ setInterval(createStar, 100);
 const imacxAudio = document.getElementById("imacx-background-audio");
 
 // Set the volume to a lower level
-imacxAudio.volume = 10.2;
+imacxAudio.volume = 1.0;
 
 // Ensure the audio starts playing on load
 imacxAudio.addEventListener("canplaythrough", () => {
