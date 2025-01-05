@@ -446,7 +446,7 @@ body {
    
     <div class="imacx-audio-container">
     <h1>Welcome to imacx</h1>
-    <p>Experience the iconic luxury of imacx.</p>
+    <p>Experience the iconic luxury.</p>
     <audio id="imacx-background-audio" loop autoplay>
         <source src="imacxtune.mp3" type="audio/mp3">
         Your browser does not support the audio element.
@@ -566,8 +566,8 @@ setInterval(createStar, 100);
 // Get the audio element
 const imacxAudio = document.getElementById("imacx-background-audio");
 
-// Set the volume to a lower level (0.2 out of 1)
-imacxAudio.volume = 0.2;
+// Set the volume to a lower level
+imacxAudio.volume = 10.2;
 
 // Ensure the audio starts playing on load
 imacxAudio.addEventListener("canplaythrough", () => {
