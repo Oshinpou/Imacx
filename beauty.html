@@ -5,112 +5,173 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Imacx Beauty Cosmetics</title>
   <style>
+    /* General Styles */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(45deg, #d4af37, #ffd700);
+      background-color: #f8f5f0;
       color: #333;
     }
+
+    /* Header Section */
     header {
-      background: linear-gradient(to right, #b29500, #ffd700);
-      color: white;
+      background: linear-gradient(to right, #d4af37, #ffd700);
       padding: 20px 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: white;
     }
+
     header h1 {
-      font-size: 24px;
-      color: #fff;
-    }
-    header nav a {
-      color: #fff;
-      margin: 0 15px;
-      text-decoration: none;
+      font-size: 28px;
       font-weight: bold;
+      color: white;
+    }
+
+    header nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      margin: 0 15px;
+      font-size: 16px;
       transition: color 0.3s ease;
     }
+
     header nav a:hover {
-      color: #d4af37;
-    }
-    .hero {
-      text-align: center;
-      background: #ffd700;
-      padding: 50px 20px;
       color: #333;
     }
-    .hero img {
-      width: 50%;
-      border-radius: 10px;
-      border: 5px solid #b29500;
+
+    /* Hero Section */
+    .hero {
+      background: url('https://via.placeholder.com/1920x800') center/cover no-repeat;
+      height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
     }
+
     .hero h2 {
-      margin: 20px 0;
-      font-size: 36px;
-      color: #b29500;
+      font-size: 48px;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
+
     .hero button {
-      padding: 10px 20px;
-      background: #b29500;
+      padding: 15px 40px;
+      font-size: 18px;
+      background-color: #d4af37;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 16px;
       transition: background 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
+
     .hero button:hover {
-      background: #d4af37;
+      background-color: #ffd700;
     }
-    .features, .products, .reviews, .technology, .faq, footer {
-      padding: 50px 20px;
+
+    /* Features Section */
+    .features {
+      padding: 60px 20px;
+      background: #fff;
       text-align: center;
-      background: linear-gradient(45deg, #ffd700, #fff);
-      color: #333;
-      border-top: 1px solid #b29500;
     }
-    .features h2, .products h2, .reviews h2, .technology h2, .faq h2 {
+
+    .features h2 {
+      font-size: 36px;
+      color: #d4af37;
       margin-bottom: 20px;
-      font-size: 28px;
-      color: #b29500;
     }
-    .features ul, .faq ul {
+
+    .features ul {
       list-style: none;
       padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
     }
-    .features li, .faq li {
-      margin: 10px 0;
-      color: #5f5f5f;
+
+    .features li {
+      background: #f9f8f4;
+      border: 2px solid #d4af37;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+
+    /* Products Section */
+    .products {
+      padding: 60px 20px;
+      background: #f8f5f0;
+      text-align: center;
+    }
+
+    .products h2 {
+      font-size: 36px;
+      color: #d4af37;
+      margin-bottom: 20px;
+    }
+
     .products img {
-      width: 200px;
+      width: 250px;
       margin: 10px;
       border-radius: 10px;
-      border: 3px solid #b29500;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
     }
+
+    .products img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Reviews Section */
+    .reviews {
+      padding: 60px 20px;
+      background: #fff;
+    }
+
+    .reviews h2 {
+      font-size: 36px;
+      color: #d4af37;
+      margin-bottom: 20px;
+    }
+
     .reviews blockquote {
       font-style: italic;
+      color: #555;
       margin: 20px auto;
       max-width: 600px;
-      color: #555;
-      border-left: 5px solid #b29500;
-      padding-left: 10px;
-    }
-    footer {
-      background: linear-gradient(to right, #b29500, #ffd700);
-      color: white;
+      background: #f8f5f0;
       padding: 20px;
+      border-radius: 8px;
+      border-left: 5px solid #d4af37;
     }
+
+    /* Footer Section */
+    footer {
+      background: linear-gradient(to right, #d4af37, #ffd700);
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
     footer a {
-      color: #fff;
+      color: white;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s ease;
     }
+
     footer a:hover {
-      color: #d4af37;
+      color: #333;
     }
   </style>
 </head>
@@ -127,69 +188,42 @@
 </header>
 
 <section class="hero">
-  <img src="https://via.placeholder.com/600x400" alt="Imacx Hero">
   <h2>Unveiling Iconic Beauty with Maximum Power</h2>
-  <button>Explore Our Collection</button>
+  <button>Shop Now</button>
 </section>
 
 <section class="features" id="features">
   <h2>Why Choose Imacx?</h2>
   <ul>
-    <li>Luxury Redefined: Crafted with premium ingredients.</li>
-    <li>Scientifically Proven: Backed by cutting-edge research.</li>
-    <li>Sustainably Sourced: Eco-friendly and cruelty-free.</li>
+    <li>Luxury Redefined with premium ingredients.</li>
+    <li>Scientifically Proven for visible results.</li>
+    <li>Sustainably Sourced and cruelty-free.</li>
     <li>Deep hydration for glowing skin.</li>
-    <li>Refines skin texture and pores.</li>
-    <li>Boosts natural radiance.</li>
-    <li>Fights visible signs of aging.</li>
-    <li>Enhances skin elasticity.</li>
-    <li>Detoxifies scalp buildup.</li>
-    <li>Nourishes hair with silk protein.</li>
+    <li>Boosts natural radiance and fights aging.</li>
+    <li>Nourishes and strengthens hair and skin.</li>
   </ul>
 </section>
 
 <section class="products" id="products">
   <h2>Our Featured Products</h2>
-  <img src="https://via.placeholder.com/200" alt="Product 1">
-  <img src="https://via.placeholder.com/200" alt="Product 2">
-  <img src="https://via.placeholder.com/200" alt="Product 3">
-  <img src="https://via.placeholder.com/200" alt="Product 4">
+  <img src="https://via.placeholder.com/250" alt="Product 1">
+  <img src="https://via.placeholder.com/250" alt="Product 2">
+  <img src="https://via.placeholder.com/250" alt="Product 3">
 </section>
 
 <section class="reviews" id="reviews">
   <h2>Customer Reviews</h2>
   <blockquote>
-    “Imacx gave me the confidence to embrace my beauty. Absolutely love it!”
+    “Imacx products are pure luxury. My skin feels rejuvenated!”
   </blockquote>
   <blockquote>
-    “A true game-changer in the world of cosmetics. Highly recommend!”
+    “A must-have for anyone serious about beauty. Highly recommend!”
   </blockquote>
-</section>
-
-<section class="technology" id="technology">
-  <h2>Imacx Skin Technology</h2>
-  <p>Harnessing the power of peptides, vitamins, and active botanicals to sculpt and perfect your skin.</p>
-</section>
-
-<section class="faq" id="faq">
-  <h2>Frequently Asked Questions</h2>
-  <ul>
-    <li>Is Imacx suitable for sensitive skin?</li>
-    <li>How soon can I see results?</li>
-    <li>Are your products vegan?</li>
-    <li>What is the return policy?</li>
-  </ul>
 </section>
 
 <footer>
   <p>&copy; 2025 Imacx Beauty Cosmetics. All rights reserved.</p>
-  <p>Contact: <a href="mailto:macxyy12@gmail.com">macxyy12@gmail.com</a> | +918452939172</p>
-  <p>
-    Follow us:
-    <a href="#">Instagram</a> |
-    <a href="#">Facebook</a> |
-    <a href="#">YouTube</a>
-  </p>
+  <p>Contact us at <a href="mailto:macxyy12@gmail.com">macxyy12@gmail.com</a> | +91 8452939172</p>
 </footer>
 
 </body>
