@@ -5,21 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Imacx Cosmetics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
     /* Global Styling */
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: 'Dancing Script', cursive;
       margin: 0;
       padding: 0;
       background: #1c1c1c;
       color: #d4af37; /* Metallic Gold */
       overflow-x: hidden;
+      animation: fadeIn 2s ease-in-out;
     }
 
     /* Universal Text Styling */
     h1, h2, p, a {
       color: #d4af37;
       text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.6);
+      animation: bounceIn 1.5s ease-out;
+    }
+
+    h1 {
+      font-size: 48px;
+    }
+
+    h2 {
+      font-size: 36px;
+    }
+
+    p {
+      font-size: 20px;
     }
 
     /* Header Section */
@@ -65,6 +80,7 @@
       font-size: 48px;
       margin-bottom: 20px;
       text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+      animation: slideIn 1s ease-out;
     }
 
     .hero button {
@@ -75,7 +91,7 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Dancing Script', cursive;
       transition: transform 0.3s ease;
       box-shadow: 0 4px 8px rgba(212, 175, 55, 0.6);
     }
@@ -112,16 +128,37 @@
     .product-desc {
       padding: 20px;
       text-align: center;
+      animation: fadeIn 2s ease-in-out;
     }
 
     .product-desc h2 {
       font-size: 32px;
       margin-bottom: 10px;
+      animation: slideIn 1s ease-out;
     }
 
     .product-desc p {
       font-size: 18px;
       margin-bottom: 20px;
+      animation: bounceIn 1.5s ease-out;
+    }
+
+    .product-desc button {
+      padding: 12px 30px;
+      font-size: 18px;
+      background-color: #d4af37;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Dancing Script', cursive;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(212, 175, 55, 0.6);
+    }
+
+    .product-desc button:hover {
+      transform: scale(1.1);
+      background-color: #ffd700;
     }
 
     /* Reviews Section */
@@ -129,6 +166,7 @@
       background-color: #121212;
       padding: 60px 20px;
       text-align: center;
+      animation: fadeIn 2s ease-in-out;
     }
 
     .reviews blockquote {
@@ -140,6 +178,7 @@
       border-radius: 8px;
       border-left: 5px solid #d4af37;
       box-shadow: 0 4px 6px rgba(212, 175, 55, 0.5);
+      animation: bounceIn 1.5s ease-out;
     }
 
     /* Footer Section */
@@ -195,6 +234,23 @@
         transform: translateY(100vh) rotate(720deg);
         opacity: 0;
       }
+    }
+
+    /* Text Animations */
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: translateY(-100%); opacity: 0; }
+      50% { transform: translateY(10%); opacity: 1; }
+      100% { transform: translateY(0); }
     }
 
     /* Mobile-Friendly */
