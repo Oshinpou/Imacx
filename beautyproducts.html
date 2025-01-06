@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imacx Cosmetics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+  <style>
+    /* General Styling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #000000, #1a1a1a);
+      font-family: 'Playfair Display', serif;
+      overflow-x: hidden;
+      color: #FFD700;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin: 20px 0;
+      color: #FFD700;
+      text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+    }
+
+    /* Stars Rainfall Layer */
+    .stars-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000; /* Ensure it overlays everything */
+      pointer-events: none; /* Avoid interaction with content below */
+    }
+
+    .star {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: #FFD700;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #FFD700, 0 0 12px #FFD700;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    /* Product Section */
+    .products-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+      gap: 30px; /* Space between cards */
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    /* Product Card Styling */
+    .product-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      color: #FFD700;
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4);
+    }
+
+    .image-container {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: slide-horizontal 5s infinite;
+    }
+
+    @keyframes slide-horizontal {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(-100%); }
+      100% { transform: translateX(0); }
+    }
+
+    .product-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #FFD700;
+    }
+
+    .product-description {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .explore-button {
+      background: linear-gradient(to right, #FFD700, #FFC300);
+      color: #000;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background 0.3s, box-shadow 0.3s;
+      display: inline-block;
+      box-shadow: 0 4px 8px rgba(255, 215, 0, 0.6);
+    }
+
+    .explore-button:hover {
+      background: linear-gradient(to right, #FFC300, #FFD700);
+      box-shadow: 0 8px 16px rgba(255, 215, 0, 1);
+    }
+  </style>
+</head>
+<body>
+  <div class="stars-container"></div> <!-- Stars Animation -->
+
+  <h1>Explore Imacx Cosmetics</h1>
+  <div class="products-container">
+    <!-- Product Card 1 -->
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 1">
+      </div>
+      <div class="product-title">Luxury Skin Serum</div>
+      <div class="product-description">Transform your skin with a radiant glow.</div>
+      <a href="product1.html" class="explore-button">Explore Product</a>
+    </div>
+
+    <!-- Product Card 2 -->
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+
+    <!-- Add more product cards below -->
+  
+  <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+    
+    
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+    
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+    
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+  
+  
+  <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+    
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+    
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+    
+    
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+    
+    
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+    
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+  
+  
+  </div>
+
+  <script>
+    // Function to create stars
+    function createStar() {
+      const star = document.createElement('div');
+      star.classList.add('star');
+
+      star.style.left = `${Math.random() * 100}vw`;
+      star.style.top = `-${Math.random() * 10}vh`;
+      star.style.animationDuration = `${Math.random() * 5 + 3}s`;
+      star.style.animationDelay = `${Math.random() * 2}s`;
+      document.querySelector('.stars-container').appendChild(star);
+
+      setTimeout(() => {
+        star.remove();
+      }, 8000);
+    }
+
+    // Generate stars
+    setInterval(createStar, 1500);
+    createStar();
+    createStar();
+    createStar();
+  </script>
+</body>
+</html>
