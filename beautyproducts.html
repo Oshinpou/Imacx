@@ -83,27 +83,42 @@
       box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4);
     }
 
+    /* Image Container */
     .image-container {
       position: relative;
+      width: 100%;
       height: 200px;
       overflow: hidden;
       border-radius: 10px;
       margin-bottom: 15px;
     }
 
+    /* Image Styling */
     .image-container img {
+      position: absolute;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      animation: slide-horizontal 5s infinite;
+      animation: slide-horizontal 6s infinite; /* Set 6s for both images */
     }
 
+    /* Horizontal Animation Keyframes */
     @keyframes slide-horizontal {
-      0% { transform: translateX(0); }
-      50% { transform: translateX(-100%); }
-      100% { transform: translateX(0); }
+      0% {
+        transform: translateX(0);
+      }
+      33.33% {
+        transform: translateX(-100%);
+      }
+      66.66% {
+        transform: translateX(-200%);
+      }
+      100% {
+        transform: translateX(0);
+      }
     }
 
+    /* Product Title */
     .product-title {
       font-size: 1.5rem;
       font-weight: bold;
@@ -145,7 +160,8 @@
     <div class="product-card">
       <div class="image-container">
         <img src="cbsp3.jpeg" alt="Product Image 1">
-     <img src="proof5.jpeg" alt="Product Image 2">
+        <img src="proof5.jpeg" alt="Product Image 2">
+        <img src="cbsp6.jpeg" alt="Product Image 3">
       </div>
       <div class="product-title">Luxury Skin Serum</div>
       <div class="product-description">Transform your skin with a radiant glow.</div>
@@ -155,18 +171,55 @@
     <!-- Product Card 2 -->
     <div class="product-card">
       <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 1">
         <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 3">
       </div>
       <div class="product-title">Iconic Face Cream</div>
       <div class="product-description">Enhance your facial symmetry effortlessly.</div>
       <a href="product2.html" class="explore-button">Explore Product</a>
     </div>
 
-    <!-- Add more product cards below -->
+    <!-- Add more product cards as needed -->
   
   <div class="product-card">
       <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 1">
         <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 3">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+    
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 1">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 3">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+    
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 1">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 3">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+    
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 1">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 3">
       </div>
       <div class="product-title">Iconic Face Cream</div>
       <div class="product-description">Enhance your facial symmetry effortlessly.</div>
@@ -176,53 +229,9 @@
     
     <div class="product-card">
       <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 1">
         <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
-      </div>
-      <div class="product-title">Iconic Face Cream</div>
-      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
-      <a href="product2.html" class="explore-button">Explore Product</a>
-    </div>
-    
-    <div class="product-card">
-      <div class="image-container">
-        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
-      </div>
-      <div class="product-title">Iconic Face Cream</div>
-      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
-      <a href="product2.html" class="explore-button">Explore Product</a>
-    </div>
-    
-    <div class="product-card">
-      <div class="image-container">
-        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
-      </div>
-      <div class="product-title">Iconic Face Cream</div>
-      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
-      <a href="product2.html" class="explore-button">Explore Product</a>
-    </div>
-  
-  
-  <div class="product-card">
-      <div class="image-container">
-        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
-      </div>
-      <div class="product-title">Iconic Face Cream</div>
-      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
-      <a href="product2.html" class="explore-button">Explore Product</a>
-    </div>
-    
-    <div class="product-card">
-      <div class="image-container">
-        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
-      </div>
-      <div class="product-title">Iconic Face Cream</div>
-      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
-      <a href="product2.html" class="explore-button">Explore Product</a>
-    </div>
-    
-    <div class="product-card">
-      <div class="image-container">
-        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 3">
       </div>
       <div class="product-title">Iconic Face Cream</div>
       <div class="product-description">Enhance your facial symmetry effortlessly.</div>
@@ -232,7 +241,9 @@
     
     <div class="product-card">
       <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 1">
         <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 3">
       </div>
       <div class="product-title">Iconic Face Cream</div>
       <div class="product-description">Enhance your facial symmetry effortlessly.</div>
@@ -242,7 +253,33 @@
     
     <div class="product-card">
       <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 1">
         <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 3">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+    
+    
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 1">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 3">
+      </div>
+      <div class="product-title">Iconic Face Cream</div>
+      <div class="product-description">Enhance your facial symmetry effortlessly.</div>
+      <a href="product2.html" class="explore-button">Explore Product</a>
+    </div>
+    
+    
+    <div class="product-card">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 1">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 3">
       </div>
       <div class="product-title">Iconic Face Cream</div>
       <div class="product-description">Enhance your facial symmetry effortlessly.</div>
@@ -251,13 +288,14 @@
     
     <div class="product-card">
       <div class="image-container">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 1">
         <img src="https://via.placeholder.com/400x200" alt="Product Image 2">
+        <img src="https://via.placeholder.com/400x200" alt="Product Image 3">
       </div>
       <div class="product-title">Iconic Face Cream</div>
       <div class="product-description">Enhance your facial symmetry effortlessly.</div>
       <a href="product2.html" class="explore-button">Explore Product</a>
     </div>
-  
   
   </div>
 
