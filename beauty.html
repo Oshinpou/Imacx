@@ -7,41 +7,43 @@
   <style>
     /* General Styles */
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: 'Brush Script MT', cursive;
       margin: 0;
       padding: 0;
-      background-color: #f8f5f0;
-      color: #333;
+      background-color: #000;
+      color: #d4af37;
+    }
+
+    /* Universal Text Styling */
+    h1, h2, p, a {
+      color: #d4af37; /* Metallic Gold */
+      text-shadow: 2px 2px 4px rgba(212, 175, 55, 0.6);
     }
 
     /* Header Section */
     header {
-      background: linear-gradient(to right, #d4af37, #ffd700);
+      background: black;
       padding: 20px 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
     }
 
     header h1 {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: bold;
-      color: white;
     }
 
     header nav a {
       text-decoration: none;
-      color: white;
-      font-weight: bold;
       margin: 0 15px;
-      font-size: 16px;
-      transition: color 0.3s ease;
+      font-size: 20px;
+      transition: text-shadow 0.3s ease;
     }
 
     header nav a:hover {
-      color: #333;
+      text-shadow: 0 0 8px #ffd700;
     }
 
     /* Hero Section */
@@ -59,119 +61,92 @@
     .hero h2 {
       font-size: 48px;
       margin-bottom: 20px;
-      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
     }
 
     .hero button {
       padding: 15px 40px;
-      font-size: 18px;
+      font-size: 20px;
       background-color: #d4af37;
-      color: white;
+      color: black;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      transition: background 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      font-family: 'Brush Script MT', cursive;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(212, 175, 55, 0.6);
     }
 
     .hero button:hover {
+      transform: scale(1.1);
       background-color: #ffd700;
     }
 
-    /* Features Section */
-    .features {
+    /* Section Styles */
+    div {
       padding: 60px 20px;
-      background: #fff;
+      background: black;
       text-align: center;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     }
 
-    .features h2 {
-      font-size: 36px;
-      color: #d4af37;
+    div h2 {
+      font-size: 40px;
       margin-bottom: 20px;
     }
 
-    .features ul {
+    div ul {
       list-style: none;
       padding: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
     }
 
-    .features li {
-      background: #f9f8f4;
-      border: 2px solid #d4af37;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    div ul li {
+      margin: 10px 0;
+      font-size: 22px;
     }
 
     /* Products Section */
-    .products {
-      padding: 60px 20px;
-      background: #f8f5f0;
-      text-align: center;
-    }
-
-    .products h2 {
-      font-size: 36px;
-      color: #d4af37;
-      margin-bottom: 20px;
-    }
-
     .products img {
       width: 250px;
       margin: 10px;
       border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 6px rgba(212, 175, 55, 0.6);
     }
 
     .products img:hover {
-      transform: scale(1.05);
+      transform: scale(1.1);
+      box-shadow: 0 8px 12px rgba(212, 175, 55, 0.8);
     }
 
     /* Reviews Section */
-    .reviews {
-      padding: 60px 20px;
-      background: #fff;
-    }
-
-    .reviews h2 {
-      font-size: 36px;
-      color: #d4af37;
-      margin-bottom: 20px;
-    }
-
     .reviews blockquote {
       font-style: italic;
-      color: #555;
       margin: 20px auto;
       max-width: 600px;
-      background: #f8f5f0;
+      background: #1a1a1a;
       padding: 20px;
       border-radius: 8px;
       border-left: 5px solid #d4af37;
+      box-shadow: 0 4px 6px rgba(212, 175, 55, 0.5);
     }
 
     /* Footer Section */
     footer {
-      background: linear-gradient(to right, #d4af37, #ffd700);
+      background: black;
       padding: 20px;
       text-align: center;
-      color: white;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
     }
 
     footer a {
-      color: white;
       text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
+      font-size: 18px;
+      transition: text-shadow 0.3s ease;
     }
 
     footer a:hover {
-      color: #333;
+      text-shadow: 0 0 8px #ffd700;
     }
   </style>
 </head>
@@ -188,38 +163,38 @@
 </header>
 
 <section class="hero">
-  <h2>Unveiling Iconic Beauty with Maximum Power</h2>
+  <h2>Embrace Iconic Beauty</h2>
   <button>Shop Now</button>
 </section>
 
-<section class="features" id="features">
+<div id="features">
   <h2>Why Choose Imacx?</h2>
   <ul>
-    <li>Luxury Redefined with premium ingredients.</li>
-    <li>Scientifically Proven for visible results.</li>
-    <li>Sustainably Sourced and cruelty-free.</li>
+    <li>Luxury ingredients for maximum beauty impact.</li>
+    <li>Scientifically crafted for visible results.</li>
+    <li>Eco-friendly and cruelty-free formulations.</li>
     <li>Deep hydration for glowing skin.</li>
-    <li>Boosts natural radiance and fights aging.</li>
-    <li>Nourishes and strengthens hair and skin.</li>
+    <li>Boosts radiance and fights aging signs.</li>
+    <li>Perfectly designed for all skin types.</li>
   </ul>
-</section>
+</div>
 
-<section class="products" id="products">
-  <h2>Our Featured Products</h2>
+<div id="products">
+  <h2>Our Signature Products</h2>
   <img src="https://via.placeholder.com/250" alt="Product 1">
   <img src="https://via.placeholder.com/250" alt="Product 2">
   <img src="https://via.placeholder.com/250" alt="Product 3">
-</section>
+</div>
 
-<section class="reviews" id="reviews">
-  <h2>Customer Reviews</h2>
+<div id="reviews">
+  <h2>What Our Customers Say</h2>
   <blockquote>
-    “Imacx products are pure luxury. My skin feels rejuvenated!”
+    “Imacx products brought out the best version of my skin. Pure magic!”
   </blockquote>
   <blockquote>
-    “A must-have for anyone serious about beauty. Highly recommend!”
+    “A luxurious experience for my skin and soul. Highly recommended!”
   </blockquote>
-</section>
+</div>
 
 <footer>
   <p>&copy; 2025 Imacx Beauty Cosmetics. All rights reserved.</p>
