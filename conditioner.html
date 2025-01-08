@@ -49,70 +49,62 @@
     }
 
 
-/* Slider Section */
+/* Container for the entire slider */
 .product-slider {
+  position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   margin-bottom: 2rem;
-  position: relative; /* Ensure buttons are correctly placed */
+  width: 100%;
+  height: 50vh;  /* Image height as 50vh */
 }
 
-/* Slider Button Styles */
+/* Slider Button */
 .slider-btn {
-  background: #ffd700;
-  border: none;
-  color: #1c1c1c;
-  font-size: 1rem; /* Adjusted button size to be smaller */
-  cursor: pointer;
-  padding: 0.5rem; /* Reduced padding for smaller buttons */
-  border-radius: 50%; /* Round buttons */
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
-  transition: background 0.3s ease;
-  width: 30px; /* Set width and height for smaller buttons */
+  background: #ffd700;
+  border: none;
+  color: #1c1c1c;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;  /* Small round buttons */
+  width: 30px;
   height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-/* Hover effect for buttons */
-.slider-btn:hover {
-  background: #e0a700;
-}
-
-/* Positioning the left and right buttons */
 .slider-btn.left {
-  left: 10px; /* Positioned left */
+  left: 10px; /* Position button on the left */
 }
 
 .slider-btn.right {
-  right: 10px; /* Positioned right */
+  right: 10px; /* Position button on the right */
 }
 
-/* Slider Container */
+/* Image Container */
 .slider-container {
   overflow: hidden;
-  width: 100%; /* Full screen width */
+  width: 100%; /* Fit slider width to screen */
 }
 
-/* Image Slider Layout */
+/* Slider Images */
 .image-slider {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  width: 100%; /* Full width of the container */
 }
 
 .image-slider img {
-  height: 50vh; /* Image height set to 50% of the viewport height */
-  width: 100vw; /* Image width set to 100% of the viewport width */
-  object-fit: cover; /* Maintain aspect ratio and cover the container */
-  border-radius: 100px; /* Apply 100px border-radius to make rounded corners */
-  border: 15px solid #ffd700; /* Optional border styling */
+  width: 100vw;  /* Each image takes 100% of the viewport width */
+  height: 50vh;  /* Image height */
+  object-fit: cover;  /* Ensure images cover the container */
+  border-radius: 100px; /* Border radius for the images */
 }
+
+
+
 
  /* Product Details */
     .product-details {
@@ -509,47 +501,6 @@
     // Initialize default country to India
     countrySelect.dispatchEvent(new Event('change'));
     
-    // Get the elements for the image slider and buttons
-const slider = document.querySelector('.image-slider');
-const leftButton = document.querySelector('.slider-btn.left');
-const rightButton = document.querySelector('.slider-btn.right');
-
-// Get the number of images in the slider
-const images = document.querySelectorAll('.image-slider img');
-let currentIndex = 0; // Track the current image index
-
-// Function to show the previous image
-function showPrevImage() {
-  if (currentIndex > 0) {
-    currentIndex--;
-  } else {
-    currentIndex = images.length - 1; // Go to the last image if we're at the first one
-  }
-  updateSliderPosition();
-}
-
-// Function to show the next image
-function showNextImage() {
-  if (currentIndex < images.length - 1) {
-    currentIndex++;
-  } else {
-    currentIndex = 0; // Go to the first image if we're at the last one
-  }
-  updateSliderPosition();
-}
-
-// Update the slider position to show the correct image
-function updateSliderPosition() {
-  const offset = -currentIndex * 100; // Each image takes 100% of the width
-  slider.style.transform = `translateX(${offset}vw)`; // Move the slider to the correct position
-}
-
-// Add event listeners to buttons
-leftButton.addEventListener('click', showPrevImage);
-rightButton.addEventListener('click', showNextImage);
-    
-  
- 
 
   </script>
 </body>
