@@ -649,6 +649,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Country Selection Logic
   const countrySelect = document.getElementById("country");
+
   const paymentForms = {
     inr: document.getElementById("india-payment-form"),
     usd: document.getElementById("usa-payment-form"),
@@ -659,21 +660,22 @@ document.addEventListener("DOMContentLoaded", () => {
     zar: document.getElementById("south-africa-payment-form"),
   };
 
+  // Handle country selection and update price display
   countrySelect.addEventListener("change", (e) => {
     const selectedCountry = e.target.value;
     const selectedForm = paymentForms[selectedCountry];
 
-    // Hide all forms and display the selected form
+    // Hide all forms and show the selected one
     Object.values(paymentForms).forEach((form) => (form.style.display = "none"));
     if (selectedForm) selectedForm.style.display = "block";
 
-    // Update price display
+    // Update price based on selected country
     const rate = parseFloat(e.target.selectedOptions[0].dataset.rate);
     const amount = (6500 * rate).toFixed(2);
     document.querySelector(".price-display").textContent = `Price: ${amount} ${selectedCountry.toUpperCase()}`;
   });
 
-  // Trigger change to initialize
+  // Trigger country change to initialize
   countrySelect.dispatchEvent(new Event("change"));
 
   // Function to update prices dynamically for all product cards
@@ -702,13 +704,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Initialize pricing updates
+  updatePrices();
+
   // Function to handle "Buy Now" button click
   function buyNow(productName) {
     alert(`Redirecting to purchase page for ${productName}`);
   }
-
-  // Initialize pricing updates
-  updatePrices();
 
   // Image Slider Functionality
   const slider = document.querySelector('.image-slider');
@@ -788,7 +790,64 @@ document.addEventListener("DOMContentLoaded", () => {
     const walk = (x - startX) * 2; // Adjust scroll speed
     productLine.scrollLeft = scrollLeft - walk;
   });
+
+  // Add smooth scrolling functionality
+  const productLineScroller = document.querySelector(".product-line");
+
+  if (productLineScroller) {
+    let isDragging = false;
+    let startX, scrollLeft;
+
+    productLineScroller.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      startX = e.pageX - productLineScroller.offsetLeft;
+      scrollLeft = productLineScroller.scrollLeft;
+    });
+
+    productLineScroller.addEventListener("mouseleave", () => {
+      isDragging = false;
+    });
+
+    productLineScroller.addEventListener("mouseup", () => {
+      isDragging = false;
+    });
+
+    productLineScroller.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - productLineScroller.offsetLeft;
+      const walk = (x - startX) * 2; // Adjust scroll speed
+      productLineScroller.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch events
+    productLineScroller.addEventListener("touchstart", (e) => {
+      const touch = e.touches[0];
+      isDragging = true;
+      startX = touch.pageX - productLineScroller.offsetLeft;
+      scrollLeft = productLineScroller.scrollLeft;
+    });
+
+    productLineScroller.addEventListener("touchend", () => {
+      isDragging = false;
+    });
+
+    productLineScroller.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+      const touch = e.touches[0];
+      const x = touch.pageX - productLineScroller.offsetLeft;
+      const walk = (x - startX) * 2; // Adjust scroll speed
+      productLineScroller.scrollLeft = scrollLeft - walk;
+    });
+  }
+
+  // Ensure "Buy Now" buttons are displayed correctly
+  const buyButtons = document.querySelectorAll(".buy-button");
+  buyButtons.forEach((button) => {
+    button.style.display = "inline-block"; // Ensure the buttons are visible
+  });
 });
-      </script>
+
+</script>
 </body>
 </html>
