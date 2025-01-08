@@ -328,8 +328,7 @@
     }
   }
 
-
-   /* More Products Section */
+/* More Products Section */
 .more-products {
   background: #1c1c1c;
   color: #ffd700;
@@ -346,10 +345,8 @@
 
 /* Products container */
 .products-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  overflow: hidden;
+  overflow-x: hidden;
+  white-space: nowrap;
   position: relative;
 }
 
@@ -357,51 +354,47 @@
 .product-line {
   display: flex;
   gap: 1rem;
-  position: relative;
-  animation: scroll-horizontal 20s linear infinite;
+  animation: horizontalScroll 20s linear infinite;
 }
 
 /* Product Card Styling */
 .product-card {
-  width: calc(50% - 1rem);
-  background: linear-gradient(145deg, #4a4a4a, #282828);
-  border: 1px solid #ffd700;
+  width: calc(30% - 1rem);
+  height: auto;
+  background: linear-gradient(145deg, #9b870c, #ffd700);
+  border: 2px solid #ffd700;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
+  border-radius: 20px;
   overflow: hidden;
-  position: relative;
   text-align: center;
   padding: 1rem;
-  transform: rotateX(15deg) rotateY(-15deg);
+  display: inline-block;
+  position: relative;
+  transform: rotateY(10deg);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .product-card:hover {
-  transform: rotateX(0) rotateY(0);
+  transform: rotateY(0);
   box-shadow: 0px 8px 16px rgba(255, 215, 0, 0.6);
 }
 
 .product-card img {
   width: 100%;
-  height: auto;
+  height: 150px;
   object-fit: cover;
-  border-bottom: 1px solid #ffd700;
+  border-bottom: 2px solid #ffd700;
 }
 
 .product-card h3 {
   font-size: 1.2rem;
   margin: 0.5rem 0;
+  font-family: "Cursive", serif;
 }
 
 .product-card p {
   font-size: 0.9rem;
   color: #ffffff;
-}
-
-.product-card .discount {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #ff0000;
 }
 
 .product-card .view-product {
@@ -413,6 +406,7 @@
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
+  font-family: "Cursive", serif;
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
@@ -421,18 +415,27 @@
   color: #fff;
 }
 
+.product-card .discount {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #ff0000;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
 /* Horizontal Scrolling Animation */
-@keyframes scroll-horizontal {
+@keyframes horizontalScroll {
   0% {
     transform: translateX(0);
   }
-  50% {
-    transform: translateX(-50%);
-  }
   100% {
-    transform: translateX(0);
+    transform: translateX(-100%);
   }
-}  
+  }
+
+
+
      </style>
 </head>
 <body>
@@ -573,29 +576,23 @@
     <section class="more-products">
   <h2>More Products Available on Shop</h2>
   <div class="products-container">
-    <div class="product-line" id="line-1">
-      <!-- 11 Product Cards for Line 1 -->
+    <div class="product-line">
+      <!-- 22 Product Cards -->
       <div class="product-card">
         <img src="product1.jpg" alt="Product 1">
         <h3>Symmetry Fixing Serum</h3>
         <p>Sculpt your beauty</p>
-        <span class="discount">60% OFF</span>
         <a href="product1.html" class="view-product">View Product</a>
+        <span class="discount">60% OFF</span>
       </div>
-      <!-- Repeat similar product cards -->
-      <!-- Add 11 products in this line -->
-    </div>
-    <div class="product-line" id="line-2">
-      <!-- 11 Product Cards for Line 2 -->
       <div class="product-card">
-        <img src="product12.jpg" alt="Product 12">
+        <img src="product2.jpg" alt="Product 2">
         <h3>Muscle Toning Serum</h3>
         <p>Define and tone</p>
+        <a href="product2.html" class="view-product">View Product</a>
         <span class="discount">60% OFF</span>
-        <a href="product12.html" class="view-product">View Product</a>
       </div>
-      <!-- Repeat similar product cards -->
-      <!-- Add 11 products in this line -->
+      <!-- Add additional product cards here -->
     </div>
   </div>
 </section>
@@ -732,40 +729,57 @@ slider.addEventListener('touchend', () => {
 });
 
                                    
-  // Enable smooth scrolling for both product lines
-  const lines = document.querySelectorAll(".product-line");
+  // Enable smooth scrolling for the product line
+const productLine = document.querySelector(".product-line");
 
-  lines.forEach((line) => {
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+let isDown = false;
+let startX, scrollLeft;
 
-    line.addEventListener("mousedown", (e) => {
-      isDown = true;
-      line.classList.add("active");
-      startX = e.pageX - line.offsetLeft;
-      scrollLeft = line.scrollLeft;
-    });
+productLine.addEventListener("mousedown", (e) => {
+  isDown = true;
+  productLine.classList.add("active");
+  startX = e.pageX - productLine.offsetLeft;
+  scrollLeft = productLine.scrollLeft;
+});
 
-    line.addEventListener("mouseleave", () => {
-      isDown = false;
-      line.classList.remove("active");
-    });
+productLine.addEventListener("mouseleave", () => {
+  isDown = false;
+  productLine.classList.remove("active");
+});
 
-    line.addEventListener("mouseup", () => {
-      isDown = false;
-      line.classList.remove("active");
-    });
+productLine.addEventListener("mouseup", () => {
+  isDown = false;
+  productLine.classList.remove("active");
+});
 
-    line.addEventListener("mousemove", (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - line.offsetLeft;
-      const walk = (x - startX) * 2; // Scroll speed
-      line.scrollLeft = scrollLeft - walk;
-    });
-  });
+productLine.addEventListener("mousemove", (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - productLine.offsetLeft;
+  const walk = (x - startX) * 2; // Scroll speed
+  productLine.scrollLeft = scrollLeft - walk;
+});
 
+// Touch support for scrolling
+productLine.addEventListener("touchstart", (e) => {
+  const touch = e.touches[0];
+  isDown = true;
+  startX = touch.pageX - productLine.offsetLeft;
+  scrollLeft = productLine.scrollLeft;
+});
+
+productLine.addEventListener("touchend", () => {
+  isDown = false;
+});
+
+productLine.addEventListener("touchmove", (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const touch = e.touches[0];
+  const x = touch.pageX - productLine.offsetLeft;
+  const walk = (x - startX) * 2; // Scroll speed
+  productLine.scrollLeft = scrollLeft - walk;
+});
       </script>
 </body>
 </html>
