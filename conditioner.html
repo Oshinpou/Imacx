@@ -674,7 +674,41 @@ countrySelect.addEventListener("change", (e) => {
 // Trigger change to initialize
 countrySelect.dispatchEvent(new Event("change"));
     
-    
+ // Function to update price based on country selection
+function updatePrices() {
+  const productCards = document.querySelectorAll(".product-card");
+
+  productCards.forEach((card) => {
+    const select = card.querySelector(".country-select");
+    const priceDisplay = card.querySelector(".price-display");
+    const basePrice = 6500; // Base price in INR
+    const buyButton = card.querySelector(".buy-button");
+
+    // Update price and button text when the country changes
+    select.addEventListener("change", () => {
+      const selectedOption = select.options[select.selectedIndex];
+      const rate = parseFloat(selectedOption.getAttribute("data-rate"));
+      const currency = selectedOption.value.toUpperCase();
+
+      // Calculate new price
+      const newPrice = (basePrice * rate).toFixed(2);
+
+      // Update displayed price
+      priceDisplay.textContent = `Price: ${newPrice} ${currency}`;
+
+      // Update button with dynamic country
+      buyButton.textContent = `Buy Now (${currency})`;
+    });
+  });
+}
+
+// Function to handle "Buy Now" button click
+function buyNow(productName) {
+  alert(`Redirecting to purchase page for ${productName}`);
+}
+
+// Initialize pricing updates
+updatePrices();   
 
 const slider = document.querySelector('.image-slider');
 let startX, endX;
