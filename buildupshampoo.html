@@ -48,43 +48,39 @@
       padding: 2rem;
     }
 
-    /* Slider Section */
-    .product-slider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
+ /* Container for the entire slider */
+.product-slider {
+  position: relative;
+  width: 100%;
+  height: 50vh;  /* Image height as 50vh */
+  overflow: hidden; /* Hide overflowed images */
+}
 
-    .slider-btn {
-      background: #ffd700;
-      border: none;
-      color: #1c1c1c;
-      font-size: 2rem;
-      cursor: pointer;
-      padding: 0.1rem 1rem;
-      border-radius: 5px;
-    }
+/* Image Container */
+.slider-container {
+  display: flex;
+  transition: transform 0.3s ease; /* Smooth transition */
+  width: 100%;
+}
 
-    .slider-container {
-      overflow: hidden;
-      width: 100%;
-    }
+/* Slider Images */
+.image-slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
 
-    .image-slider {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
+.image-slider img {
+  width: 70vw;  /* Each image takes 100% of the viewport width */
+  height: 50vh;  /* Image height */
+  object-fit: cover;  /* Ensure images cover the container */
+  border-radius: 100px; /* Border radius for the images */
+  border: 15px solid #ffd700; /* Image border */
+}   
+    
+    
 
-    .image-slider img {
-      width: 100%;
-      max-width: 500px;
-      margin-right: 1rem;
-      border-radius: 10px;
-      border: 2px solid #ffd700;
-    }
-
-    /* Product Details */
+    
+ /* Product Details */
     .product-details {
       text-align: center;
     }
@@ -1075,6 +1071,45 @@ function createStar() {
 
 // Create stars at regular intervals
 setInterval(createStar, 100);
+  
+ const slider = document.querySelector('.image-slider');
+let startX, endX;
+let currentIndex = 0; // Track the current image index
+const images = document.querySelectorAll('.image-slider img');  // Get all images
+const totalImages = images.length;  // Total number of images
+
+// Function to update the slider position based on the current index
+function updateSliderPosition() {
+  const offset = -currentIndex * 100; // Move to the correct image (in vw)
+  slider.style.transform = `translateX(${offset}vw)`;  // Move the slider
+}
+
+// Touch start event to track the starting position
+slider.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX; // Get the starting touch position
+});
+
+// Touch move event to track the movement
+slider.addEventListener('touchmove', (e) => {
+  endX = e.touches[0].clientX; // Get the current touch position
+});
+
+// Touch end event to determine swipe direction
+slider.addEventListener('touchend', () => {
+  if (startX - endX > 50) {
+    // Swiped left (Next Image)
+    if (currentIndex < totalImages - 1) {
+      currentIndex++;
+    }
+  } else if (endX - startX > 50) {
+    // Swiped right (Previous Image)
+    if (currentIndex > 0) {
+      currentIndex--;
+    }
+  }
+  updateSliderPosition();  // Update the slider position
+}); 
+  
   </script>
 </body>
 </html>
