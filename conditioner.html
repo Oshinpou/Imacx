@@ -329,7 +329,110 @@
   }
 
 
-     
+   /* More Products Section */
+.more-products {
+  background: #1c1c1c;
+  color: #ffd700;
+  padding: 2rem;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.more-products h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+/* Products container */
+.products-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Product Line Styling */
+.product-line {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  animation: scroll-horizontal 20s linear infinite;
+}
+
+/* Product Card Styling */
+.product-card {
+  width: calc(50% - 1rem);
+  background: linear-gradient(145deg, #4a4a4a, #282828);
+  border: 1px solid #ffd700;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  padding: 1rem;
+  transform: rotateX(15deg) rotateY(-15deg);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.product-card:hover {
+  transform: rotateX(0) rotateY(0);
+  box-shadow: 0px 8px 16px rgba(255, 215, 0, 0.6);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-bottom: 1px solid #ffd700;
+}
+
+.product-card h3 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.product-card p {
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.product-card .discount {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.product-card .view-product {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #ffd700;
+  color: #1c1c1c;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.product-card .view-product:hover {
+  background: #ff6600;
+  color: #fff;
+}
+
+/* Horizontal Scrolling Animation */
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}  
      </style>
 </head>
 <body>
@@ -467,7 +570,38 @@
         <p>For external use only. Avoid contact with eyes.</p>
       </div>
 
-      <!-- FAQ Section -->
+    <section class="more-products">
+  <h2>More Products Available on Shop</h2>
+  <div class="products-container">
+    <div class="product-line" id="line-1">
+      <!-- 11 Product Cards for Line 1 -->
+      <div class="product-card">
+        <img src="product1.jpg" alt="Product 1">
+        <h3>Symmetry Fixing Serum</h3>
+        <p>Sculpt your beauty</p>
+        <span class="discount">60% OFF</span>
+        <a href="product1.html" class="view-product">View Product</a>
+      </div>
+      <!-- Repeat similar product cards -->
+      <!-- Add 11 products in this line -->
+    </div>
+    <div class="product-line" id="line-2">
+      <!-- 11 Product Cards for Line 2 -->
+      <div class="product-card">
+        <img src="product12.jpg" alt="Product 12">
+        <h3>Muscle Toning Serum</h3>
+        <p>Define and tone</p>
+        <span class="discount">60% OFF</span>
+        <a href="product12.html" class="view-product">View Product</a>
+      </div>
+      <!-- Repeat similar product cards -->
+      <!-- Add 11 products in this line -->
+    </div>
+  </div>
+</section>
+        
+        
+        <!-- FAQ Section -->
       <div class="faq">
         <h3>FAQs</h3>
         <div class="faq-item">
@@ -597,6 +731,41 @@ slider.addEventListener('touchend', () => {
   updateSliderPosition();  // Update the slider position
 });
 
-                                   </script>
+                                   
+  // Enable smooth scrolling for both product lines
+  const lines = document.querySelectorAll(".product-line");
+
+  lines.forEach((line) => {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    line.addEventListener("mousedown", (e) => {
+      isDown = true;
+      line.classList.add("active");
+      startX = e.pageX - line.offsetLeft;
+      scrollLeft = line.scrollLeft;
+    });
+
+    line.addEventListener("mouseleave", () => {
+      isDown = false;
+      line.classList.remove("active");
+    });
+
+    line.addEventListener("mouseup", () => {
+      isDown = false;
+      line.classList.remove("active");
+    });
+
+    line.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - line.offsetLeft;
+      const walk = (x - startX) * 2; // Scroll speed
+      line.scrollLeft = scrollLeft - walk;
+    });
+  });
+
+      </script>
 </body>
 </html>
