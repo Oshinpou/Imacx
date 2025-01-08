@@ -63,27 +63,34 @@
   background: #ffd700;
   border: none;
   color: #1c1c1c;
-  font-size: 1.2rem; /* Adjusted button size */
+  font-size: 1rem; /* Adjusted button size to be smaller */
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 100px; /* Round buttons with 100px border radius */
+  padding: 0.5rem; /* Reduced padding for smaller buttons */
+  border-radius: 50%; /* Round buttons */
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
   transition: background 0.3s ease;
+  width: 30px; /* Set width and height for smaller buttons */
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Hover effect for buttons */
 .slider-btn:hover {
   background: #e0a700;
 }
 
+/* Positioning the left and right buttons */
 .slider-btn.left {
-  left: 20px; /* Position the left button */
+  left: 10px; /* Positioned left */
 }
 
 .slider-btn.right {
-  right: 20px; /* Position the right button */
+  right: 10px; /* Positioned right */
 }
 
 /* Slider Container */
@@ -106,8 +113,8 @@
   border-radius: 100px; /* Apply 100px border-radius to make rounded corners */
   border: 15px solid #ffd700; /* Optional border styling */
 }
-  
-    /* Product Details */
+
+ /* Product Details */
     .product-details {
       text-align: center;
     }
@@ -502,54 +509,48 @@
     // Initialize default country to India
     countrySelect.dispatchEvent(new Event('change'));
     
-    // Image slider logic
-    const prevButton = document.getElementById('prev');
-    const nextButton = document.getElementById('next');
-    const imageSlider = document.getElementById('image-slider');
-    let index = 0;
+    // Get the elements for the image slider and buttons
+const slider = document.querySelector('.image-slider');
+const leftButton = document.querySelector('.slider-btn.left');
+const rightButton = document.querySelector('.slider-btn.right');
 
-    const images = imageSlider.getElementsByTagName('img');
-    const totalImages = images.length;
-
-    function updateSlider() {
-      const offset = -index * (images[0].width + 16); // 16px for margin-right
-      imageSlider.style.transform = `translateX(${offset}px)`;
-    }
-
-    prevButton.addEventListener('click', () => {
-      index = (index === 0) ? totalImages - 1 : index - 1;
-      updateSlider();
-    });
-
-    nextButton.addEventListener('click', () => {
-      index = (index === totalImages - 1) ? 0 : index + 1;
-      updateSlider();
-    });
-  
-  
- let currentIndex = 0;
+// Get the number of images in the slider
 const images = document.querySelectorAll('.image-slider img');
-const totalImages = images.length;
+let currentIndex = 0; // Track the current image index
 
-document.querySelector('.slider-btn.left').addEventListener('click', () => {
+// Function to show the previous image
+function showPrevImage() {
   if (currentIndex > 0) {
     currentIndex--;
-    updateSlider();
+  } else {
+    currentIndex = images.length - 1; // Go to the last image if we're at the first one
   }
-});
-
-document.querySelector('.slider-btn.right').addEventListener('click', () => {
-  if (currentIndex < totalImages - 1) {
-    currentIndex++;
-    updateSlider();
-  }
-});
-
-function updateSlider() {
-  const slider = document.querySelector('.image-slider');
-  const offset = -currentIndex * 100; // Move the slider by the current index
-  slider.style.transform = `translateX(${offset}%)`; // Adjust the translateX to change the slide
+  updateSliderPosition();
 }
+
+// Function to show the next image
+function showNextImage() {
+  if (currentIndex < images.length - 1) {
+    currentIndex++;
+  } else {
+    currentIndex = 0; // Go to the first image if we're at the last one
+  }
+  updateSliderPosition();
+}
+
+// Update the slider position to show the correct image
+function updateSliderPosition() {
+  const offset = -currentIndex * 100; // Each image takes 100% of the width
+  slider.style.transform = `translateX(${offset}vw)`; // Move the slider to the correct position
+}
+
+// Add event listeners to buttons
+leftButton.addEventListener('click', showPrevImage);
+rightButton.addEventListener('click', showNextImage);
+    
+  
+ 
+
   </script>
 </body>
 </html>
