@@ -52,42 +52,16 @@
 /* Container for the entire slider */
 .product-slider {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2rem;
   width: 100%;
   height: 50vh;  /* Image height as 50vh */
-}
-
-/* Slider Button */
-.slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #ffd700;
-  border: none;
-  color: #1c1c1c;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 50%;  /* Small round buttons */
-  width: 30px;
-  height: 30px;
-}
-
-.slider-btn.left {
-  left: 10px; /* Position button on the left */
-}
-
-.slider-btn.right {
-  right: 10px; /* Position button on the right */
+  overflow: hidden; /* Hide overflowed images */
 }
 
 /* Image Container */
 .slider-container {
-  overflow: hidden;
-  width: 100%; /* Fit slider width to screen */
+  display: flex;
+  transition: transform 0.3s ease; /* Smooth transition */
+  width: 100%;
 }
 
 /* Slider Images */
@@ -101,10 +75,9 @@
   height: 50vh;  /* Image height */
   object-fit: cover;  /* Ensure images cover the container */
   border-radius: 100px; /* Border radius for the images */
+  border: 15px solid #ffd700; /* Image border */
 }
-
-
-
+  
 
  /* Product Details */
     .product-details {
@@ -502,45 +475,44 @@
     countrySelect.dispatchEvent(new Event('change'));
     
 
-  // Get the elements for the image slider and buttons
 const slider = document.querySelector('.image-slider');
-const leftButton = document.querySelector('.slider-btn.left');
-const rightButton = document.querySelector('.slider-btn.right');
-
-// Get the number of images in the slider
-const images = document.querySelectorAll('.image-slider img');
+let startX, endX;
 let currentIndex = 0; // Track the current image index
+const images = document.querySelectorAll('.image-slider img');  // Get all images
+const totalImages = images.length;  // Total number of images
 
-// Function to show the previous image
-function showPrevImage() {
-  if (currentIndex > 0) {
-    currentIndex--;
-  } else {
-    currentIndex = images.length - 1; // Go to the last image if we're at the first one
-  }
-  updateSliderPosition();
-}
-
-// Function to show the next image
-function showNextImage() {
-  if (currentIndex < images.length - 1) {
-    currentIndex++;
-  } else {
-    currentIndex = 0; // Go to the first image if we're at the last one
-  }
-  updateSliderPosition();
-}
-
-// Update the slider position to show the correct image
+// Function to update the slider position based on the current index
 function updateSliderPosition() {
-  const offset = -currentIndex * 100; // Each image takes 100% of the width (in vw)
-  slider.style.transform = `translateX(${offset}vw)`; // Move the slider to the correct position
+  const offset = -currentIndex * 100; // Move to the correct image (in vw)
+  slider.style.transform = `translateX(${offset}vw)`;  // Move the slider
 }
 
-// Add event listeners to buttons
-leftButton.addEventListener('click', showPrevImage);
-rightButton.addEventListener('click', showNextImage);
-  
+// Touch start event to track the starting position
+slider.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX; // Get the starting touch position
+});
+
+// Touch move event to track the movement
+slider.addEventListener('touchmove', (e) => {
+  endX = e.touches[0].clientX; // Get the current touch position
+});
+
+// Touch end event to determine swipe direction
+slider.addEventListener('touchend', () => {
+  if (startX - endX > 50) {
+    // Swiped left (Next Image)
+    if (currentIndex < totalImages - 1) {
+      currentIndex++;
+    }
+  } else if (endX - startX > 50) {
+    // Swiped right (Previous Image)
+    if (currentIndex > 0) {
+      currentIndex--;
+    }
+  }
+  updateSliderPosition();  // Update the slider position
+});
+
                                    </script>
 </body>
 </html>
