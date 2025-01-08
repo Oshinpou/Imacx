@@ -14,27 +14,26 @@
       overflow-x: hidden;
     }
 
-    /* General header styling */
+ /* General header styling */
 .advertisement-header {
   width: 100%;
-  height: 50vh; /* Header height */
-  position: sticky; /* Makes the header stick to the top */
-  top: 0; /* Ensures the header stays at the top */
-  z-index: 1000; /* Keeps the header above other elements */
-  margin: 0; /* Removes any gaps */
-  padding: 0; /* Ensures no additional space inside */
+  height: 50vh; /* Adjust height as needed */
+  position: sticky; /* Makes it stick to the top */
+  top: 0; /* Ensures it stays at the top */
+  z-index: 1000; /* Keeps it above other content */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-size: cover;
-  background-position: center;
-  animation: slideImages 16s infinite;
-  border: none; /* Ensures no border adds extra space */
+  margin: 0; /* Removes any top/bottom margin */
+  padding: 0; /* Removes any padding */
+  background-size: cover; /* Ensures images fit the header */
+  background-position: center; /* Centers the background image */
+  animation: slideImages 16s infinite; /* Background image animation */
 }
 
-/* Animation for background images */
+/* Animation for sliding background images */
 @keyframes slideImages {
   0% {
     background-image: url('imas1.jpg');
@@ -65,7 +64,7 @@
   }
 }
 
-/* Glowing golden "imacx" text with bouncing typing animation */
+/* Glowing golden "imacx" text with animation */
 .advertisement-title {
   font-family: "Pacifico", cursive;
   font-size: 3rem;
@@ -75,10 +74,10 @@
   -webkit-background-clip: text;
   animation: glow 2s infinite, typing 4s steps(10, end) infinite alternate;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-  margin: 0; /* Removes any margin */
+  margin: 0;
 }
 
-/* Glow effect for "imacx" */
+/* Glow animation for "imacx" */
 @keyframes glow {
   0%, 100% {
     text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ff9900, 0 0 40px #ff6600;
@@ -88,7 +87,7 @@
   }
 }
 
-/* Typing and bouncing effect for "imacx" */
+/* Typing effect for "imacx" */
 @keyframes typing {
   0% {
     transform: scale(1);
@@ -104,18 +103,18 @@
   }
 }
 
-/* Marquee offer text */
+/* Marquee styling for the offer */
 .offer {
   font-size: 1.2rem;
   font-weight: bold;
   color: #ff0000;
-  margin-top: 1rem;
-  white-space: nowrap; /* Prevents text from breaking */
-}
+  white-space: nowrap; /* Prevents line breaks */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}   
 
-
-    
-    .brand-name {
+ .brand-name {
       font-size: 3rem;
       animation: sparkle 3s infinite;
       text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
@@ -335,14 +334,15 @@
 </head>
 <body>
   
-   <!-- Stars Rain Div -->
+   <header class="advertisement-header">
+  <h1 class="advertisement-title">imacx</h1>
+  <marquee class="offer">60% OFF on Products | Limited Offer!</marquee>
+</header>
 
-
-  <header>
-     
-     <h1 class="advertisement-header">imacx</h1>
-    <marquee class="offer">60% OFF on Product | Limited Offer!</marquee>
-  </header>
+<!-- Add some dummy content to test scrolling -->
+<div style="height: 200vh; padding: 1rem; background: #f0f0f0;">
+  <p>Scroll to test the sticky header...</p>
+</div>
 
   <main>
     <section class="product-slider">
