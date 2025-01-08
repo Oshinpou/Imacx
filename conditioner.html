@@ -350,93 +350,83 @@
   position: relative;
 }
 
-/* Product Line Styling */
+
 .product-line {
   display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   gap: 1rem;
-  animation: horizontalScroll 50s linear infinite;
-}
-
-/* Product Card Styling */
-.product-card {
-  width: 150px;
-  height: auto;
-  background: linear-gradient(145deg, #9b870c, #ffd700);
-  border: 2px solid #ffd700;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
-  border-radius: 20px;
-  overflow: hidden;
-  text-align: center;
   padding: 1rem;
-  display: inline-block;
-  position: relative;
-  transform: rotateY(10deg);
-  transition: transform 3.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  scroll-behavior: smooth;
 }
 
-.product-card:hover {
-  transform: rotateY(0);
-  box-shadow: 0px 8px 16px rgba(255, 215, 0, 0.6);
+.product-card {
+  flex: 0 0 auto;
+  width: 90vw; /* Adjust width to fit screen dynamically */
+  max-width: 300px; /* Ensure consistency across larger screens */
+  background: linear-gradient(145deg, #5a5a5a, #b8860b);
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: #fff;
+  position: relative;
+  animation: cardSlide 10s infinite linear;
 }
 
 .product-card img {
   width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-bottom: 2px solid #ffd700;
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: 1rem;
 }
 
 .product-card h3 {
   font-size: 1.2rem;
   margin: 0.5rem 0;
-  font-family: "Cursive", serif;
+  font-family: "Cursive", sans-serif;
 }
 
 .product-card p {
   font-size: 0.9rem;
-  color: #ffffff;
-}
-
-.product-card .view-product {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: #ffd700;
-  color: #1c1c1c;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  font-family: "Cursive", serif;
-  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-.product-card .view-product:hover {
-  background: #ff6600;
-  color: #fff;
+  margin: 0.5rem 0;
 }
 
 .product-card .discount {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  color: #ffd700;
   font-weight: bold;
-  color: #ff0000;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+  margin-bottom: 1rem;
 }
 
-/* Horizontal Scrolling Animation */
-@keyframes horizontalScroll {
+.product-card button {
+  padding: 0.5rem 1rem;
+  background: #ffd700;
+  border: none;
+  color: #1c1c1c;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.product-card button:hover {
+  background: #e6c200;
+}
+
+/* For smooth scrolling */
+.product-line::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for better aesthetics */
+}
+
+@keyframes cardSlide {
   0% {
     transform: translateX(0);
   }
   100% {
     transform: translateX(-100%);
   }
-  }
-
-
-
-     </style>
+}
+</style>
 </head>
 <body>
   
@@ -578,20 +568,24 @@
   <div class="products-container">
     <div class="product-line">
       <!-- 22 Product Cards -->
-      <div class="product-card">
-        <img src="product1.jpg" alt="Product 1">
-        <h3>Symmetry Fixing Serum</h3>
-        <p>Sculpt your beauty</p>
-        <a href="product1.html" class="view-product">View Product</a>
-        <span class="discount">60% OFF</span>
-      </div>
-      <div class="product-card">
-        <img src="product2.jpg" alt="Product 2">
-        <h3>Muscle Toning Serum</h3>
-        <p>Define and tone</p>
-        <a href="product2.html" class="view-product">View Product</a>
-        <span class="discount">60% OFF</span>
-      </div>
+      <div class="product-line">
+  <!-- Sample Product Cards -->
+  <div class="product-card">
+    <img src="product1.jpg" alt="Product 1">
+    <h3>Product 1</h3>
+    <p>Beautiful skin starts here.</p>
+    <p class="discount">60% OFF</p>
+    <button onclick="window.location.href='product1.html'">View Product</button>
+  </div>
+  <div class="product-card">
+    <img src="product2.jpg" alt="Product 2">
+    <h3>Product 2</h3>
+    <p>Your secret to glow.</p>
+    <p class="discount">60% OFF</p>
+    <button onclick="window.location.href='product2.html'">View Product</button>
+  </div>
+  <!-- Add up to 22 product cards similarly -->
+</div>
       <!-- Add additional product cards here -->
     </div>
   </div>
@@ -652,42 +646,34 @@
 
   <script>
     // Country Selection Logic
-    
-    const countrySelect = document.getElementById('country');
-    
-    // Payment forms for each country
-    const paymentForms = {
-      inr: document.getElementById('india-payment-form'),
-      usd: document.getElementById('usa-payment-form'),
-      jpy: document.getElementById('japan-payment-form'),
-      cny: document.getElementById('china-payment-form'),
-      eur: document.getElementById('europe-payment-form'),
-      aud: document.getElementById('australia-payment-form'),
-      zar: document.getElementById('south-africa-payment-form')
-    };
+  const countrySelect = document.getElementById("country");
 
-    // Event listener for country change
-    countrySelect.addEventListener('change', (e) => {
-      const selectedCountry = e.target.value;
-      const selectedForm = paymentForms[selectedCountry];
-      
-      // Hide all payment forms
-      Object.values(paymentForms).forEach(form => form.style.display = 'none');
-      
-      // Show the selected payment form
-      if (selectedForm) {
-        selectedForm.style.display = 'block';
-      }
-      
-      // Update price and payment link
-      const rate = e.target.selectedOptions[0].dataset.rate;
-      const amountInSelectedCurrency = (6500 * rate).toFixed(2);
-      const priceDisplay = document.querySelector('.price-display');
-      priceDisplay.textContent = `Price: ${amountInSelectedCurrency} ${e.target.options[e.target.selectedIndex].text}`;
-    });
+const paymentForms = {
+  inr: document.getElementById("india-payment-form"),
+  usd: document.getElementById("usa-payment-form"),
+  jpy: document.getElementById("japan-payment-form"),
+  cny: document.getElementById("china-payment-form"),
+  eur: document.getElementById("europe-payment-form"),
+  aud: document.getElementById("australia-payment-form"),
+  zar: document.getElementById("south-africa-payment-form"),
+};
 
-    // Initialize default country to India
-    countrySelect.dispatchEvent(new Event('change'));
+countrySelect.addEventListener("change", (e) => {
+  const selectedCountry = e.target.value;
+  const selectedForm = paymentForms[selectedCountry];
+
+  Object.values(paymentForms).forEach((form) => (form.style.display = "none"));
+
+  if (selectedForm) selectedForm.style.display = "block";
+
+  const rate = e.target.selectedOptions[0].dataset.rate;
+  const amount = (6500 * rate).toFixed(2);
+  document.querySelector(".price-display").textContent = `Price: ${amount} ${selectedCountry.toUpperCase()}`;
+});
+
+// Trigger change to initialize
+countrySelect.dispatchEvent(new Event("change"));
+    
     
 
 const slider = document.querySelector('.image-slider');
@@ -732,54 +718,52 @@ slider.addEventListener('touchend', () => {
   // Enable smooth scrolling for the product line
 const productLine = document.querySelector(".product-line");
 
-let isDown = false;
+let isDragging = false;
 let startX, scrollLeft;
 
+// Mouse Events
 productLine.addEventListener("mousedown", (e) => {
-  isDown = true;
-  productLine.classList.add("active");
+  isDragging = true;
   startX = e.pageX - productLine.offsetLeft;
   scrollLeft = productLine.scrollLeft;
 });
 
 productLine.addEventListener("mouseleave", () => {
-  isDown = false;
-  productLine.classList.remove("active");
+  isDragging = false;
 });
 
 productLine.addEventListener("mouseup", () => {
-  isDown = false;
-  productLine.classList.remove("active");
+  isDragging = false;
 });
 
 productLine.addEventListener("mousemove", (e) => {
-  if (!isDown) return;
+  if (!isDragging) return;
   e.preventDefault();
   const x = e.pageX - productLine.offsetLeft;
-  const walk = (x - startX) * 2; // Scroll speed
+  const walk = (x - startX) * 2; // Adjust scroll speed
   productLine.scrollLeft = scrollLeft - walk;
 });
 
-// Touch support for scrolling
+// Touch Events
 productLine.addEventListener("touchstart", (e) => {
   const touch = e.touches[0];
-  isDown = true;
+  isDragging = true;
   startX = touch.pageX - productLine.offsetLeft;
   scrollLeft = productLine.scrollLeft;
 });
 
 productLine.addEventListener("touchend", () => {
-  isDown = false;
+  isDragging = false;
 });
 
 productLine.addEventListener("touchmove", (e) => {
-  if (!isDown) return;
-  e.preventDefault();
+  if (!isDragging) return;
   const touch = e.touches[0];
   const x = touch.pageX - productLine.offsetLeft;
-  const walk = (x - startX) * 2; // Scroll speed
+  const walk = (x - startX) * 2; // Adjust scroll speed
   productLine.scrollLeft = scrollLeft - walk;
 });
+
       </script>
 </body>
 </html>
