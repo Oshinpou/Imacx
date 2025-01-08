@@ -661,7 +661,17 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Handle country selection and update price display
-  countrySelect.addEventListener("change", (e) => {
+ document.getElementById('country').addEventListener('change', function() {
+    // Hide all payment forms initially
+    const paymentForms = document.querySelectorAll('[id$="-payment-form"]');
+    paymentForms.forEach(form => form.style.display = 'none');
+    
+    // Show the selected country's payment form
+    const selectedCountry = this.value;
+    document.getElementById(`${selectedCountry}-payment-form`).style.display = 'block';
+});
+  
+    countrySelect.addEventListener("change", (e) => {
     const selectedCountry = e.target.value;
     const selectedForm = paymentForms[selectedCountry];
 
