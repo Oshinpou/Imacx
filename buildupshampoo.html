@@ -989,127 +989,77 @@ For external use only. Avoid direct contact with eyes. In case of contact, rinse
 
 
   <script>
-    // Country Selection Logic
     
-    const countrySelect = document.getElementById('country');
-    
-    // Payment forms for each country
-    const paymentForms = {
-      inr: document.getElementById('india-payment-form'),
-      usd: document.getElementById('usa-payment-form'),
-      jpy: document.getElementById('japan-payment-form'),
-      cny: document.getElementById('china-payment-form'),
-      eur: document.getElementById('europe-payment-form'),
-      aud: document.getElementById('australia-payment-form'),
-      zar: document.getElementById('south-africa-payment-form')
-    };
+   // Country Selection Logic
+const countrySelect = document.getElementById('country');
+const paymentForms = {
+  inr: document.getElementById('india-payment-form'),
+  usd: document.getElementById('usa-payment-form'),
+  jpy: document.getElementById('japan-payment-form'),
+  cny: document.getElementById('china-payment-form'),
+  eur: document.getElementById('europe-payment-form'),
+  aud: document.getElementById('australia-payment-form'),
+  zar: document.getElementById('south-africa-payment-form'),
+};
 
-    // Event listener for country change
-    countrySelect.addEventListener('change', (e) => {
-      const selectedCountry = e.target.value;
-      const selectedForm = paymentForms[selectedCountry];
-      
-      // Hide all payment forms
-      Object.values(paymentForms).forEach(form => form.style.display = 'none');
-      
-      // Show the selected payment form
-      if (selectedForm) {
-        selectedForm.style.display = 'block';
-      }
-      
-      // Update price and payment link
-      const rate = e.target.selectedOptions[0].dataset.rate;
-      const amountInSelectedCurrency = (6500 * rate).toFixed(2);
-      const priceDisplay = document.querySelector('.price-display');
-      priceDisplay.textContent = `Price: ${amountInSelectedCurrency} ${e.target.options[e.target.selectedIndex].text}`;
-    });
+// Ensure all forms are hidden initially
+Object.values(paymentForms).forEach((form) => (form.style.display = 'none'));
 
-    // Initialize default country to India
-    countrySelect.dispatchEvent(new Event('change'));
-    
-    // Image slider logic
-    const prevButton = document.getElementById('prev');
-    const nextButton = document.getElementById('next');
-    const imageSlider = document.getElementById('image-slider');
-    let index = 0;
+// Country selection logic
+countrySelect.addEventListener('change', (e) => {
+  const selectedCountry = e.target.value;
+  const selectedForm = paymentForms[selectedCountry];
 
-    const images = imageSlider.getElementsByTagName('img');
-    const totalImages = images.length;
+  // Hide all payment forms
+  Object.values(paymentForms).forEach((form) => (form.style.display = 'none'));
 
-    function updateSlider() {
-      const offset = -index * (images[0].width + 16); // 16px for margin-right
-      imageSlider.style.transform = `translateX(${offset}px)`;
-    }
-
-    prevButton.addEventListener('click', () => {
-      index = (index === 0) ? totalImages - 1 : index - 1;
-      updateSlider();
-    });
-
-    nextButton.addEventListener('click', () => {
-      index = (index === totalImages - 1) ? 0 : index + 1;
-      updateSlider();
-    });
-  
-  const starContainer = document.getElementById('star-container');
-
-function createStar() {
-    const star = document.createElement('div');
-    star.classList.add('star');
-
-    // Randomize position and animation duration
-    star.style.left = Math.random() * 100 + 'vw';
-    star.style.animationDuration = Math.random() * 3 + 2 + 's';
-
-    starContainer.appendChild(star);
-
-    // Remove the star after animation ends
-    setTimeout(() => {
-        star.remove();
-    }, 5000);
-}
-
-// Create stars at regular intervals
-setInterval(createStar, 100);
-  
- const slider = document.querySelector('.image-slider');
-let startX, endX;
-let currentIndex = 0; // Track the current image index
-const images = document.querySelectorAll('.image-slider img');  // Get all images
-const totalImages = images.length;  // Total number of images
-
-// Function to update the slider position based on the current index
-function updateSliderPosition() {
-  const offset = -currentIndex * 100; // Move to the correct image (in vw)
-  slider.style.transform = `translateX(${offset}vw)`;  // Move the slider
-}
-
-// Touch start event to track the starting position
-slider.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX; // Get the starting touch position
-});
-
-// Touch move event to track the movement
-slider.addEventListener('touchmove', (e) => {
-  endX = e.touches[0].clientX; // Get the current touch position
-});
-
-// Touch end event to determine swipe direction
-slider.addEventListener('touchend', () => {
-  if (startX - endX > 50) {
-    // Swiped left (Next Image)
-    if (currentIndex < totalImages - 1) {
-      currentIndex++;
-    }
-  } else if (endX - startX > 50) {
-    // Swiped right (Previous Image)
-    if (currentIndex > 0) {
-      currentIndex--;
-    }
+  // Show the selected payment form
+  if (selectedForm) {
+    selectedForm.style.display = 'block';
   }
-  updateSliderPosition();  // Update the slider position
-}); 
-  
-  </script>
+
+  // Update the price display
+  const rate = e.target.selectedOptions[0].dataset.rate;
+  const amountInSelectedCurrency = (6500 * rate).toFixed(2);
+  const priceDisplay = document.querySelector('.price-display');
+  priceDisplay.textContent = `Price: ${amountInSelectedCurrency} ${e.target.options[e.target.selectedIndex].text}`;
+});
+
+// Trigger the default selection
+countrySelect.dispatchEvent(new Event('change'));
+
+// Image Slider Logic
+const slider = document.querySelector('.image-slider');
+let startX, endX;
+let currentIndex = 0;
+const images = document.querySelectorAll('.image-slider img');
+const totalImages = images.length;
+
+// Function to update slider position
+function updateSliderPosition() {
+  const offset = -currentIndex * 100; // Slide by 100% width
+  slider.style.transform = `translateX(${offset}vw)`;
+}
+
+// Touch event listeners
+slider.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+
+slider.addEventListener('touchend', (e) => {
+  endX = e.changedTouches[0].clientX;
+
+  if (startX - endX > 50) {
+    // Swipe left
+    currentIndex = (currentIndex + 1) % totalImages;
+  } else if (endX - startX > 50) {
+    // Swipe right
+    currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+  }
+  updateSliderPosition();
+});   
+
+
+ </script>
 </body>
 </html>
