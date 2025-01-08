@@ -57,105 +57,103 @@
     }
 
     /* Product Section */
-    .products-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
-      gap: 30px; /* Space between cards */
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  gap: 30px; /* Space between cards */
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
 
-    /* Product Card Styling */
-    .product-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 20px;
-      text-align: center;
-      color: #FFD700;
-      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+/* Product Card Styling */
+.product-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  color: #FFD700;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
 
-    .product-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4);
-    }
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4);
+}
 
-    /* Image Container */
-    .image-container {
-      position: relative;
-      width: 100%;
-      height: 200px;
-      overflow: hidden;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
+/* Image Container */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
 
-    /* Image Styling */
-    .image-container {
-      display: flex; /* Ensure horizontal display */
-      width: 1000%; /* 3 images in total */
-      animation: slide-horizontal 15s infinite; /* Smooth slideshow animation */
-    }
+/* Image Styling */
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    .image-container img {
-      width: 100.00%; /* Each image takes 1/3 of the container's width */
-      height: 100%;
-      object-fit: cover; /* Ensure the image fully covers the div */
-    }
+/* Product Title */
+.product-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #FFD700;
+}
 
-    /* Horizontal Animation */
-    @keyframes slide-horizontal {
-     0% {
-        transform: translateX(0);
-      }
-      99.33% {
-        transform: translateX(-100%);
-      }
-      99.66% {
-        transform: translateX(-200%);
-      }
+.product-description {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #fff;
+}
 
-      100% {
-        transform: translateX(0);
-      }
-    
-    }
+.explore-button {
+  background: linear-gradient(to right, #FFD700, #FFC300);
+  color: #000;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.3s, box-shadow 0.3s;
+  display: inline-block;
+  box-shadow: 0 4px 8px rgba(255, 215, 0, 0.6);
+}
 
-    /* Product Title */
-    .product-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #FFD700;
-    }
+.explore-button:hover {
+  background: linear-gradient(to right, #FFC300, #FFD700);
+  box-shadow: 0 8px 16px rgba(255, 215, 0, 1);
+}
 
-    .product-description {
-      font-size: 1rem;
-      margin-bottom: 15px;
-      color: #fff;
-    }
+/* Responsive Design */
+@media (max-width: 768px) {
+  .products-container {
+    grid-template-columns: 1fr; /* 1 card per row on small screens */
+  }
+}
 
-    .explore-button {
-      background: linear-gradient(to right, #FFD700, #FFC300);
-      color: #000;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 25px;
-      font-size: 1rem;
-      font-weight: bold;
-      transition: background 0.3s, box-shadow 0.3s;
-      display: inline-block;
-      box-shadow: 0 4px 8px rgba(255, 215, 0, 0.6);
-    }
+@media (max-width: 480px) {
+  .product-title {
+    font-size: 1.2rem;
+  }
 
-    .explore-button:hover {
-      background: linear-gradient(to right, #FFC300, #FFD700);
-      box-shadow: 0 8px 16px rgba(255, 215, 0, 1);
-    }
-  </style>
+  .product-description {
+    font-size: 0.9rem;
+  }
+
+  .explore-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+</style>
 </head>
 <body>
   <div class="stars-container"></div> <!-- Stars Animation -->
