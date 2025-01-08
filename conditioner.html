@@ -48,6 +48,7 @@
       padding: 2rem;
     }
 
+
 /* Slider Section */
 .product-slider {
   display: flex;
@@ -62,10 +63,10 @@
   background: #ffd700;
   border: none;
   color: #1c1c1c;
-  font-size: 1.2rem; /* Reduced button size */
+  font-size: 1.2rem; /* Adjusted button size */
   cursor: pointer;
   padding: 0.5rem 1rem;
-  border-radius: 50%;
+  border-radius: 100px; /* Round buttons with 100px border radius */
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -78,11 +79,11 @@
 }
 
 .slider-btn.left {
-  left: 20px; /* Position left button */
+  left: 20px; /* Position the left button */
 }
 
 .slider-btn.right {
-  right: 20px; /* Position right button */
+  right: 20px; /* Position the right button */
 }
 
 /* Slider Container */
@@ -95,15 +96,15 @@
 .image-slider {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  width: 100%; /* Ensure full container width */
+  width: 100%; /* Full width of the container */
 }
 
 .image-slider img {
-  height: 100vh; /* Image height fits the screen */
-  width: 100vw; /* Image width fits the screen */
+  height: 50vh; /* Image height set to 50% of the viewport height */
+  width: 100vw; /* Image width set to 100% of the viewport width */
   object-fit: cover; /* Maintain aspect ratio and cover the container */
-  border-radius: 10px;
-  border: 15px solid #ffd700;
+  border-radius: 100px; /* Apply 100px border-radius to make rounded corners */
+  border: 15px solid #ffd700; /* Optional border styling */
 }
   
     /* Product Details */
@@ -526,6 +527,29 @@
     });
   
   
+ let currentIndex = 0;
+const images = document.querySelectorAll('.image-slider img');
+const totalImages = images.length;
+
+document.querySelector('.slider-btn.left').addEventListener('click', () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    updateSlider();
+  }
+});
+
+document.querySelector('.slider-btn.right').addEventListener('click', () => {
+  if (currentIndex < totalImages - 1) {
+    currentIndex++;
+    updateSlider();
+  }
+});
+
+function updateSlider() {
+  const slider = document.querySelector('.image-slider');
+  const offset = -currentIndex * 100; // Move the slider by the current index
+  slider.style.transform = `translateX(${offset}%)`; // Adjust the translateX to change the slide
+}
   </script>
 </body>
 </html>
