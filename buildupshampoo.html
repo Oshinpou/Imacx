@@ -14,15 +14,106 @@
       overflow-x: hidden;
     }
    
-    header {
-      background: linear-gradient(45deg, #b3b3b3, #e6e6e6);
-      color: #ffd700;
-      text-align: center;
-      padding: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+  /* General header styling */
+.advertisement-header {
+  width: 100%;
+  height: 50vh; /* Adjust height as needed */
+  position: sticky; /* Makes it stick to the top */
+  top: 0; /* Ensures it stays at the top */
+  z-index: 1000; /* Keeps it above other content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0; /* Removes any top/bottom margin */
+  padding: 0; /* Removes any padding */
+  background-size: cover; /* Ensures images fit the header */
+  background-position: center; /* Centers the background image */
+  animation: slideImages 16s infinite; /* Background image animation */
+}
+
+/* Animation for sliding background images */
+@keyframes slideImages {
+  0% {
+    background-image: url('imas1.jpg');
+  }
+  12.5% {
+    background-image: url('imas2.jpg');
+  }
+  25% {
+    background-image: url('imas3.jpg');
+  }
+  37.5% {
+    background-image: url('imas4.jpg');
+  }
+  50% {
+    background-image: url('imas5.jpg');
+  }
+  62.5% {
+    background-image: url('imas6.jpg');
+  }
+  75% {
+    background-image: url('imas7.jpg');
+  }
+  87.5% {
+    background-image: url('imas8.jpg');
+  }
+  100% {
+    background-image: url('imas1.jpg');
+  }
+}
+
+/* Glowing golden "imacx" text with animation */
+.advertisement-title {
+  font-family: "Pacifico", cursive;
+  font-size: 3rem;
+  color: transparent;
+  background: linear-gradient(45deg, #ffd700, #ffffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: glow 2s infinite, typing 4s steps(10, end) infinite alternate;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+  margin: 0;
+}
+
+/* Glow animation for "imacx" */
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ff9900, 0 0 40px #ff6600;
+  }
+  50% {
+    text-shadow: 0 0 20px #ffffff, 0 0 30px #ffd700, 0 0 40px #ff9900, 0 0 50px #ff6600;
+  }
+}
+
+/* Typing effect for "imacx" */
+@keyframes typing {
+  0% {
+    transform: scale(1);
+    letter-spacing: 1px;
+  }
+  50% {
+    transform: scale(1.1);
+    letter-spacing: 2px;
+  }
+  100% {
+    transform: scale(1);
+    letter-spacing: 1px;
+  }
+}
+
+/* Marquee styling for the offer */
+.offer {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff0000;
+  white-space: nowrap; /* Prevents line breaks */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+    
 
     .brand-name {
       font-size: 3rem;
@@ -353,7 +444,7 @@
 
   <header>
      
-     <h1 class="brand-name">imacx</h1>
+     <h1 class="advertisement-header">imacx</h1>
     <marquee class="offer">60% OFF on Product | Limited Offer!</marquee>
   </header>
 
