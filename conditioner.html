@@ -48,22 +48,26 @@
       padding: 2rem;
     }
 
-    /* Slider Section */
+/* Slider Section */
 .product-slider {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
+  position: relative; /* For positioning slider controls */
 }
 
+/* Slider Button Styles */
 .slider-btn {
   background: #ffd700;
   border: none;
   color: #1c1c1c;
-  font-size: 1.5rem; /* Reduced font size for smaller buttons */
+  font-size: 1.5rem; /* Smaller button font size */
   cursor: pointer;
   padding: 0.5rem 1rem;
-  border-radius: 5000px;
+  border-radius: 500px;
+  position: absolute;
+  z-index: 10;
   transition: background 0.3s ease;
 }
 
@@ -71,22 +75,31 @@
   background: #e0a700;
 }
 
-.slider-container {
-  overflow: hidden;
-  width: 100%;
+.slider-btn.left {
+  left: 10px; /* Position left button */
 }
 
+.slider-btn.right {
+  right: 10px; /* Position right button */
+}
+
+/* Slider Container */
+.slider-container {
+  overflow: hidden;
+  width: 100%; /* Slider width fits the screen */
+}
+
+/* Image Slider Layout */
 .image-slider {
   display: flex;
   transition: transform 0.5s ease-in-out;
 }
 
 .image-slider img {
-  height: 50vh; /* Ensure the image height fits the screen */
-  width: 50000%; /* Maintain aspect ratio */
-  object-fit: cover; /* Ensures the image covers the container without distortion */
-  margin-right: none;
-  border-radius: 100px;
+  height: 100vh; /* Image height fits the screen */
+  width: 100vw; /* Image width fits the screen */
+  object-fit: cover; /* Cover the container without distortion */
+  border-radius: 10px;
   border: 15px solid #ffd700;
 }
     
