@@ -645,159 +645,150 @@
 
 
   <script>
-    // Country Selection Logic
-  const countrySelect = document.getElementById("country");
-
-const paymentForms = {
-  inr: document.getElementById("india-payment-form"),
-  usd: document.getElementById("usa-payment-form"),
-  jpy: document.getElementById("japan-payment-form"),
-  cny: document.getElementById("china-payment-form"),
-  eur: document.getElementById("europe-payment-form"),
-  aud: document.getElementById("australia-payment-form"),
-  zar: document.getElementById("south-africa-payment-form"),
-};
-
-countrySelect.addEventListener("change", (e) => {
-  const selectedCountry = e.target.value;
-  const selectedForm = paymentForms[selectedCountry];
-
-  Object.values(paymentForms).forEach((form) => (form.style.display = "none"));
-
-  if (selectedForm) selectedForm.style.display = "block";
-
-  const rate = e.target.selectedOptions[0].dataset.rate;
-  const amount = (6500 * rate).toFixed(2);
-  document.querySelector(".price-display").textContent = `Price: ${amount} ${selectedCountry.toUpperCase()}`;
-});
-
-// Trigger change to initialize
-countrySelect.dispatchEvent(new Event("change"));
     
- // Function to update price based on country selection
-function updatePrices() {
-  const productCards = document.querySelectorAll(".product-card");
+document.addEventListener("DOMContentLoaded", () => {
+  // Country Selection Logic
+  const countrySelect = document.getElementById("country");
+  const paymentForms = {
+    inr: document.getElementById("india-payment-form"),
+    usd: document.getElementById("usa-payment-form"),
+    jpy: document.getElementById("japan-payment-form"),
+    cny: document.getElementById("china-payment-form"),
+    eur: document.getElementById("europe-payment-form"),
+    aud: document.getElementById("australia-payment-form"),
+    zar: document.getElementById("south-africa-payment-form"),
+  };
 
-  productCards.forEach((card) => {
-    const select = card.querySelector(".country-select");
-    const priceDisplay = card.querySelector(".price-display");
-    const basePrice = 6500; // Base price in INR
-    const buyButton = card.querySelector(".buy-button");
+  countrySelect.addEventListener("change", (e) => {
+    const selectedCountry = e.target.value;
+    const selectedForm = paymentForms[selectedCountry];
 
-    // Update price and button text when the country changes
-    select.addEventListener("change", () => {
-      const selectedOption = select.options[select.selectedIndex];
-      const rate = parseFloat(selectedOption.getAttribute("data-rate"));
-      const currency = selectedOption.value.toUpperCase();
+    // Hide all forms and display the selected form
+    Object.values(paymentForms).forEach((form) => (form.style.display = "none"));
+    if (selectedForm) selectedForm.style.display = "block";
 
-      // Calculate new price
-      const newPrice = (basePrice * rate).toFixed(2);
-
-      // Update displayed price
-      priceDisplay.textContent = `Price: ${newPrice} ${currency}`;
-
-      // Update button with dynamic country
-      buyButton.textContent = `Buy Now (${currency})`;
-    });
+    // Update price display
+    const rate = parseFloat(e.target.selectedOptions[0].dataset.rate);
+    const amount = (6500 * rate).toFixed(2);
+    document.querySelector(".price-display").textContent = `Price: ${amount} ${selectedCountry.toUpperCase()}`;
   });
-}
 
-// Function to handle "Buy Now" button click
-function buyNow(productName) {
-  alert(`Redirecting to purchase page for ${productName}`);
-}
+  // Trigger change to initialize
+  countrySelect.dispatchEvent(new Event("change"));
 
-// Initialize pricing updates
-updatePrices();   
+  // Function to update prices dynamically for all product cards
+  function updatePrices() {
+    const productCards = document.querySelectorAll(".product-card");
 
-const slider = document.querySelector('.image-slider');
-let startX, endX;
-let currentIndex = 0; // Track the current image index
-const images = document.querySelectorAll('.image-slider img');  // Get all images
-const totalImages = images.length;  // Total number of images
+    productCards.forEach((card) => {
+      const select = card.querySelector(".country-select");
+      const priceDisplay = card.querySelector(".price-display");
+      const basePrice = 6500; // Base price in INR
+      const buyButton = card.querySelector(".buy-button");
 
-// Function to update the slider position based on the current index
-function updateSliderPosition() {
-  const offset = -currentIndex * 100; // Move to the correct image (in vw)
-  slider.style.transform = `translateX(${offset}vw)`;  // Move the slider
-}
+      // Update price and button text on country selection change
+      select.addEventListener("change", () => {
+        const selectedOption = select.options[select.selectedIndex];
+        const rate = parseFloat(selectedOption.getAttribute("data-rate"));
+        const currency = selectedOption.value.toUpperCase();
 
-// Touch start event to track the starting position
-slider.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX; // Get the starting touch position
-});
+        // Calculate new price
+        const newPrice = (basePrice * rate).toFixed(2);
 
-// Touch move event to track the movement
-slider.addEventListener('touchmove', (e) => {
-  endX = e.touches[0].clientX; // Get the current touch position
-});
+        // Update displayed price and button text
+        priceDisplay.textContent = `Price: ${newPrice} ${currency}`;
+        buyButton.textContent = `Buy Now (${currency})`;
+      });
+    });
+  }
 
-// Touch end event to determine swipe direction
-slider.addEventListener('touchend', () => {
-  if (startX - endX > 50) {
-    // Swiped left (Next Image)
-    if (currentIndex < totalImages - 1) {
+  // Function to handle "Buy Now" button click
+  function buyNow(productName) {
+    alert(`Redirecting to purchase page for ${productName}`);
+  }
+
+  // Initialize pricing updates
+  updatePrices();
+
+  // Image Slider Functionality
+  const slider = document.querySelector('.image-slider');
+  let startX, endX;
+  let currentIndex = 0;
+  const images = document.querySelectorAll('.image-slider img');
+  const totalImages = images.length;
+
+  function updateSliderPosition() {
+    const offset = -currentIndex * 100; // Move to the correct image
+    slider.style.transform = `translateX(${offset}vw)`;
+  }
+
+  slider.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener('touchmove', (e) => {
+    endX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener('touchend', () => {
+    if (startX - endX > 50 && currentIndex < totalImages - 1) {
+      // Swiped left (Next Image)
       currentIndex++;
-    }
-  } else if (endX - startX > 50) {
-    // Swiped right (Previous Image)
-    if (currentIndex > 0) {
+    } else if (endX - startX > 50 && currentIndex > 0) {
+      // Swiped right (Previous Image)
       currentIndex--;
     }
-  }
-  updateSliderPosition();  // Update the slider position
+    updateSliderPosition();
+  });
+
+  // Smooth Scrolling for Product Line
+  const productLine = document.querySelector(".product-line");
+  let isDragging = false;
+  let startX, scrollLeft;
+
+  // Mouse Events
+  productLine.addEventListener("mousedown", (e) => {
+    isDragging = true;
+    startX = e.pageX - productLine.offsetLeft;
+    scrollLeft = productLine.scrollLeft;
+  });
+
+  productLine.addEventListener("mouseleave", () => {
+    isDragging = false;
+  });
+
+  productLine.addEventListener("mouseup", () => {
+    isDragging = false;
+  });
+
+  productLine.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - productLine.offsetLeft;
+    const walk = (x - startX) * 2; // Adjust scroll speed
+    productLine.scrollLeft = scrollLeft - walk;
+  });
+
+  // Touch Events
+  productLine.addEventListener("touchstart", (e) => {
+    const touch = e.touches[0];
+    isDragging = true;
+    startX = touch.pageX - productLine.offsetLeft;
+    scrollLeft = productLine.scrollLeft;
+  });
+
+  productLine.addEventListener("touchend", () => {
+    isDragging = false;
+  });
+
+  productLine.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    const x = touch.pageX - productLine.offsetLeft;
+    const walk = (x - startX) * 2; // Adjust scroll speed
+    productLine.scrollLeft = scrollLeft - walk;
+  });
 });
-
-                                   
-  // Enable smooth scrolling for the product line
-const productLine = document.querySelector(".product-line");
-
-let isDragging = false;
-let startX, scrollLeft;
-
-// Mouse Events
-productLine.addEventListener("mousedown", (e) => {
-  isDragging = true;
-  startX = e.pageX - productLine.offsetLeft;
-  scrollLeft = productLine.scrollLeft;
-});
-
-productLine.addEventListener("mouseleave", () => {
-  isDragging = false;
-});
-
-productLine.addEventListener("mouseup", () => {
-  isDragging = false;
-});
-
-productLine.addEventListener("mousemove", (e) => {
-  if (!isDragging) return;
-  e.preventDefault();
-  const x = e.pageX - productLine.offsetLeft;
-  const walk = (x - startX) * 2; // Adjust scroll speed
-  productLine.scrollLeft = scrollLeft - walk;
-});
-
-// Touch Events
-productLine.addEventListener("touchstart", (e) => {
-  const touch = e.touches[0];
-  isDragging = true;
-  startX = touch.pageX - productLine.offsetLeft;
-  scrollLeft = productLine.scrollLeft;
-});
-
-productLine.addEventListener("touchend", () => {
-  isDragging = false;
-});
-
-productLine.addEventListener("touchmove", (e) => {
-  if (!isDragging) return;
-  const touch = e.touches[0];
-  const x = touch.pageX - productLine.offsetLeft;
-  const walk = (x - startX) * 2; // Adjust scroll speed
-  productLine.scrollLeft = scrollLeft - walk;
-});
-
       </script>
 </body>
 </html>
