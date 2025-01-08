@@ -502,6 +502,45 @@
     countrySelect.dispatchEvent(new Event('change'));
     
 
-  </script>
+  // Get the elements for the image slider and buttons
+const slider = document.querySelector('.image-slider');
+const leftButton = document.querySelector('.slider-btn.left');
+const rightButton = document.querySelector('.slider-btn.right');
+
+// Get the number of images in the slider
+const images = document.querySelectorAll('.image-slider img');
+let currentIndex = 0; // Track the current image index
+
+// Function to show the previous image
+function showPrevImage() {
+  if (currentIndex > 0) {
+    currentIndex--;
+  } else {
+    currentIndex = images.length - 1; // Go to the last image if we're at the first one
+  }
+  updateSliderPosition();
+}
+
+// Function to show the next image
+function showNextImage() {
+  if (currentIndex < images.length - 1) {
+    currentIndex++;
+  } else {
+    currentIndex = 0; // Go to the first image if we're at the last one
+  }
+  updateSliderPosition();
+}
+
+// Update the slider position to show the correct image
+function updateSliderPosition() {
+  const offset = -currentIndex * 100; // Each image takes 100% of the width (in vw)
+  slider.style.transform = `translateX(${offset}vw)`; // Move the slider to the correct position
+}
+
+// Add event listeners to buttons
+leftButton.addEventListener('click', showPrevImage);
+rightButton.addEventListener('click', showNextImage);
+  
+                                   </script>
 </body>
 </html>
