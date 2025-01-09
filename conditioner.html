@@ -13,8 +13,8 @@
       color: #ffffff;
       overflow-x: hidden;
     }
-
- /* General header styling */
+   
+  /* General header styling */
 .advertisement-header {
   width: 100%;
   height: 50vh; /* Adjust height as needed */
@@ -112,9 +112,10 @@
   margin: 0;
   padding: 0;
   width: 100%;
-}   
+}
+    
 
- .brand-name {
+    .brand-name {
       font-size: 3rem;
       animation: sparkle 3s infinite;
       text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
@@ -138,8 +139,7 @@
       padding: 2rem;
     }
 
-
-/* Container for the entire slider */
+ /* Container for the entire slider */
 .product-slider {
   position: relative;
   width: 100%;
@@ -166,9 +166,11 @@
   object-fit: cover;  /* Ensure images cover the container */
   border-radius: 100px; /* Border radius for the images */
   border: 15px solid #ffd700; /* Image border */
-}
-  
+}   
+    
+    
 
+    
  /* Product Details */
     .product-details {
       text-align: center;
@@ -328,109 +330,117 @@
     }
   }
 
-/* More Products Section */
-.more-products {
-  background: #1c1c1c;
-  color: #ffd700;
-  padding: 2rem;
-  text-align: center;
-  font-family: Arial, sans-serif;
-}
-
-.more-products h2 {
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  text-transform: uppercase;
-}
-
-/* Products container */
-.products-container {
-  overflow-x: hidden;
-  white-space: nowrap;
+.product-ingredients {
   position: relative;
+  display: inline-block;
 }
 
-
-.product-line {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  gap: 1rem;
-  padding: 1rem;
-  scroll-behavior: smooth;
+.ingredients-img {
+  width: 100%; /* Adjust as needed */
+  height: auto;
 }
 
-.product-card {
-  flex: 0 0 auto;
-  width: 90vw; /* Adjust width to fit screen dynamically */
-  max-width: 300px; /* Ensure consistency across larger screens */
-  background: linear-gradient(145deg, #5a5a5a, #b8860b);
-  border-radius: 15px;
-  padding: 1rem;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  color: #fff;
+.ribbon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff0000; /* Red color, change as needed */
+  color: white;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: bold;
+  transform: rotate(-45deg);
+  transform-origin: 0 0;
+  z-index: 1;
+}
+     
+  .product-image-container {
   position: relative;
-  animation: cardSlide 10s infinite linear;
+  display: inline-block;
 }
 
-.product-card img {
+.product-image {
   width: 100%;
   height: auto;
-  border-radius: 15px;
-  margin-bottom: 1rem;
 }
 
-.product-card h3 {
-  font-size: 1.2rem;
-  margin: 0.5rem 0;
-  font-family: "Cursive", sans-serif;
-}
-
-.product-card p {
-  font-size: 0.9rem;
-  margin: 0.5rem 0;
-}
-
-.product-card .discount {
-  font-size: 0.9rem;
-  color: #ffd700;
+.ribbon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #f39c12; /* Yellow ribbon color */
+  color: white;
+  padding: 5px 15px;
+  font-size: 16px;
   font-weight: bold;
-  margin-bottom: 1rem;
+  transform: rotate(-45deg);
+  z-index: 10;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}  
+  
+ body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-.product-card button {
-  padding: 0.5rem 1rem;
-  background: #ffd700;
-  border: none;
-  color: #1c1c1c;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 0.9rem;
+#star-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Prevent interaction with the animation */
+    z-index: 9999; /* Ensure it overlays all content */
 }
 
-.product-card button:hover {
-  background: #e6c200;
+.star {
+    position: absolute;
+    width: 0;
+    height: 0;
+    color: gold;
+    background: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid gold;
+    transform: rotate(35deg);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    animation: fall 5s linear infinite;
+    opacity: 0.8;
 }
 
-/* For smooth scrolling */
-.product-line::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for better aesthetics */
+.star::before,
+.star::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid gold;
+    transform: rotate(-70deg);
 }
 
-@keyframes cardSlide {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+.star::after {
+    transform: rotate(70deg);
 }
-</style>
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+  </style>
 </head>
 <body>
-  
-   <header class="advertisement-header">
+<header class="advertisement-header">
   <h1 class="advertisement-title">imacx</h1>
   <marquee class="offer">60% OFF on Products | Limited Offer!</marquee>
 </header>
@@ -440,9 +450,15 @@
       <button id="prev" class="slider-btn">◀</button>
       <div class="slider-container">
         <div class="image-slider" id="image-slider">
-          <img src="gooth1.jpeg" alt="Product Image 1">
-          <img src="umb1.jpeg" alt="Product Image 2">
-          <img src="gooth1.jpeg" alt="Product Image 3">
+          <img src="cbsp.jpeg" alt="Product Image 1">
+          <img src="cbsp2.jpeg" alt="Product Image 2">
+          <img src="cbsp3.jpeg" alt="Product Image 3">
+          <img src="cbsp4.jpeg" alt="Product Image 4">
+          <img src="cbsp5.jpeg" alt="Product Image 5">
+          <img src="cbsp6.jpeg" alt="Product Image 6">
+          <img src="cbsp7.jpeg" alt="Product Image 7">
+          <img src="cbsp8.jpeg" alt="Product Image 8">
+          <img src="cbsp9.jpeg" alt="Product Image 9">
         </div>
       </div>
       <button id="next" class="slider-btn">▶</button>
@@ -452,78 +468,81 @@
     <section class="product-details">
       <h2 class="product-name">Skin & Hair Constructing Buildup Shampoo</h2>
 
-<h4>free delivery: <small>no delivery charges for all country<br><br><i>size:50grams</i></small></h4>
+<h4>free delivery: <small>no delivery charges for all country<br><br><i>size:200grams</i></small></h4>
       
-  <div class="country-selector">
-    <label for="country">Select Your Country:</label>
-    <select id="country">
-        <option value="inr" data-rate="1" data-link="inr-payment.html">India</option>
-        <option value="usd" data-rate="0.012" data-link="usd-payment.html">United States</option>
-        <option value="jpy" data-rate="1.64" data-link="japan-payment.html">Japan</option>
-        <option value="cny" data-rate="0.085" data-link="china-payment.html">China</option>
-        <option value="eur" data-rate="0.0094" data-link="europe-payment.html">Europe</option>
-        <option value="aud" data-rate="0.019" data-link="australia-payment.html">Australia</option>
-        <option value="zar" data-rate="0.23" data-link="south-africa-payment.html">South Africa</option>
-    </select>
-</div>
+      <div class="country-selector">
+        <label for="country">Select Your Country:</label>
+        <select id="country">
+  <option value="inr" data-rate="1" data-link="inr-payment.html">India</option>
+  <option value="usd" data-rate="0.012" data-link="usd-payment.html">United States</option>
+  <option value="jpy" data-rate="1.64" data-link="japan-payment.html">Japan</option>
+  <option value="cny" data-rate="0.085" data-link="china-payment.html">China</option>
+  <option value="eur" data-rate="0.0094" data-link="europe-payment.html">Europe</option>
+  <option value="aud" data-rate="0.019" data-link="australia-payment.html">Australia</option>
+  <option value="zar" data-rate="0.23" data-link="south-africa-payment.html">South Africa</option>
+</select>
 
-<!-- Hidden Payment Forms for Each Country -->
-<div id="india-payment-form" class="payment-form" style="display: none;">
-    <p>Price: <del>₹16,250</del> ₹6,500</p>
-    <form>
-        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PdFS2HmLkrchJs" async></script>
-    </form>
-    <button class="buy-button">Buy Now (INR)</button>
+<!-- Hidden Payment Form for India -->
+<div id="india-payment-form" style="display: none;">
+ <br><p>price:<del>₹16,250</del>
+ ₹6,500
+</p> <form>
+    <script 
+      src="https://checkout.razorpay.com/v1/payment-button.js" 
+      data-payment_button_id="pl_PdFS2HmLkrchJs" 
+      async>
+    </script>
+  </form>
 </div>
+          
+<!-- Forms for Other Countries (similar to India) -->
+     
+<div id="usa-payment-form" style="display: none;">
+ <br><p>price:<del>$195.00
+</del>
+ $78.00
+</p> <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Pdc673Comd5JTv" async> </script> </form>
+</div>
+      
+      
+      <div id="japan-payment-form" style="display: none;"><br><p>price:<del>¥
+30,500</del>
+ ¥
+12,200
+</p>
+  <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Pddp6sVrl1VDlF" async> </script> </form>
+</div>
+      
 
-<div id="usa-payment-form" class="payment-form" style="display: none;">
-    <p>Price: <del>$195.00</del> $78.00</p>
-    <form>
-        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Pdc673Comd5JTv" async></script>
-    </form>
-    <button class="buy-button">Buy Now (USD)</button>
+      <div id="china-payment-form" style="display: none;">
+ <br><p>price:<del>¥1385.00</del>
+ ¥554.00
+</p> <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqLBK2CBmR5bQ" async> </script> </form>
 </div>
+      
 
-<div id="japan-payment-form" class="payment-form" style="display: none;">
-    <p>Price: <del>¥30,500</del> ¥12,200</p>
-    <form>
-        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Pddp6sVrl1VDlF" async></script>
-    </form>
-    <button class="buy-button">Buy Now (JPY)</button>
+      <div id="europe-payment-form" style="display: none;">
+ <br><p>price:<del>€185.00</del>
+ €74.00
+</p> <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqWGheRefZQBG" async> </script> </form>
 </div>
+      
 
-<div id="china-payment-form" class="payment-form" style="display: none;">
-    <p>Price: <del>¥1385.00</del> ¥554.00</p>
-    <form>
-        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqLBK2CBmR5bQ" async></script>
-    </form>
-    <button class="buy-button">Buy Now (CNY)</button>
+      <div id="australia-payment-form" style="display: none;">
+ <br><p>price:<del>A$305.00</del>
+ A$122.00
+</p> <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Peqb9gRQF9lWUd" async> </script> </form>
 </div>
+      
 
-<div id="europe-payment-form" class="payment-form" style="display: none;">
-    <p>Price: <del>€185.00</del> €74.00</p>
-    <form>
-        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqWGheRefZQBG" async></script>
-    </form>
-    <button class="buy-button">Buy Now (EUR)</button>
+      <div id="south-africa-payment-form" style="display: none;">
+<br><p>price:<del>R3,550.00</del>
+ R1,420.00
+</p>  <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqiXdZegcEXyb" async> </script> </form>
 </div>
+      
 
-<div id="australia-payment-form" class="payment-form" style="display: none;">
-    <p>Price: <del>A$305.00</del> A$122.00</p>
-    <form>
-        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Peqb9gRQF9lWUd" async></script>
-    </form>
-    <button class="buy-button">Buy Now (AUD)</button>
-</div>
-
-<div id="south-africa-payment-form" class="payment-form" style="display: none;">
-    <p>Price: <del>R3,550.00</del> R1,420.00</p>
-    <form>
-        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqiXdZegcEXyb" async></script>
-    </form>
-    <button class="buy-button">Buy Now (ZAR)</button>
-</div>
- <div class="product-rating">
+      <div class="product-rating">
         <div class="stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
         <div class="interaction-icons">
           <p><span class="like-icon">&#x2764;</span> 1.5k Likes</p>
@@ -533,385 +552,136 @@
 
       <div class="product-info">
         <h3>Benefits</h3>
-        <ul>
-          <li>Repairs damaged hair and skin.</li>
-          <li>Boosts hydration and shine.</li>
-          <li>Prevents hair breakage and skin irritation.</li>
-        </ul>
+      The imacx Skin and Hair Constructing Buildup Shampoo contains a blend of ingredients that work together to provide numerous benefits for both skin and hair. Here’s how each ingredient contributes to the benefits:
+
+Benefits for Hair:
+
+1. Water (Aqua): Hydrates and moisturizes the hair and scalp, providing the base for other ingredients to work effectively.
+
+
+2. Sodium Lauroyl Sarcosinate: A gentle surfactant that helps cleanse the scalp and hair without stripping away essential moisture.
+
+
+3. Cocamidopropyl Betaine: A mild cleansing agent that helps remove dirt and oil from the scalp and hair, maintaining a healthy balance.
+
+
+4. Cocamide MEA: Derived from coconut oil, it conditions and smooths hair while enhancing the lather and cleansing properties.
+
+
+5. Glycerin: A humectant that attracts moisture, helping to keep hair hydrated, soft, and manageable.
+
+
+6. Panthenol (Pro-Vitamin B5): Strengthens hair, reduces split ends, and adds shine by penetrating the hair shaft and retaining moisture.
+
+
+7. Salicylic Acid: Helps exfoliate the scalp, preventing buildup and promoting a healthy scalp for hair growth.
+
+
+8. Citric Acid: Balances the pH of the shampoo to keep the scalp and hair healthy while preventing hair cuticle damage.
+
+
+9. Caprylyl Glycol: A moisturizing agent that prevents scalp dryness, making hair smoother and shinier.
+
+
+10. Charcoal Powder (Activated): Absorbs excess oils, toxins, and impurities from the scalp and hair, providing deep cleansing.
+
+
+11. Tea Tree Oil: Has antimicrobial properties that help reduce dandruff, scalp irritation, and flakiness, promoting a healthier scalp.
+
+
+12. Betaine: Helps balance moisture levels in the hair and scalp, keeping hair hydrated without weighing it down.
+
+
+13. Hydrolyzed Silk Protein: Strengthens and smooths hair, giving it a soft, shiny, and healthier appearance.
+
+
+14. Sodium Chloride: Acts as a thickener, giving the shampoo a smooth texture.
+
+
+15. Polyquaternium-7: Conditions the hair, helping to reduce static, frizz, and tangling.
+
+
+16. Dimethicone: A silicone that coats the hair, providing smoothness, shine, and frizz control.
+
+
+17. Cyclopentasiloxane: Adds shine, smoothness, and softness to the hair while reducing flyaways.
+
+
+18. Disodium EDTA: Helps remove metal ions from the water, preventing buildup that can weigh down hair and affect its texture.
+
+
+
+Benefits for Skin:
+
+1. Panthenol (Pro-Vitamin B5): Hydrates and soothes the skin, promoting skin repair and improving elasticity.
+
+
+2. Salicylic Acid: Exfoliates dead skin cells, helping to unclog pores and prevent acne and breakouts.
+
+
+3. Citric Acid: Gently exfoliates the skin, promoting cell turnover and brightening skin tone.
+
+
+4. Aloe Vera Extract: Soothes irritated skin, reducing redness and inflammation while hydrating and calming.
+
+
+5. Tea Tree Oil: Helps reduce acne and skin irritation with its antimicrobial and anti-inflammatory properties.
+
+
+6. Charcoal Powder (Activated): Deep cleanses the skin by drawing out toxins, impurities, and excess oils, leaving the skin clearer and fresher.
+
+
+7. Ethylhexylglycerin: A skin conditioning agent that keeps skin soft and moisturized.
+
+
+8. Phenoxyethanol: Acts as a preservative to keep the product fresh while having mild skin-soothing effects.
+
+
+9. Sodium Benzoate: Preserves the product while being gentle on the skin.
+
+
+
+Overall Benefits:
+
+Deep Cleansing: Removes buildup and impurities from both the scalp and skin, keeping them clear and healthy.
+
+Hydration & Moisture Balance: Moisturizes and prevents dryness for soft, smooth skin and hair.
+
+Anti-inflammatory & Soothing: Reduces irritation and promotes calm, healthy skin and scalp.
+
+Hair Strength & Shine: Strengthens hair strands, promotes shine, and reduces frizz for a smoother appearance.
+
+Scalp Health: Exfoliates and prevents buildup, promoting a healthy, clean scalp environment for hair growth.
+
+
+This combination of ingredients helps cleanse, hydrate, and nourish the skin and hair, making it an ideal solution for both scalp buildup and skin hydration.
+
+<div class="product-image-container">
+  <img src="cbsp11.webp" alt="Imacx Buildup Shampoo" class="product-image">
+  <div class="ribbon">Benefits</div>
+</div>
       </div>
 
       <div class="product-info">
-        <h3>Ingredients</h3>
-        <p>Keratin, Biotin, Argan Oil, Aloe Vera, Vitamins B5 & E, etc.</p>
+        <h3>ingredients for the imacx Skin and Hair Constructing Buildup Shampoo:</h3>
+        <p>ingredients for the imacx Skin and Hair Constructing Buildup Shampoo:
+
+Water (Aqua,Sodium Lauroyl Sarcosinate,Cocamidopropyl Betaine,Cocamide MEA,Glycerin,<br>Panthenol (Pro-Vitamin B5),Salicylic Acid,Citric Acid,<br>Phenoxyethanol,Ethylhexylglycerin,Caprylyl Glycol,Aloe Vera Extract,<br>Charcoal Powder (Activated),Tea Tree Oil,Betaine,Hydrolyzed Silk Protein,Sodium Chloride,<br>Polyquaternium-7,Sodium Benzoate,Dimethicone,Cyclopentasiloxane,<br>Hydroxyethylcellulose,Disodium EDTA,Linalool,Glycol Distearate
+
+</p>
+        <div class="product-ingredients">
+  <img src="cbsp.10.webp" alt="Ingredients" class="ingredients-img">
+  <div class="ribbon">Ingredients</div>
+</div>
       </div>
 
       <div class="product-info">
         <h3>Description</h3>
-        <p>A luxurious shampoo to revitalize both your hair and skin with premium ingredients.</p>
-      </div>
+        <p>
+Imacx Skin and Hair Constructing Buildup Shampoo is a premium, multi-functional cleanser designed to target and effectively eliminate hair and scalp buildup, which can be caused by styling products, oils, dirt, and other environmental pollutants. This specially formulated shampoo combines the power of advanced ingredients like activated charcoal, salicylic acid, aloe vera extract, and hydrolyzed silk protein to deliver a deep yet gentle cleanse while nourishing the scalp and hair.
 
-      <div class="product-info">
-        <h3>Usage</h3>
-        <p>Apply a generous amount to wet hair and skin, lather well, rinse thoroughly.</p>
-      </div>
+Activated charcoal acts as a natural detoxifier, drawing out impurities and toxins from the scalp and hair, leaving them feeling fresh, clean, and revitalized. Salicylic acid, a well-known exfoliating ingredient, works to dissolve dead skin cells and debris that can accumulate on the scalp, preventing clogged hair follicles and supporting overall scalp health. Aloe vera extract, a soothing and hydrating ingredient, helps to calm and moisturize the scalp, while hydrolyzed silk protein penetrates the hair strands to provide strength, smoothness, and silk-like softness.
 
-      <div class="product-info">
-        <h3>Warning</h3>
-        <p>For external use only. Avoid contact with eyes.</p>
-      </div>
+This shampoo has been carefully crafted for individuals with various hair types, especially those with fine or thick hair that tends to accumulate buildup over time. It works by gently breaking down excess oils, product residue, and environmental pollutants without stripping the scalp and hair of their natural moisture. Whether you're dealing with product buildup from regular styling or environmental impurities that affect your hair's natural shine and volume, this shampoo helps to restore balance and maintain a clean, healthy scalp environment.
 
-    <section class="more-products">
-  <h2>More Products Available on Shop</h2>
-  <div class="products-container">
-    <div class="product-line">
-      <!-- 22 Product Cards -->
-      <div class="product-line">
-  <!-- Sample Product Cards -->
-  <div class="product-card">
-    <img src="product1.jpg" alt="Product 1">
-    <h3>Product 1</h3>
-    <p>Beautiful skin starts here.</p>
-    <p class="discount">60% OFF</p>
-    <button onclick="window.location.href='product1.html'">View Product</button>
-  </div>
-  <div class="product-card">
-    <img src="product2.jpg" alt="Product 2">
-    <h3>Product 2</h3>
-    <p>Your secret to glow.</p>
-    <p class="discount">60% OFF</p>
-    <button onclick="window.location.href='product2.html'">View Product</button>
-  </div>
-  <!-- Add up to 22 product cards similarly -->
-</div>
-      <!-- Add additional product cards here -->
-    </div>
-  </div>
-</section>
-        
-        
-        <!-- FAQ Section -->
-      <div class="faq">
-        <h3>FAQs</h3>
-        <div class="faq-item">
-          <p class="faq-question">What is the pH level of this shampoo?</p>
-          <p class="faq-answer">The pH is balanced to 5.5, suitable for all skin types.</p>
-        </div>
-        <!-- Add more FAQs here -->
-      </div>
-
-      <!-- Customer Reviews -->
-      <div class="reviews">
-        <h3>Customer Reviews</h3>
-        <!-- 35 Reviews -->
-        <div class="review">
-          <p>⭐️⭐️⭐️⭐️⭐️</p>
-          <p>Amazing product! Highly recommended.</p>
-        </div>
-        <!-- Add more reviews -->
-      </div>
-
-      <!-- Features Section -->
-      <div class="features">
-        <h3>Features</h3>
-        <ul>
-          <li><span class="feature-icon">⚡</span> Fast Delivery</li>
-          <li><span class="feature-icon">😊</span> Happy Customers</li>
-          <li><span class="feature-icon">♻️</span> Eco-Friendly Packaging</li>
-        </ul>
-      </div>
-    </section>
-  </main>
-
- <!-- Contact Section -->
-<div class="contact-help">
-  <p>Need Help? Contact Us:</p>
-  <p><strong>📞 Phone:</strong> +918452939172</p>
-  <p><strong>📧 Email 1:</strong> <a href="mailto:macxyy35@gmail.com">macxyy35@gmail.com</a></p>
-  <p><strong>📧 Email 2:</strong> <a href="mailto:macxyy12@gmail.com">macxyy12@gmail.com</a></p>
-  <p><strong>📸 Instagram:</strong> <a href="https://www.instagram.com" target="_blank">Follow us</a></p>
-  <p><strong>Terms& conditions:</strong> <a href="https://www.instagram.com" target="_blank">read terms& conditions applied</a></p>
-  <p><strong>returns & refunds:</strong> <a href="https://www.instagram.com" target="_blank">check returns and refunds</a></p>
-  <p><strong>privacy policy:</strong> <a href="https://www.instagram.com" target="_blank">read privacy policy</a></p>
-  <p><strong>faq:</strong> <a href="https://www.instagram.com" target="_blank">check faq bot page</a></p>
-</div>
-
-  <!-- Footer -->
-  <footer>
-    <p>Terms & Conditions Apply. © 2024 imacx</p>
-  </footer>
-
-
-  <script>
-    
-document.addEventListener("DOMContentLoaded", () => {
-  // Country Selection Logic
-  const countrySelect = document.getElementById("country");
-
-  const paymentForms = {
-    inr: document.getElementById("india-payment-form"),
-    usd: document.getElementById("usa-payment-form"),
-    jpy: document.getElementById("japan-payment-form"),
-    cny: document.getElementById("china-payment-form"),
-    eur: document.getElementById("europe-payment-form"),
-    aud: document.getElementById("australia-payment-form"),
-    zar: document.getElementById("south-africa-payment-form"),
-  };
-
-  // Handle country selection and update price display
- document.getElementById('country').addEventListener('change', function() {
-    // Hide all payment forms initially
-    const paymentForms = document.querySelectorAll('[id$="-payment-form"]');
-    paymentForms.forEach(form => form.style.display = 'none');
-    
-    // Show the selected country's payment form
-    const selectedCountry = this.value;
-    document.getElementById(`${selectedCountry}-payment-form`).style.display = 'block';
-});
-  
-    countrySelect.addEventListener("change", (e) => {
-    const selectedCountry = e.target.value;
-    const selectedForm = paymentForms[selectedCountry];
-
-    // Hide all forms and show the selected one
-    Object.values(paymentForms).forEach((form) => (form.style.display = "none"));
-    if (selectedForm) selectedForm.style.display = "block";
-
-    // Update price based on selected country
-    const rate = parseFloat(e.target.selectedOptions[0].dataset.rate);
-    const amount = (6500 * rate).toFixed(2);
-    document.querySelector(".price-display").textContent = `Price: ${amount} ${selectedCountry.toUpperCase()}`;
-  });
-
-  // Trigger country change to initialize
-  countrySelect.dispatchEvent(new Event("change"));
-
-  // Function to update prices dynamically for all product cards
-  function updatePrices() {
-    const productCards = document.querySelectorAll(".product-card");
-
-    productCards.forEach((card) => {
-      const select = card.querySelector(".country-select");
-      const priceDisplay = card.querySelector(".price-display");
-      const basePrice = 6500; // Base price in INR
-      const buyButton = card.querySelector(".buy-button");
-
-      // Update price and button text on country selection change
-      select.addEventListener("change", () => {
-        const selectedOption = select.options[select.selectedIndex];
-        const rate = parseFloat(selectedOption.getAttribute("data-rate"));
-        const currency = selectedOption.value.toUpperCase();
-
-        // Calculate new price
-        const newPrice = (basePrice * rate).toFixed(2);
-
-        // Update displayed price and button text
-        priceDisplay.textContent = `Price: ${newPrice} ${currency}`;
-        buyButton.textContent = `Buy Now (${currency})`;
-      });
-    });
-  }
-
-  // Initialize pricing updates
-  updatePrices();
-
-  // Function to handle "Buy Now" button click
-  function buyNow(productName) {
-    alert(`Redirecting to purchase page for ${productName}`);
-  }
-
-  // Image Slider Functionality
-  const slider = document.querySelector('.image-slider');
-  let startX, endX;
-  let currentIndex = 0;
-  const images = document.querySelectorAll('.image-slider img');
-  const totalImages = images.length;
-
-  function updateSliderPosition() {
-    const offset = -currentIndex * 100; // Move to the correct image
-    slider.style.transform = `translateX(${offset}vw)`;
-  }
-
-  slider.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  slider.addEventListener('touchmove', (e) => {
-    endX = e.touches[0].clientX;
-  });
-
-  slider.addEventListener('touchend', () => {
-    if (startX - endX > 50 && currentIndex < totalImages - 1) {
-      // Swiped left (Next Image)
-      currentIndex++;
-    } else if (endX - startX > 50 && currentIndex > 0) {
-      // Swiped right (Previous Image)
-      currentIndex--;
-    }
-    updateSliderPosition();
-  });
-
-  // Smooth Scrolling for Product Line
-  const productLine = document.querySelector(".product-line");
-  let isDragging = false;
-  let startX, scrollLeft;
-
-  // Mouse Events
-  productLine.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    startX = e.pageX - productLine.offsetLeft;
-    scrollLeft = productLine.scrollLeft;
-  });
-
-  productLine.addEventListener("mouseleave", () => {
-    isDragging = false;
-  });
-
-  productLine.addEventListener("mouseup", () => {
-    isDragging = false;
-  });
-
-  productLine.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - productLine.offsetLeft;
-    const walk = (x - startX) * 2; // Adjust scroll speed
-    productLine.scrollLeft = scrollLeft - walk;
-  });
-
-  // Touch Events
-  productLine.addEventListener("touchstart", (e) => {
-    const touch = e.touches[0];
-    isDragging = true;
-    startX = touch.pageX - productLine.offsetLeft;
-    scrollLeft = productLine.scrollLeft;
-  });
-
-  productLine.addEventListener("touchend", () => {
-    isDragging = false;
-  });
-
-  productLine.addEventListener("touchmove", (e) => {
-    if (!isDragging) return;
-    const touch = e.touches[0];
-    const x = touch.pageX - productLine.offsetLeft;
-    const walk = (x - startX) * 2; // Adjust scroll speed
-    productLine.scrollLeft = scrollLeft - walk;
-  });
-
-  // Add smooth scrolling functionality
-  const productLineScroller = document.querySelector(".product-line");
-
-  if (productLineScroller) {
-    let isDragging = false;
-    let startX, scrollLeft;
-
-    productLineScroller.addEventListener("mousedown", (e) => {
-      isDragging = true;
-      startX = e.pageX - productLineScroller.offsetLeft;
-      scrollLeft = productLineScroller.scrollLeft;
-    });
-
-    productLineScroller.addEventListener("mouseleave", () => {
-      isDragging = false;
-    });
-
-    productLineScroller.addEventListener("mouseup", () => {
-      isDragging = false;
-    });
-
-    productLineScroller.addEventListener("mousemove", (e) => {
-      if (!isDragging) return;
-      e.preventDefault();
-      const x = e.pageX - productLineScroller.offsetLeft;
-      const walk = (x - startX) * 2; // Adjust scroll speed
-      productLineScroller.scrollLeft = scrollLeft - walk;
-    });
-
-    // Touch events
-    productLineScroller.addEventListener("touchstart", (e) => {
-      const touch = e.touches[0];
-      isDragging = true;
-      startX = touch.pageX - productLineScroller.offsetLeft;
-      scrollLeft = productLineScroller.scrollLeft;
-    });
-
-    productLineScroller.addEventListener("touchend", () => {
-      isDragging = false;
-    });
-
-    productLineScroller.addEventListener("touchmove", (e) => {
-      if (!isDragging) return;
-      const touch = e.touches[0];
-      const x = touch.pageX - productLineScroller.offsetLeft;
-      const walk = (x - startX) * 2; // Adjust scroll speed
-      productLineScroller.scrollLeft = scrollLeft - walk;
-    });
-  }
-
-  // Ensure "Buy Now" buttons are displayed correctly
-  const buyButtons = document.querySelectorAll(".buy-button");
-  buyButtons.forEach((button) => {
-    button.style.display = "inline-block"; // Ensure the buttons are visible
-  });
-});
-
-    // Continuation of the script to manage payment form visibility and price updates
-
-document.addEventListener("DOMContentLoaded", () => {
-    // Get the country selection dropdown and all the payment forms
-    const countrySelect = document.getElementById("country");
-    const paymentForms = document.querySelectorAll(".payment-form");
-
-    // Function to handle country selection and show corresponding payment form
-    countrySelect.addEventListener("change", function() {
-        const selectedCountry = this.value;
-        const selectedForm = document.getElementById(`${selectedCountry}-payment-form`);
-        
-        // Hide all payment forms initially
-        paymentForms.forEach(form => form.style.display = 'none');
-        
-        // Show the selected country's payment form
-        if (selectedForm) {
-            selectedForm.style.display = 'block';
-        }
-
-        // Get the rate associated with the selected country
-        const rate = parseFloat(this.options[this.selectedIndex].dataset.rate);
-        const originalPrice = 6500; // Base price for India (₹6,500)
-        const convertedPrice = (originalPrice * rate).toFixed(2);
-
-        // Update the price dynamically
-        const priceElement = selectedForm.querySelector("p");
-        if (priceElement) {
-            const currencySymbol = getCurrencySymbol(selectedCountry);
-            priceElement.innerHTML = `Price: <del>${currencySymbol}${originalPrice}</del> ${currencySymbol}${convertedPrice}`;
-        }
-
-        // Update the Buy button text dynamically
-        const buyButton = selectedForm.querySelector(".buy-button");
-        if (buyButton) {
-            buyButton.textContent = `Buy Now (${selectedCountry.toUpperCase()})`;
-        }
-    });
-
-    // Function to return currency symbol based on country code
-    function getCurrencySymbol(countryCode) {
-        const currencySymbols = {
-            "inr": "₹",  // India
-            "usd": "$",   // United States
-            "jpy": "¥",   // Japan
-            "cny": "¥",   // China
-            "eur": "€",   // Europe
-            "aud": "A$",  // Australia
-            "zar": "R",   // South Africa
-        };
-        return currencySymbols[countryCode] || "";
-    }
-
-    // Trigger the initial change event to set the default form and price
-    countrySelect.dispatchEvent(new Event("change"));
-});
-
-</script>
-</body>
-</html>
+With continued use, you will notice not only a cleaner scalp but also improved hair texture, shine, and overall appearance. The deep-cleansing formula helps to elimi
