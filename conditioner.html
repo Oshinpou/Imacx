@@ -454,79 +454,76 @@
 
 <h4>free delivery: <small>no delivery charges for all country<br><br><i>size:50grams</i></small></h4>
       
-      <div class="country-selector">
-        <label for="country">Select Your Country:</label>
-        <select id="country">
-  <option value="inr" data-rate="1" data-link="inr-payment.html">India</option>
-  <option value="usd" data-rate="0.012" data-link="usd-payment.html">United States</option>
-  <option value="jpy" data-rate="1.64" data-link="japan-payment.html">Japan</option>
-  <option value="cny" data-rate="0.085" data-link="china-payment.html">China</option>
-  <option value="eur" data-rate="0.0094" data-link="europe-payment.html">Europe</option>
-  <option value="aud" data-rate="0.019" data-link="australia-payment.html">Australia</option>
-  <option value="zar" data-rate="0.23" data-link="south-africa-payment.html">South Africa</option>
-</select>
+  <div class="country-selector">
+    <label for="country">Select Your Country:</label>
+    <select id="country">
+        <option value="inr" data-rate="1" data-link="inr-payment.html">India</option>
+        <option value="usd" data-rate="0.012" data-link="usd-payment.html">United States</option>
+        <option value="jpy" data-rate="1.64" data-link="japan-payment.html">Japan</option>
+        <option value="cny" data-rate="0.085" data-link="china-payment.html">China</option>
+        <option value="eur" data-rate="0.0094" data-link="europe-payment.html">Europe</option>
+        <option value="aud" data-rate="0.019" data-link="australia-payment.html">Australia</option>
+        <option value="zar" data-rate="0.23" data-link="south-africa-payment.html">South Africa</option>
+    </select>
+</div>
 
-<!-- Hidden Payment Form for India -->
-<div id="india-payment-form" style="display: none;">
- <br><p>price:<del>₹16,250</del>
- ₹6,500
-</p> <form>
-    <script 
-      src="https://checkout.razorpay.com/v1/payment-button.js" 
-      data-payment_button_id="pl_PdFS2HmLkrchJs" 
-      async>
-    </script>
-  </form>
+<!-- Hidden Payment Forms for Each Country -->
+<div id="india-payment-form" class="payment-form" style="display: none;">
+    <p>Price: <del>₹16,250</del> ₹6,500</p>
+    <form>
+        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PdFS2HmLkrchJs" async></script>
+    </form>
+    <button class="buy-button">Buy Now (INR)</button>
 </div>
-          
-<!-- Forms for Other Countries (similar to India) -->
-     
-<div id="usa-payment-form" style="display: none;">
- <br><p>price:<del>$195.00
-</del>
- $78.00
-</p> <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Pdc673Comd5JTv" async> </script> </form>
-</div>
-      
-      
-      <div id="japan-payment-form" style="display: none;"><br><p>price:<del>¥
-30,500</del>
- ¥
-12,200
-</p>
-  <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Pddp6sVrl1VDlF" async> </script> </form>
-</div>
-      
 
-      <div id="china-payment-form" style="display: none;">
- <br><p>price:<del>¥1385.00</del>
- ¥554.00
-</p> <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqLBK2CBmR5bQ" async> </script> </form>
+<div id="usa-payment-form" class="payment-form" style="display: none;">
+    <p>Price: <del>$195.00</del> $78.00</p>
+    <form>
+        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Pdc673Comd5JTv" async></script>
+    </form>
+    <button class="buy-button">Buy Now (USD)</button>
 </div>
-      
 
-      <div id="europe-payment-form" style="display: none;">
- <br><p>price:<del>€185.00</del>
- €74.00
-</p> <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqWGheRefZQBG" async> </script> </form>
+<div id="japan-payment-form" class="payment-form" style="display: none;">
+    <p>Price: <del>¥30,500</del> ¥12,200</p>
+    <form>
+        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Pddp6sVrl1VDlF" async></script>
+    </form>
+    <button class="buy-button">Buy Now (JPY)</button>
 </div>
-      
 
-      <div id="australia-payment-form" style="display: none;">
- <br><p>price:<del>A$305.00</del>
- A$122.00
-</p> <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Peqb9gRQF9lWUd" async> </script> </form>
+<div id="china-payment-form" class="payment-form" style="display: none;">
+    <p>Price: <del>¥1385.00</del> ¥554.00</p>
+    <form>
+        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqLBK2CBmR5bQ" async></script>
+    </form>
+    <button class="buy-button">Buy Now (CNY)</button>
 </div>
-      
 
-      <div id="south-africa-payment-form" style="display: none;">
-<br><p>price:<del>R3,550.00</del>
- R1,420.00
-</p>  <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqiXdZegcEXyb" async> </script> </form>
+<div id="europe-payment-form" class="payment-form" style="display: none;">
+    <p>Price: <del>€185.00</del> €74.00</p>
+    <form>
+        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqWGheRefZQBG" async></script>
+    </form>
+    <button class="buy-button">Buy Now (EUR)</button>
 </div>
-      
 
-      <div class="product-rating">
+<div id="australia-payment-form" class="payment-form" style="display: none;">
+    <p>Price: <del>A$305.00</del> A$122.00</p>
+    <form>
+        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_Peqb9gRQF9lWUd" async></script>
+    </form>
+    <button class="buy-button">Buy Now (AUD)</button>
+</div>
+
+<div id="south-africa-payment-form" class="payment-form" style="display: none;">
+    <p>Price: <del>R3,550.00</del> R1,420.00</p>
+    <form>
+        <script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_PeqiXdZegcEXyb" async></script>
+    </form>
+    <button class="buy-button">Buy Now (ZAR)</button>
+</div>
+ <div class="product-rating">
         <div class="stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
         <div class="interaction-icons">
           <p><span class="like-icon">&#x2764;</span> 1.5k Likes</p>
@@ -856,6 +853,63 @@ document.addEventListener("DOMContentLoaded", () => {
   buyButtons.forEach((button) => {
     button.style.display = "inline-block"; // Ensure the buttons are visible
   });
+});
+
+    // Continuation of the script to manage payment form visibility and price updates
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Get the country selection dropdown and all the payment forms
+    const countrySelect = document.getElementById("country");
+    const paymentForms = document.querySelectorAll(".payment-form");
+
+    // Function to handle country selection and show corresponding payment form
+    countrySelect.addEventListener("change", function() {
+        const selectedCountry = this.value;
+        const selectedForm = document.getElementById(`${selectedCountry}-payment-form`);
+        
+        // Hide all payment forms initially
+        paymentForms.forEach(form => form.style.display = 'none');
+        
+        // Show the selected country's payment form
+        if (selectedForm) {
+            selectedForm.style.display = 'block';
+        }
+
+        // Get the rate associated with the selected country
+        const rate = parseFloat(this.options[this.selectedIndex].dataset.rate);
+        const originalPrice = 6500; // Base price for India (₹6,500)
+        const convertedPrice = (originalPrice * rate).toFixed(2);
+
+        // Update the price dynamically
+        const priceElement = selectedForm.querySelector("p");
+        if (priceElement) {
+            const currencySymbol = getCurrencySymbol(selectedCountry);
+            priceElement.innerHTML = `Price: <del>${currencySymbol}${originalPrice}</del> ${currencySymbol}${convertedPrice}`;
+        }
+
+        // Update the Buy button text dynamically
+        const buyButton = selectedForm.querySelector(".buy-button");
+        if (buyButton) {
+            buyButton.textContent = `Buy Now (${selectedCountry.toUpperCase()})`;
+        }
+    });
+
+    // Function to return currency symbol based on country code
+    function getCurrencySymbol(countryCode) {
+        const currencySymbols = {
+            "inr": "₹",  // India
+            "usd": "$",   // United States
+            "jpy": "¥",   // Japan
+            "cny": "¥",   // China
+            "eur": "€",   // Europe
+            "aud": "A$",  // Australia
+            "zar": "R",   // South Africa
+        };
+        return currencySymbols[countryCode] || "";
+    }
+
+    // Trigger the initial change event to set the default form and price
+    countrySelect.dispatchEvent(new Event("change"));
 });
 
 </script>
